@@ -1,0 +1,1043 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/colourful.png">
+  <link rel="icon" href="/img/colourful.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#4F4F4F">
+  <meta name="author" content="Colourful">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="常用payload show_source(array_rand(array_flip(scandir(current(localeconv()))))); highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd()))))))))); var_dump(get_define">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无参RCE">
+<meta property="og:url" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/index.html">
+<meta property="og:site_name" content="Colourful">
+<meta property="og:description" content="常用payload show_source(array_rand(array_flip(scandir(current(localeconv()))))); highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd()))))))))); var_dump(get_define">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000604195.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000612764.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/1763987477001-d47c69ba-426c-452d-a58e-1c9a396de907.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000720229.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000726014.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/1764091651550-e6616fa1-16b8-44ab-9737-44435195aa0d.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/1764091943996-da1ea2ee-2e44-4ae4-b9ab-8f9520e80d7d.png">
+<meta property="article:published_time" content="2026-01-18T16:02:41.000Z">
+<meta property="article:modified_time" content="2026-01-18T16:07:27.700Z">
+<meta property="article:author" content="Colourful">
+<meta property="article:tag" content="无参RCE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000604195.png">
+<meta name="twitter:creator" content="@Colorful">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>无参RCE - Colourful</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassbg.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"colourful228.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2026-01-09T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+
+    
+
+<style type="text/css">
+  @keyframes spin3D {
+    from {
+      transform: rotate3d(0.5, 0.5, 0.5, 360deg);
+    }
+
+    to {
+      transform: rotate3d(0deg);
+    }
+  }
+
+  #loading {
+    height: 100%;
+    background-color: #172d4781;
+    backdrop-filter: saturate(100%) blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 99999999;
+  }
+
+  .spinner-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  .leo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .blue-orbit {
+    width: 175px;
+    height: 175px;
+    border: 2px solid #1a91fa;
+    animation: spin3D 3s linear .2s infinite;
+  }
+
+  .green-orbit {
+    width: 135px;
+    height: 135px;
+    border: 2px solid #00ffdd;
+    animation: spin3D 2s linear 0s infinite;
+  }
+
+  .red-orbit {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d75151;
+    animation: spin3D 1s linear 0s infinite;
+  }
+
+  .white-orbit-a {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 3s linear 0s infinite;
+  }
+
+  .white-orbit-b {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 1.5s linear 0s infinite;
+  }
+
+  .nucleus {
+    width: 1px;
+    height: 1px;
+    border: 1px solid #ffffff;
+    animation: spin3D 1s linear 0s infinite;
+  }
+</style>
+
+<div id="loading">
+    <div class="spinner-box">
+        <div class="blue-orbit leo"></div>
+        <div class="green-orbit leo"></div>
+        <div class="red-orbit leo"></div>
+        <div class="white-orbit-a leo"></div>
+        <div class="white-orbit-b leo"></div>
+        <div class="nucleus leo"></div>
+    </div>
+</div>
+
+<script>
+  (function () {
+    const loaded = function () {
+      window.onload = function () {
+        const loader = document.getElementById("loading");
+        loader.className = "fadeout";
+        setTimeout(function () {
+            loader.style.display = "none";
+          },
+                500
+        );
+      }
+    };
+    loaded();
+  })();
+</script>
+
+
+
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Colorful的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/M.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="无参RCE"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Colourful
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-19 00:02" pubdate>
+          2026年1月19日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">无参RCE</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2026-01-19T00:07:27+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="常用payload"><a href="#常用payload" class="headerlink" title="常用payload"></a>常用payload</h1><ul>
+<li>show_source(array_rand(array_flip(scandir(current(localeconv())))));</li>
+<li>highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd())))))))));</li>
+<li>var_dump(get_defined_vars());：暴力输出所以变量</li>
+</ul>
+<p><code>chdir()</code>：这个函数会改变当前的工作目录到指定目录，这里将工作目录改变为根目录，并返回布尔值，如果没有这一步会发现不能读取根目录下的文件，只会报错  </p>
+<h1 id="scandir"><a href="#scandir" class="headerlink" title="scandir()"></a>scandir()</h1><p>可以获取当前目录的文件和子目录</p>
+<p>传入值：接收参数是要扫描的路径</p>
+<p>返回值：返回的结果是一个数组，其中包含当前目录下的所有文件和目录名称（glob()可替换）</p>
+<p>scandir(‘.’) </p>
+<p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000604195.png" srcset="/img/loading.gif" lazyload alt="image-20260119000604195"></p>
+<p> 因为是无参RCE，所以引号和点这些符号可能会禁用，就要和<code>localeconv()</code>和<code>current()</code>搭配使用  </p>
+<p>scandir(current(localeconv()))</p>
+<h1 id="current"><a href="#current" class="headerlink" title="current()"></a>current()</h1><p>获取数组的当前元素</p>
+<p>传入值：一个数组</p>
+<p>返回值：会返回数组中的当前元素，在每一个数组中都有一个内部指针指向某个元素，默认情况下指向第一个元素</p>
+<p>可以与localeconv() 搭配使用，从而获取localeconv() 返回的数组中第一个元素点 .</p>
+<p>current(localeconv())</p>
+<h1 id="pos"><a href="#pos" class="headerlink" title="pos()"></a>pos()</h1><p>这是current()的别名函数，和其作用一样是获取数组的当前元素</p>
+<p>传入值：一个数组</p>
+<p>返回值：会返回数组中的当前元素，在每一个数组中都有一个内部指针指向某个元素，默认情况下指向第一个元素</p>
+<p>pos(localeconv())</p>
+<h1 id="localeconv"><a href="#localeconv" class="headerlink" title="localeconv()"></a>localeconv()</h1><p>返回一包含本地数字及货币格式信息的数组。</p>
+<p>传入值：无需传入参数</p>
+<p>返回值：返回内容是一个包含众多格式化设置的关联数组</p>
+<p>这里数组第一项就是‘.’，这个.的用处很大</p>
+<p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000612764.png" srcset="/img/loading.gif" lazyload alt="image-20260119000612764"></p>
+<h1 id="glob"><a href="#glob" class="headerlink" title="glob()"></a>glob()</h1><p>用于文件路径名模式匹配的函数，可以获取文件路径的数组</p>
+<p>传入值：要匹配的文件路径名</p>
+<p>返回值：一个包含匹配文件路径的数组</p>
+<p>glob(‘*’)</p>
+<h1 id="getcwd"><a href="#getcwd" class="headerlink" title="getcwd()"></a>getcwd()</h1><p>取得当前工作目录的绝对路径</p>
+<p>传入值：无需传入参数</p>
+<p>返回值：会返回当前工作目录的绝对路径</p>
+<h1 id="dirname"><a href="#dirname" class="headerlink" title="dirname()"></a>dirname()</h1><p>获取路径中的目录部分</p>
+<p>传入值：接收一个路径参数</p>
+<p>返回值：返回路径中的目录部分</p>
+<p>可以和getcwd()搭配使用</p>
+<p>dirname(getcwd())</p>
+<h1 id="array-flip"><a href="#array-flip" class="headerlink" title="array_flip()"></a>array_flip()</h1><p>交换数组中的键和值</p>
+<p>传入值：会接收一个数组</p>
+<p>返回值：返回一个键和值交换位置的数组</p>
+<p> 可以和<code>scandir(current(localeconv()))</code>搭配使用  </p>
+<h1 id="array-reverse"><a href="#array-reverse" class="headerlink" title="array_reverse()"></a>array_reverse()</h1><p>将数组中的元素颠倒过来</p>
+<p>传入值：接收一个数组</p>
+<p>返回值：返回i一个键和值交换位置的数组</p>
+<p>可以和array_flip(scandir(current(localeconv())))搭配使用</p>
+<p>array_reverse(array_flip(scandir(current(localeconv()))))</p>
+<h1 id="array-rand"><a href="#array-rand" class="headerlink" title="array_rand()"></a>array_rand()</h1><p> 这个函数可以从一个数组中随机抽取一个或多个键  </p>
+<p>传入值：接收一个数组，如果没有指定选取键的数量会默认为1</p>
+<p>返回值：会返回随机选取的键</p>
+<p>可以和array_flip(scandir(current(localeconv())))搭配使用</p>
+<p>array_rand(array_flip(scandir(current(localeconv()))))</p>
+<h1 id="chdir"><a href="#chdir" class="headerlink" title="chdir()"></a>chdir()</h1><p>这个函数会改变当前脚本的工作目录</p>
+<p>传入值：需要接收目标目录的路径</p>
+<p>返回值：返回值是布尔类型</p>
+<p>dirname(chdir(dirname(dirname(dirname(getcwd()))))));</p>
+<h1 id="strrev"><a href="#strrev" class="headerlink" title="strrev()"></a>strrev()</h1><p>这个函数可以将字符串反转</p>
+<p>传入值：要进行反转的字符串</p>
+<p>返回值：反转后的字符串</p>
+<p>strrev(“hello”)</p>
+<p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/1763987477001-d47c69ba-426c-452d-a58e-1c9a396de907.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h1 id="end"><a href="#end" class="headerlink" title="end()"></a>end()</h1><p>可以将数组内部指针移动到最后一个元素</p>
+<p>传入值：要操作的数组</p>
+<p>返回值：返回数组的最后一个元素的值</p>
+<p>end(scandir(current(localeconv())))</p>
+<p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000720229.png" srcset="/img/loading.gif" lazyload alt="image-20260119000720229"></p>
+<p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000726014.png" srcset="/img/loading.gif" lazyload alt="image-20260119000726014"></p>
+<h2 id="next"><a href="#next" class="headerlink" title="next()"></a>next()</h2><p>可以将数组的内部指针向前移动一位</p>
+<p>传入值：要操作的数组</p>
+<p>返回值：返回移动后内部指针所指向的元素的值， 如果超出数组范围会返回false</p>
+<h2 id="prev"><a href="#prev" class="headerlink" title="prev()"></a>prev()</h2><p> 将数组的内部指针倒回一位  </p>
+<p>传入值：要操作的数组</p>
+<p>返回值：返回移动后内部指针所指向的元素的值， 如果超出数组范围会返回false</p>
+<h2 id="reset"><a href="#reset" class="headerlink" title="reset()"></a>reset()</h2><p> 将数组内部指针重置到第一个元素  </p>
+<p>传入值：要操作的数组</p>
+<p>返回值：返回重置后的内部指针指向的元素的值，即数组第一个元素的值</p>
+<h2 id="each"><a href="#each" class="headerlink" title="each()"></a>each()</h2><p> 可以获取当前数组内部指针指向的元素的键和值，并将指针向后移动一位  </p>
+<p>传入值：要操作的数组</p>
+<p>返回值： 返回一个包含四个元素的数组，键0和key对应元素的键，键1和value对应元素的值。如果数组指针已经超出数组范围，返回false</p>
+<p>each(scandir(current(localeconv())))</p>
+<p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/1764091651550-e6616fa1-16b8-44ab-9737-44435195aa0d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="ord"><a href="#ord" class="headerlink" title="ord()"></a>ord()</h2><p> 获取字符串中第一个字符的ASCII码值  </p>
+<p>传入值： 要处理的字符串  </p>
+<p>返回值： 字符串中第一个字符的ASCII码值  </p>
+<p>ord(end(scandir(current(localeconv()))))</p>
+<h2 id="chr"><a href="#chr" class="headerlink" title="chr()"></a>chr()</h2><p>和ord()函数功能相反，这个函数是将ASCll码值转化为字符</p>
+<p>传入值：ASCll码值</p>
+<p>返回值：ASCll码值对应的字符</p>
+<h2 id="getallheaders"><a href="#getallheaders" class="headerlink" title="getallheaders()"></a>getallheaders()</h2><p> 这个函数可以获取全部的 HTTP 请求头  </p>
+<p>传入值：无需传入参数</p>
+<p>返回值： 会返回一个包含请求头的数组，键为请求头，值为请求头的值  </p>
+<p> 不过这个函数只能在 Apache 环境中使用，其他环境不能用  </p>
+<p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/1764091943996-da1ea2ee-2e44-4ae4-b9ab-8f9520e80d7d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="get-defined-vars"><a href="#get-defined-vars" class="headerlink" title="get_defined_vars()"></a>get_defined_vars()</h2><p> 这个函数可以返回所有已定义变量的数组，包括全局变量、局部变量、超全局变量等  </p>
+<p>传入值：不需要传入参数</p>
+<p>返回值： 返回一个包含所有已定义变量的关联数组  </p>
+<p> 不过这个函数只能在 Apache 环境中使用，其他环境不能用  </p>
+<h2 id="session-id"><a href="#session-id" class="headerlink" title="session_id()"></a>session_id()</h2><p> 这个函数可以获取或设置当前会话的 Session ID  </p>
+<p>传入值：不需要传入参数</p>
+<p>返回值：返回当前会话的 ID，如果没有就会返回一个空字符串</p>
+<h2 id="读取文件内容函数"><a href="#读取文件内容函数" class="headerlink" title="读取文件内容函数"></a>读取文件内容函数</h2><p>highlight_file()</p>
+<p>show_source()</p>
+<p>readfile()</p>
+<h2 id><a href="#" class="headerlink" title></a></h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">PHP学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RCE/" class="category-chain-item">RCE</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%97%A0%E5%8F%82RCE/" class="print-no-link">#无参RCE</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>无参RCE</div>
+      <div>https://colourful228.github.io/2026/01/19/无参RCE/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Colourful</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年1月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/18/NSSCTF/" title="NSSCTF">
+                        <span class="hidden-mobile">NSSCTF</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://imagegoo-twikoo.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+    <div>
+        <span id="timeDate">正在载入天数...</span>
+        <span id="times">载入时分秒...</span>
+        <script>
+          var now = new Date();
+          function createtime(){
+            var grt= new Date("01/09/2026 00:00:00");
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+            }
+            minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if(String(mnum).length ==1 ){
+              mnum = "0" + mnum;
+            }
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if(String(snum).length ==1 ){
+              snum = "0" + snum;
+            }
+            document.getElementById("timeDate").innerHTML = "🚀已持续航行&nbsp"+dnum+"&nbsp天";
+            document.getElementById("times").innerHTML = hnum + "&nbsp时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+          }
+          setInterval("createtime()",250);
+        </script>
+    </div>
+
+
+
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="https://static.kevinchu.top/blog/assets/js/stars.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
