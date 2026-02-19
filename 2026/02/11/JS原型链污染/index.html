@@ -19,15 +19,15 @@
   <meta name="author" content="Colourful">
   <meta name="keywords" content="">
   
-    <meta name="description" content="JS原型链JacaScript对象模型与原型链的底层结构在现代js中，对象并非简单的键值对集合，而是基于原型链的继承体系 每个对象都拥有一个内部属性[[Prototype]]，该属性指向其”原型对象”（即父级对象），从而形成一条可追溯的链式结构 __proto__和object.getprototypeof()的关系__proto__是非标准的属性，但在实际开发和安全研究中被广泛使用，等价于Obj">
+    <meta name="description" content="JS原型链JavaScript对象模型与原型链的底层结构在现代js中，对象并非简单的键值对集合，而是基于原型链的继承体系 每个对象都拥有一个内部属性[[Prototype]]，该属性指向其”原型对象”（即父级对象），从而形成一条可追溯的链式结构 __proto__和object.getprototypeof()的关系__proto__是非标准的属性，但在实际开发和安全研究中被广泛使用，等价于Obj">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS原型链污染">
 <meta property="og:url" content="https://colourful228.github.io/2026/02/11/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/index.html">
 <meta property="og:site_name" content="Colourful">
-<meta property="og:description" content="JS原型链JacaScript对象模型与原型链的底层结构在现代js中，对象并非简单的键值对集合，而是基于原型链的继承体系 每个对象都拥有一个内部属性[[Prototype]]，该属性指向其”原型对象”（即父级对象），从而形成一条可追溯的链式结构 __proto__和object.getprototypeof()的关系__proto__是非标准的属性，但在实际开发和安全研究中被广泛使用，等价于Obj">
+<meta property="og:description" content="JS原型链JavaScript对象模型与原型链的底层结构在现代js中，对象并非简单的键值对集合，而是基于原型链的继承体系 每个对象都拥有一个内部属性[[Prototype]]，该属性指向其”原型对象”（即父级对象），从而形成一条可追溯的链式结构 __proto__和object.getprototypeof()的关系__proto__是非标准的属性，但在实际开发和安全研究中被广泛使用，等价于Obj">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-11T14:17:19.000Z">
-<meta property="article:modified_time" content="2026-02-11T14:22:42.953Z">
+<meta property="article:modified_time" content="2026-02-14T17:06:11.743Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="JS原型链污染">
 <meta name="twitter:card" content="summary_large_image">
@@ -353,7 +353,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.9k 字
         
       </span>
     
@@ -364,7 +364,7 @@
         
         
         
-          15 分钟
+          16 分钟
         
       </span>
     
@@ -419,7 +419,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-02-11T22:22:42+08:00
+                    本文最后更新于 2026-02-15T01:06:11+08:00
                   
                   
 
@@ -429,7 +429,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="JS原型链"><a href="#JS原型链" class="headerlink" title="JS原型链"></a>JS原型链</h1><h2 id="JacaScript对象模型与原型链的底层结构"><a href="#JacaScript对象模型与原型链的底层结构" class="headerlink" title="JacaScript对象模型与原型链的底层结构"></a>JacaScript对象模型与原型链的底层结构</h2><p>在现代js中，对象并非简单的键值对集合，而是基于原型链的继承体系</p>
+                <h1 id="JS原型链"><a href="#JS原型链" class="headerlink" title="JS原型链"></a>JS原型链</h1><h2 id="JavaScript对象模型与原型链的底层结构"><a href="#JavaScript对象模型与原型链的底层结构" class="headerlink" title="JavaScript对象模型与原型链的底层结构"></a>JavaScript对象模型与原型链的底层结构</h2><p>在现代js中，对象并非简单的键值对集合，而是基于原型链的继承体系</p>
 <p>每个对象都拥有一个内部属性[[Prototype]]，该属性指向其”原型对象”（即父级对象），从而形成一条可追溯的链式结构</p>
 <h3 id="proto-和object-getprototypeof-的关系"><a href="#proto-和object-getprototypeof-的关系" class="headerlink" title="__proto__和object.getprototypeof()的关系"></a>__proto__和object.getprototypeof()的关系</h3><p>__proto__是非标准的属性，但在实际开发和安全研究中被广泛使用，等价于Object.getpeototypeof()方法返回的结果</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> arr=[];<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr.<span class="hljs-property">__proto__</span>=== <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);<span class="hljs-comment">//true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(arr)===<span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);<span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>
@@ -456,7 +456,7 @@
 <p><code>const dog = new Animal();</code></p>
 <ul>
 <li>创建Animal的一个实例dog</li>
-<li><code>dog.\__proto__</code>&#x3D;&#x3D;&#x3D;<code>Animal.prototype</code>–&gt;true</li>
+<li><code>dog.__proto__</code>&#x3D;&#x3D;&#x3D;<code>Animal.prototype</code>–&gt;true</li>
 </ul>
 <p><code>dog.bark = function() </code></p>
 <ul>
@@ -484,7 +484,7 @@
 <li>所以：<code>dog.__proto__.__proto__===Object.prototype</code>–&gt;true</li>
 <li><code>dog.__proto__.__proto__.__proto__===null</code>–&gt;true</li>
 </ul>
-<p>说明所有 对象最终都继承自<code>Object.prototype</code>，它是整个原型链根节点</p>
+<p><strong>说明所有 对象最终都继承自<code>Object.prototype</code>，它是整个原型链根节点</strong></p>
 <h3 id="内置原型对象"><a href="#内置原型对象" class="headerlink" title="内置原型对象"></a>内置原型对象</h3><table>
 <thead>
 <tr>
@@ -609,8 +609,20 @@
 
 <h3 id="ES6-类语法背后的原型机制"><a href="#ES6-类语法背后的原型机制" class="headerlink" title="ES6 类语法背后的原型机制"></a>ES6 类语法背后的原型机制</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">brand, model</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">brand</span> = brand;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">model</span> = model;<br>    &#125;<br><br>    <span class="hljs-title function_">start</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.brand&#125;</span> <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.model&#125;</span> is starting...`</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-title function_">info</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;This is a car class.&quot;</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> tesla = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Car</span>(<span class="hljs-string">&quot;Tesla&quot;</span>, <span class="hljs-string">&quot;Model S&quot;</span>);<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(tesla.<span class="hljs-title function_">start</span>());         <span class="hljs-comment">// Tesla Model S is starting...</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Car</span>.<span class="hljs-title function_">info</span>());            <span class="hljs-comment">// This is a car class.</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(tesla.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Car</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Car</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>); <span class="hljs-comment">// true复制</span><br><br></code></pre></td></tr></table></figure>
 
+<p><code>class Car</code></p>
+<p>定义一个Car类</p>
+<p><code>constructor(brand, model)</code></p>
+<p>构造函数，用于初始换属性brand和model</p>
+<p><code>start()</code></p>
+<p>实例方法，绑定在Car.prototype上，所有实例共享</p>
+<p><code>static info()</code></p>
+<p>静态方法，只属于Car.info本身，不能共享给其他类</p>
+<p><code>const tesla = new Car(&quot;Tesla&quot;, &quot;Model S&quot;);</code></p>
+<p>将Car实例化成一个新的对象，内部属性为{ brand: “Tesla”, model: “Model S” }</p>
+<p><code>console.log(tesla.start());</code></p>
+<p>在tesla中调用公有实例方法start，访问了this.brand和this.model</p>
 <p>等价转换</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// class Car 等价于：</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Car</span>(<span class="hljs-params">brand, model</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">brand</span> = brand;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">model</span> = model;<br>&#125;<br><span class="hljs-title class_">Car</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">start</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.brand&#125;</span> <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.model&#125;</span> is starting...`</span>;<br>&#125;;<br><span class="hljs-title class_">Car</span>.<span class="hljs-property">info</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;This is a car class.&quot;</span>;<br>&#125;;复制<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// class Car 等价于：</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Car</span>(<span class="hljs-params">brand, model</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">brand</span> = brand;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">model</span> = model;<br>&#125;<br><span class="hljs-title class_">Car</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">start</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.brand&#125;</span> <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.model&#125;</span> is starting...`</span>;<br>&#125;;<br><span class="hljs-title class_">Car</span>.<span class="hljs-property">info</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;This is a car class.&quot;</span>;<br>&#125;;复制<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -683,7 +695,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年2月11日</div>
+          <div>2026年2月15日</div>
         </div>
       
       
