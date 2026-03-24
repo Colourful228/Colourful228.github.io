@@ -19,16 +19,32 @@
   <meta name="author" content="Colourful">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="目录遍历类Directorylterator只能列出目录文件名，不能读文件内容 作用：查看文件系统的目录 返回值：指定目录下的第一个文件名（一般情况下是.） 这个类会创建一个指定目录的迭代器 1234&lt;?php$dir &#x3D; new DirectoryIterator(&#x27;D:\PHP代码&#x27;);&#x2F;&#x2F;这是我自己的一个目录echo $dir;?&gt;   遇到echo输出时会触">
+<meta property="og:type" content="article">
 <meta property="og:title" content="php中的原生类">
 <meta property="og:url" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/index.html">
 <meta property="og:site_name" content="Colourful">
+<meta property="og:description" content="目录遍历类Directorylterator只能列出目录文件名，不能读文件内容 作用：查看文件系统的目录 返回值：指定目录下的第一个文件名（一般情况下是.） 这个类会创建一个指定目录的迭代器 1234&lt;?php$dir &#x3D; new DirectoryIterator(&#x27;D:\PHP代码&#x27;);&#x2F;&#x2F;这是我自己的一个目录echo $dir;?&gt;   遇到echo输出时会触">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192936848.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192925095.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192921105.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192918121.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192914744.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192911616.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192907460.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192904816.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192902064.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192858651.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192854454.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192850360.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192846440.png">
 <meta property="article:published_time" content="2026-03-19T12:18:16.000Z">
-<meta property="article:modified_time" content="2026-03-19T12:19:01.093Z">
+<meta property="article:modified_time" content="2026-03-24T11:29:37.882Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="php原生类">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192936848.png">
 <meta name="twitter:creator" content="@Colorful">
   
   
@@ -351,7 +367,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.4k 字
         
       </span>
     
@@ -362,7 +378,7 @@
         
         
         
-          1 分钟
+          12 分钟
         
       </span>
     
@@ -417,7 +433,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-03-19T20:19:01+08:00
+                    本文最后更新于 2026-03-24T19:29:37+08:00
                   
                   
 
@@ -427,7 +443,266 @@
             
               <div class="markdown-body">
                 
-                
+                <h1 id="目录遍历类"><a href="#目录遍历类" class="headerlink" title="目录遍历类"></a>目录遍历类</h1><h2 id="Directorylterator"><a href="#Directorylterator" class="headerlink" title="Directorylterator"></a>Directorylterator</h2><p><strong>只能列出目录文件名，不能读文件内容</strong></p>
+<p>作用：查看文件系统的目录</p>
+<p>返回值：指定目录下的第一个文件名（一般情况下是.）</p>
+<p>这个类会创建一个指定目录的迭代器</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$dir</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DirectoryIterator</span>(<span class="hljs-string">&#x27;D:\PHP代码&#x27;</span>);<span class="hljs-comment">//这是我自己的一个目录</span><br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$dir</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192936848.png" srcset="/img/loading.gif" lazyload alt="image-20260324192936848"></p>
+<p>遇到echo输出时会触发DirectoryIterator中的__toString()方法</p>
+<p><strong>DirectoryIterator::__toString方法</strong></p>
+<p>参数：此函数没有参数</p>
+<p>返回值：返回当前DirectoryIterator类的文件名</p>
+<p>1）查看全部文件名</p>
+<p>需要用foreach遍历</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$dir</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DirectoryIterator</span>(<span class="hljs-string">&#x27;D:\PHP代码&#x27;</span>);<br><span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$dir</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$d</span>)&#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$d</span>.<span class="hljs-string">&quot;\n&quot;</span>;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192925095.png" srcset="/img/loading.gif" lazyload alt="image-20260324192925095"></p>
+<p>可以访问到这个目录下的所有文件</p>
+<p>2）筛选出特定类型的文件</p>
+<p>配合glob:&#x2F;&#x2F;协议筛选</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$dir</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DirectoryIterator</span>(<span class="hljs-string">&#x27;glob:///PHP代码/*php*&#x27;</span>);<br><span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$dir</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$d</span>)&#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$d</span>.<span class="hljs-string">&quot;\n&quot;</span>;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>用* *进行筛选含有php的文件</p>
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192921105.png" srcset="/img/loading.gif" lazyload alt="image-20260324192921105"></p>
+<p>3）一句话形式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-comment">//$dir = new DirectoryIterator(&#x27;glob:///PHP代码/*php*&#x27;);</span><br><span class="hljs-comment">//foreach($dir as $d)&#123;</span><br><span class="hljs-comment">//    echo $d.&quot;\n&quot;;</span><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DirectoryIterator</span>(<span class="hljs-string">&#x27;glob:///PHP代码/*php*&#x27;</span>);<span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$a</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$d</span>)&#123;<span class="hljs-keyword">echo</span>(<span class="hljs-variable">$d</span>.<span class="hljs-string">&quot;\n&quot;</span>);&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192918121.png" srcset="/img/loading.gif" lazyload alt="image-20260324192918121"></p>
+<h2 id="FilesystemIterator"><a href="#FilesystemIterator" class="headerlink" title="FilesystemIterator"></a>FilesystemIterator</h2><h2 id="GlobIterator"><a href="#GlobIterator" class="headerlink" title="GlobIterator"></a>GlobIterator</h2><h1 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h1><h2 id="SplFileObject"><a href="#SplFileObject" class="headerlink" title="SplFileObject"></a>SplFileObject</h2><p>作用：可用于读指定文件内容，直接echo只能读一行</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$content</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">SplFileObject</span>(<span class="hljs-string">&#x27;D:\PHP代码\异或.php&#x27;</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$content</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192914744.png" srcset="/img/loading.gif" lazyload alt="image-20260324192914744"></p>
+<p>1）用foreach遍历$content对象</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$content</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">SplFileObject</span>(<span class="hljs-string">&#x27;D:\PHP代码\异或.php&#x27;</span>);<br><span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$content</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$c</span>)&#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$c</span>.<span class="hljs-string">&quot;\n&quot;</span>;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192911616.png" srcset="/img/loading.gif" lazyload alt="image-20260324192911616"></p>
+<h1 id="可删除文件的类"><a href="#可删除文件的类" class="headerlink" title="可删除文件的类"></a>可删除文件的类</h1><h2 id="ZipArchive"><a href="#ZipArchive" class="headerlink" title="ZipArchive"></a>ZipArchive</h2><p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/class.ziparchive.php">https://www.php.net/manual/zh/class.ziparchive.php</a></p>
+<p>作用：对文件进行压缩与解压缩处理</p>
+<p><strong>常用的魔术方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>魔术方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ZipArchive::addEmptyDir</td>
+<td>添加一个新的文件目录</td>
+</tr>
+<tr>
+<td>ZipArchive::addFile</td>
+<td>将文件添加到指定zip压缩包中</td>
+</tr>
+<tr>
+<td>ZipArchive::addFronString</td>
+<td>添加新的文件同时将内容添加进去</td>
+</tr>
+<tr>
+<td>ZipArchive::close</td>
+<td>关闭ZipArchive</td>
+</tr>
+<tr>
+<td>ZipArchive::open</td>
+<td>打开一个zip压缩包</td>
+</tr>
+<tr>
+<td>ZipArchive::aextracTo</td>
+<td>将压缩包解压</td>
+</tr>
+<tr>
+<td>ZipArchive::deleteIndex</td>
+<td>删除压缩包中的某一个（deleteIndex(0)代表删除第一个文件）</td>
+</tr>
+</tbody></table>
+<h3 id="ZipArchive-open"><a href="#ZipArchive-open" class="headerlink" title="ZipArchive::open"></a>ZipArchive::open</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-title class_">ZipArchive</span>::<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-keyword">string</span> <span class="hljs-variable">$filename</span>, <span class="hljs-keyword">int</span> <span class="hljs-variable">$flags</span> = <span class="hljs-number">0</span>): <span class="hljs-keyword">bool</span>|<span class="hljs-keyword">int</span><br></code></pre></td></tr></table></figure>
+
+<p>这段代码可以用于打开一个ZIP压缩文件或者创建新的ZIP文件</p>
+<p>string $filename</p>
+<ul>
+<li>类型约束：string表示传入的参数必须是字符串类型</li>
+<li>参数作用：指定要操作的ZIP文件的路径和文件名</li>
+</ul>
+<p>int $flags &#x3D; 0</p>
+<ul>
+<li>类型约束：int表示传入的参数必须是整型</li>
+<li>参数作用：指定打开ZIP文件的模式和行为，参数的默认值为0</li>
+<li>常用可选常量：</li>
+</ul>
+<ol>
+<li>ZipArchive::CREATE：若指定文件不存在，则创建该文件，若存在直接打开</li>
+<li>ZipArchive::OVERWRITE：覆盖已存在的ZIP文件，即使文件已有内容也会清空后重新创建</li>
+<li>ZipArchive::RDONLY：以只读模式打开ZIP文件，无法对文件进行写入、添加内容等操作</li>
+<li>可以用按位（|）组合多个选项</li>
+</ol>
+<p>bool|int：返回值类型说明</p>
+<p>ZipArchive::OVERWRITE可以把指定文件删除</p>
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192907460.png" srcset="/img/loading.gif" lazyload alt="image-20260324192907460"></p>
+<p>按Ctrl再点ZipArchive可以跟进方法可以看到public const OVERWRITE &#x3D; 8，在调用时也可以直接将$flags赋值为8</p>
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192904816.png" srcset="/img/loading.gif" lazyload alt="image-20260324192904816"></p>
+<p>所以可以利用ZipArchive类调用open方法来删除目标主机上的文件</p>
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192902064.png" srcset="/img/loading.gif" lazyload alt="image-20260324192902064"></p>
+<p>原来存在一个2.php文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipArchive</span>();<br><span class="hljs-variable">$a</span>-&gt;<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">&#x27;2.php&#x27;</span>,<span class="hljs-title class_">ZipArchive</span>::<span class="hljs-variable constant_">OVERWRITE</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192858651.png" srcset="/img/loading.gif" lazyload alt="image-20260324192858651"></p>
+<p>运行后会删除指定的2.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipArchive</span>();<br><span class="hljs-variable">$a</span>-&gt;<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">&#x27;2.php&#x27;</span>,<span class="hljs-number">8</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>将flags直接写成8也是一样的可以删除指定文件</p>
+<h1 id="反射类"><a href="#反射类" class="headerlink" title="反射类"></a>反射类</h1><h2 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h2><p>反射是指在PHP运行状态中，扩展分析PHP程序，导出或提取出于类、方法、属性、参数等的详细信息，包括注释。</p>
+<p>这种动态获取的信息以及动态调用对象的方法的功能称为反射API</p>
+<p>API：应用程序端口</p>
+<p>反射是操纵面向对象范型中元模型的API</p>
+<p> PHP反射API由若干类组成，可帮助我们用来访问程序的元数据或者同相关的注释交互</p>
+<h2 id="ReflectionClass类"><a href="#ReflectionClass类" class="headerlink" title="ReflectionClass类"></a>ReflectionClass类</h2><p>作用</p>
+<ol>
+<li>分析类结构</li>
+</ol>
+<p>获取类名、命名空间、文件路径、接口、父类、修饰符、注释等</p>
+<ol>
+<li>访问成员</li>
+</ol>
+<p>检索类的方法、属性、常量等信息</p>
+<ol>
+<li>实例化对象</li>
+</ol>
+<p>动态创建类的实例（支持绕过魔术方法）</p>
+<ol>
+<li>操作访问控制</li>
+</ol>
+<p>绕过private&#x2F;protected成员的访问权限  </p>
+<h3 id="ReflectionClass-construct函数"><a href="#ReflectionClass-construct函数" class="headerlink" title="ReflectionClass::__construct函数"></a>ReflectionClass::__construct函数</h3><p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192854454.png" srcset="/img/loading.gif" lazyload alt="image-20260324192854454"></p>
+<p>  测试代码1</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReflectionClass</span>(<span class="hljs-string">&#x27;Exception&#x27;</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192850360.png" srcset="/img/loading.gif" lazyload alt="image-20260324192850360"></p>
+<p>测试了原生类Exception，可以看到其中的类、属性、方法</p>
+<p><strong>测试代码2</strong></p>
+<p>flag.php文件：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FLAG</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$flag</span> = <span class="hljs-string">&quot;flag&#123;this_is_a_flag&#125;&quot;</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFlag</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;flag;<br>    &#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>111.php文件：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;flag.php&#x27;</span>;<br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReflectionClass</span>(<span class="hljs-string">&#x27;FLAG&#x27;</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/image-20260324192846440.png" srcset="/img/loading.gif" lazyload alt="image-20260324192846440"></p>
+<p>可以看到其中的方法、属性名</p>
+<h4 id="常用的魔术方法"><a href="#常用的魔术方法" class="headerlink" title="常用的魔术方法"></a><strong>常用的魔术方法</strong></h4><p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/book.reflection.php">https://www.php.net/manual/zh/book.reflection.php</a></p>
+<table>
+<thead>
+<tr>
+<th>魔术方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ReflectionClass::__construct</td>
+<td>初始化ReflectionClass类</td>
+</tr>
+<tr>
+<td>ReflectionClass::export</td>
+<td>导出类</td>
+</tr>
+<tr>
+<td>ReflectionClass::getAttributes</td>
+<td>获取所有属性</td>
+</tr>
+<tr>
+<td>ReflectionClass::getConstant</td>
+<td>获取已定义的常量</td>
+</tr>
+<tr>
+<td>ReflectionClass::getConstructor</td>
+<td>获取类的构造函数</td>
+</tr>
+<tr>
+<td>ReflectionClass::getMethod</td>
+<td>获取类方法</td>
+</tr>
+<tr>
+<td>ReflectionClass::getMethods</td>
+<td>获取类方法的数组</td>
+</tr>
+<tr>
+<td>ReflectionClass::getName</td>
+<td>获取类名</td>
+</tr>
+<tr>
+<td>ReflectionClass::getProperties</td>
+<td>获取属性</td>
+</tr>
+</tbody></table>
+<h2 id="Reflection类"><a href="#Reflection类" class="headerlink" title="Reflection类"></a>Reflection类</h2><table>
+<thead>
+<tr>
+<th>魔术方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reflection::export</td>
+<td>导出</td>
+</tr>
+<tr>
+<td>Reflection::getModifierNames</td>
+<td>获取修饰符的名称</td>
+</tr>
+</tbody></table>
+<h1 id="可进行XSS的类"><a href="#可进行XSS的类" class="headerlink" title="可进行XSS的类"></a>可进行XSS的类</h1><h2 id="Error类"><a href="#Error类" class="headerlink" title="Error类"></a>Error类</h2><p>适用版本：php7版本</p>
+<p>Error类就是php的一个内置类用于自动自定义一个Error</p>
+<p>内置方法：__toString() 可能存在XSS</p>
+<p>魔术方法</p>
+<table>
+<thead>
+<tr>
+<th>魔术方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Error::__construct</td>
+<td>初始化 error 对象</td>
+</tr>
+<tr>
+<td>Error::getMessage</td>
+<td>获取错误信息</td>
+</tr>
+<tr>
+<td>Error::getPrevious</td>
+<td>返回先前的 Throwable</td>
+</tr>
+<tr>
+<td>Error::getCode</td>
+<td>获取错误代码</td>
+</tr>
+<tr>
+<td>Error::getFile</td>
+<td>获取错误发生时的文件</td>
+</tr>
+<tr>
+<td>Error::getLine</td>
+<td>获取错误发生时的行号</td>
+</tr>
+<tr>
+<td>Error::getTrace</td>
+<td>获取调用栈（stack trace）</td>
+</tr>
+<tr>
+<td>Error::getTraceAsString</td>
+<td>获取字符串形式的调用栈（stack trace</td>
+</tr>
+<tr>
+<td>Error::__toString</td>
+<td>error 的字符串表达</td>
+</tr>
+<tr>
+<td>Error::__clone</td>
+<td>克隆 error</td>
+</tr>
+</tbody></table>
+<h1 id><a href="#" class="headerlink" title></a></h1>
                 
               </div>
             
@@ -498,7 +773,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年3月19日</div>
+          <div>2026年3月24日</div>
         </div>
       
       
