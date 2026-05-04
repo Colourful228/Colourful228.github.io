@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://colourful228.github.io/2026/02/26/PHP%E5%87%BD%E6%95%B0/image-20260226164736091.png">
 <meta property="article:published_time" content="2026-02-26T06:13:19.000Z">
-<meta property="article:modified_time" content="2026-03-18T12:02:11.763Z">
+<meta property="article:modified_time" content="2026-04-21T07:51:26.000Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary_large_image">
@@ -355,7 +355,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          148 字
+          534 字
         
       </span>
     
@@ -366,7 +366,7 @@
         
         
         
-          2 分钟
+          5 分钟
         
       </span>
     
@@ -421,7 +421,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-03-18T20:02:11+08:00
+                    本文最后更新于 2026-04-21T15:51:26+08:00
                   
                   
 
@@ -444,8 +444,29 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">hash_equals</span>(<span class="hljs-string">&#x27;sha256&#x27;</span>, <span class="hljs-string">&#x27;;more f*&#x27;</span>));<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="/2026/02/26/PHP%E5%87%BD%E6%95%B0/image-20260226164736091.png" srcset="/img/loading.gif" lazyload alt="image-20260226164736091"></p>
-<h1 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg"></a>escapeshellarg</h1><p>作用：用于安全地将字符串转换为shell命令的参数</p>
+<h1 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg"></a>escapeshellarg</h1><ul>
+<li>功能： 将字符串转义为安全的shell参数</li>
+<li>特点： 在整个字符串周围添加单引号<br>   将字符串中已有的单引号转义为 <code>&#39;\&#39;&#39;</code>（先关闭引号，转义单引号，再打开引号）<br>   确保字符串被当作一个整体参数传递</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-variable">$input</span> = <span class="hljs-string">&quot;it&#x27;s&quot;</span>;<br><span class="hljs-built_in">echo</span> escapeshellarg(<span class="hljs-variable">$input</span>);<br>处理过程：<br>1.包裹外层引号 → <span class="hljs-string">&#x27;it&#x27;</span>s<span class="hljs-string">&#x27;</span><br><span class="hljs-string">2.转义内部单引号：</span><br><span class="hljs-string">    在 &#x27;</span> 前关闭引号 → <span class="hljs-string">&#x27;it&#x27;</span><br>    插入转义单引号 → <span class="hljs-string">&#x27;\&#x27;</span><span class="hljs-string">&#x27;</span><br><span class="hljs-string">    重新打开引号 → &#x27;</span>s<span class="hljs-string">&#x27;</span><br><span class="hljs-string">3.最终结果 → &#x27;</span>it<span class="hljs-string">&#x27;\&#x27;</span><span class="hljs-string">&#x27;s&#x27;</span><br><br>Bash解析时：<br><span class="hljs-string">&#x27;it&#x27;</span> + \&#x27; + <span class="hljs-string">&#x27;s&#x27;</span><br>合并后仍是原始字符串 it<span class="hljs-string">&#x27;s</span><br></code></pre></td></tr></table></figure>
 
+<h1 id="escapeshellcmd"><a href="#escapeshellcmd" class="headerlink" title="escapeshellcmd()"></a>escapeshellcmd()</h1><ul>
+<li>功能： 转义shell元字符  </li>
+<li>特点： 转义以下字符：#&amp;;|*?~&lt;&gt;^()[]{}$&#96;、换行符和回车符<br>   不添加引号<br>    主要用于转义整个命令中的特殊字符</li>
+</ul>
+<h1 id="escapeshellarg-escapeshellcmd-漏洞产生"><a href="#escapeshellarg-escapeshellcmd-漏洞产生" class="headerlink" title="escapeshellarg()+escapeshellcmd()漏洞产生"></a>escapeshellarg()+escapeshellcmd()漏洞产生</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c">$input = <span class="hljs-string">&quot;&#x27; &lt;?php code ?&gt; -oG evil.php &#x27;&quot;</span>;<br>$arg = escapeshellarg($input); <br><span class="hljs-comment">// 结果: &#x27;&#x27;\&#x27;&#x27; &lt;?php code ?&gt; -oG evil.php &#x27;\&#x27;&#x27;&#x27;</span><br><br>$cmd = escapeshellcmd($arg);<br><span class="hljs-comment">// 结果: &#x27;&#x27;\\&#x27;&#x27; \&lt;\?php code \?\&gt; -oG evil.php &#x27;\\&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>Bash解析的行为</p>
+<ol>
+<li>开头处：’’&#39;‘被解析为字面字符串\</li>
+</ol>
+<p>开头的’’是空字符串，\被解释为字面反斜杠，’’也是空字符串</p>
+<ol>
+<li>中间的<?php code ?> -oG evil.php因 引号被破坏而成为独立参数</li>
+<li>末尾：最后的’可能被忽略或与后续内容关联</li>
+</ol>
+<p><code>&#39;\\&#39;&#39;&#39;</code> 可以拆解为以下部分：<br><code>&#39;\\&#39;</code> → 单引号包裹的两个反斜杠<br><code>&#39;&#39;</code> → 空字符串<br><code>&#39;</code> → 未闭合的单引号（实际会与后续内容关联）</p>
+<h1 id="require-once"><a href="#require-once" class="headerlink" title="require_once"></a>require_once</h1>
                 
               </div>
             
@@ -509,7 +530,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年3月18日</div>
+          <div>2026年4月21日</div>
         </div>
       
       
