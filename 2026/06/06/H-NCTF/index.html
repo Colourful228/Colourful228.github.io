@@ -19,12 +19,12 @@
   <meta name="author" content="Colourful">
   <meta name="keywords" content="">
   
-    <meta name="description" content="总结这应该是大一的最后一次考核赛了，对自己做的情况挺不满意的，web7道题做出了5道，签到题是session文件包含，还有一道文件包含是pearcmd文件包含，天机阁是jwt认证和SSTI模板注入，RCE就是ThinkPHP的一个漏洞，但是过滤了一点东西，那个小游戏就是很简单的json格式传参，还有一道偷偷给shell的题，是Http请求走私和反序列化，但是只做出来一半，没时间了，可惜了。因为写w">
+    <meta name="description" content="总结这应该是大一的最后一次考核赛了，对自己做的情况挺不满意的，web7道题做出了5道。可能当时有点紧张吧，有点自乱阵脚了。签到题是session文件包含，还有一道文件包含是pearcmd文件包含，天机阁是jwt认证和SSTI模板注入，RCE就是ThinkPHP的一个漏洞，但是过滤了一点东西，那个小游戏就是很简单的json格式传参，还有一道偷偷给shell的题，是Http请求走私和反序列化，但是只做">
 <meta property="og:type" content="article">
 <meta property="og:title" content="H&amp;NCTF暨考核赛（WEB部分）">
 <meta property="og:url" content="https://colourful228.github.io/2026/06/06/H-NCTF/index.html">
 <meta property="og:site_name" content="Colourful">
-<meta property="og:description" content="总结这应该是大一的最后一次考核赛了，对自己做的情况挺不满意的，web7道题做出了5道，签到题是session文件包含，还有一道文件包含是pearcmd文件包含，天机阁是jwt认证和SSTI模板注入，RCE就是ThinkPHP的一个漏洞，但是过滤了一点东西，那个小游戏就是很简单的json格式传参，还有一道偷偷给shell的题，是Http请求走私和反序列化，但是只做出来一半，没时间了，可惜了。因为写w">
+<meta property="og:description" content="总结这应该是大一的最后一次考核赛了，对自己做的情况挺不满意的，web7道题做出了5道。可能当时有点紧张吧，有点自乱阵脚了。签到题是session文件包含，还有一道文件包含是pearcmd文件包含，天机阁是jwt认证和SSTI模板注入，RCE就是ThinkPHP的一个漏洞，但是过滤了一点东西，那个小游戏就是很简单的json格式传参，还有一道偷偷给shell的题，是Http请求走私和反序列化，但是只做">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://colourful228.github.io/2026/06/06/H-NCTF/image-20260607191154160.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/06/06/H-NCTF/image-20260607191156663.png">
@@ -51,7 +51,7 @@
 <meta property="og:image" content="https://colourful228.github.io/2026/06/06/H-NCTF/image-20260607191649049.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/06/06/H-NCTF/image-20260607191651129.png">
 <meta property="article:published_time" content="2026-06-06T15:55:19.000Z">
-<meta property="article:modified_time" content="2026-06-07T11:16:51.216Z">
+<meta property="article:modified_time" content="2026-06-07T15:53:32.079Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="考核赛">
 <meta name="twitter:card" content="summary_large_image">
@@ -378,7 +378,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.5k 字
         
       </span>
     
@@ -444,7 +444,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-06-07T19:16:51+08:00
+                    本文最后更新于 2026-06-07T23:53:32+08:00
                   
                   
 
@@ -454,7 +454,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这应该是大一的最后一次考核赛了，对自己做的情况挺不满意的，web7道题做出了5道，签到题是session文件包含，还有一道文件包含是pearcmd文件包含，天机阁是jwt认证和SSTI模板注入，RCE就是ThinkPHP的一个漏洞，但是过滤了一点东西，那个小游戏就是很简单的json格式传参，还有一道偷偷给shell的题，是Http请求走私和反序列化，但是只做出来一半，没时间了，可惜了。因为写wp的时间有点紧，写的有些草率，就打算重新整理一下，也算是复盘一下吧。</p>
+                <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这应该是大一的最后一次考核赛了，对自己做的情况挺不满意的，web7道题做出了5道。可能当时有点紧张吧，有点自乱阵脚了。签到题是session文件包含，还有一道文件包含是pearcmd文件包含，天机阁是jwt认证和SSTI模板注入，RCE就是ThinkPHP的一个漏洞，但是过滤了一点东西，那个小游戏就是很简单的json格式传参，还有一道偷偷给shell的题，是Http请求走私和反序列化，但是只做出来一半，没时间了，可惜了。因为写wp的时间有点紧，写的有些草率，就打算重新整理一下，也算是复盘一下吧。</p>
 <h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="Chrono-Rift"><a href="#Chrono-Rift" class="headerlink" title="Chrono Rift"></a>Chrono Rift</h2><p>开局就是一个小游戏，要求时间在60秒，得分为30（其实还没反应过来游戏就结束了</p>
 <p><img src="/2026/06/06/H-NCTF/image-20260607191154160.png" srcset="/img/loading.gif" lazyload alt="image-20260607191154160"></p>
 <p>很明显的能看到游戏失败后返回的是json格式的键值对，看一下js源码</p>
@@ -663,6 +663,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2026/06/08/HTTP%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81/" title="HTTP请求走私">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HTTP请求走私</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

