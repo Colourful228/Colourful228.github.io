@@ -19,15 +19,15 @@
   <meta name="author" content="Colourful">
   <meta name="keywords" content="">
   
-    <meta name="description" content="变量覆盖漏洞自定义的参数值替换原有变量值的情况称为变量覆盖漏洞 常见导致变量覆盖漏洞场景：  $$使用不当 extract()函数使用不当 parse_str()函数使用不当 import_request_variables()使用不当 开启了全局变量注册  全局变量覆盖register_globals即注册为全局变量的意思 当register_globals&#x3D;on时，传递过来的值会被直">
+    <meta name="description" content="前言应该是刷题刷到了，是一个小知识点，但是理解起来感觉有点复杂，就打算写下来，但是正巧赶上了队内考核赛就在搁置中……后面有时间补上吧 变量覆盖漏洞自定义的参数值替换原有变量值的情况称为变量覆盖漏洞 常见导致变量覆盖漏洞场景：  $$使用不当 extract()函数使用不当 parse_str()函数使用不当 import_request_variables()使用不当 开启了全局变量注册  全局变">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php变量覆盖">
+<meta property="og:title" content="php变量覆盖（未完）">
 <meta property="og:url" content="https://colourful228.github.io/2026/06/01/php%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/index.html">
 <meta property="og:site_name" content="Colourful">
-<meta property="og:description" content="变量覆盖漏洞自定义的参数值替换原有变量值的情况称为变量覆盖漏洞 常见导致变量覆盖漏洞场景：  $$使用不当 extract()函数使用不当 parse_str()函数使用不当 import_request_variables()使用不当 开启了全局变量注册  全局变量覆盖register_globals即注册为全局变量的意思 当register_globals&#x3D;on时，传递过来的值会被直">
+<meta property="og:description" content="前言应该是刷题刷到了，是一个小知识点，但是理解起来感觉有点复杂，就打算写下来，但是正巧赶上了队内考核赛就在搁置中……后面有时间补上吧 变量覆盖漏洞自定义的参数值替换原有变量值的情况称为变量覆盖漏洞 常见导致变量覆盖漏洞场景：  $$使用不当 extract()函数使用不当 parse_str()函数使用不当 import_request_variables()使用不当 开启了全局变量注册  全局变">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-01T10:39:04.000Z">
-<meta property="article:modified_time" content="2026-06-02T12:21:06.022Z">
+<meta property="article:modified_time" content="2026-06-16T08:05:48.036Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="php变量覆盖">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>php变量覆盖 - Colourful</title>
+  <title>php变量覆盖（未完） - Colourful</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -325,7 +325,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="php变量覆盖"></span>
+            <span id="subtitle" data-typed-text="php变量覆盖（未完）"></span>
           
         </div>
 
@@ -353,7 +353,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          164 字
+          222 字
         
       </span>
     
@@ -414,12 +414,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">php变量覆盖</h1>
+            <h1 id="seo-header">php变量覆盖（未完）</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-06-02T20:21:06+08:00
+                    本文最后更新于 2026-06-16T16:05:48+08:00
                   
                   
 
@@ -429,7 +429,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="变量覆盖漏洞"><a href="#变量覆盖漏洞" class="headerlink" title="变量覆盖漏洞"></a>变量覆盖漏洞</h1><p>自定义的参数值替换原有变量值的情况称为变量覆盖漏洞</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>应该是刷题刷到了，是一个小知识点，但是理解起来感觉有点复杂，就打算写下来，但是正巧赶上了队内考核赛就在搁置中……后面有时间补上吧</p>
+<h1 id="变量覆盖漏洞"><a href="#变量覆盖漏洞" class="headerlink" title="变量覆盖漏洞"></a>变量覆盖漏洞</h1><p>自定义的参数值替换原有变量值的情况称为变量覆盖漏洞</p>
 <p>常见导致变量覆盖漏洞场景：</p>
 <ul>
 <li>$$使用不当</li>
@@ -442,7 +443,6 @@
 <p>当register_globals&#x3D;on时，传递过来的值会被直接注册为全局变量直接使用</p>
 <p>当register_globals&#x3D;off时，就需要到特定的数组里去得到</p>
 <p>版本信息：在PHP5.3之前 默认开启 PHP5.3默认关闭 PHP5.6及5.7已经被移除</p>
-<p>通过</p>
 
                 
               </div>
@@ -495,7 +495,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>php变量覆盖</div>
+      <div>php变量覆盖（未完）</div>
       <div>https://colourful228.github.io/2026/06/01/php变量覆盖/</div>
     </div>
     <div class="license-meta">
@@ -514,7 +514,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年6月2日</div>
+          <div>2026年6月16日</div>
         </div>
       
       
@@ -545,9 +545,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/06/02/sprintf%E6%BC%8F%E6%B4%9E/" title="sprintf漏洞">
+                      <a href="/2026/06/02/preg-replace%E7%9A%84-e%E6%A8%A1%E5%BC%8F/" title="preg_replace的/e模式">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">sprintf漏洞</span>
+                        <span class="hidden-mobile">preg_replace的/e模式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
