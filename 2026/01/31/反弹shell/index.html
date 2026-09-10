@@ -330,6 +330,9 @@
 
   
 
+
+
+
 <div id="banner" class="banner" parallax=true
      style="background: url('/img/M.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
@@ -406,6 +409,80 @@
     </div>
   </div>
 </div>
+
+
+<style>
+  /* 文章页背景视频：保持原始宽高比，完整居中显示在屏幕内，不裁剪不溢出 */
+  #web_bg {
+    overflow: hidden;
+  }
+
+  #web_bg video.banner-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: 92vw;
+    max-height: 92vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  #web_bg video.banner-video.banner-video-ready {
+    opacity: 1;
+  }
+
+  /* 用户偏好减少动态效果时退化为静态背景图 */
+  @media (prefers-reduced-motion: reduce) {
+    #web_bg video.banner-video {
+      display: none;
+    }
+  }
+</style>
+<script>
+  (function () {
+    function injectBannerVideo() {
+      var webBg = document.getElementById("web_bg");
+      if (!webBg || webBg.querySelector("video.banner-video")) return;
+
+      var video = document.createElement("video");
+      video.className = "banner-video";
+      video.src = "/video/comment.mp4";
+      video.loop = true;
+      video.muted = true;       // 静音才能自动播放
+      video.autoplay = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("preload", "auto");
+      video.setAttribute("aria-hidden", "true");
+
+      // 可以播放时淡入；加载失败则移除，回退为原静态背景图 M.jpg
+      video.addEventListener("canplay", function () {
+        video.classList.add("banner-video-ready");
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      });
+      video.addEventListener("error", function () {
+        video.remove();
+      });
+
+      webBg.appendChild(video);
+    }
+
+    // 等待 load，确保 backgroundize.js 已先完成对 #web_bg 的处理
+    if (document.readyState === "complete") {
+      injectBannerVideo();
+    } else {
+      window.addEventListener("load", injectBannerVideo);
+    }
+  })();
+</script>
+
 
 </div>
 
