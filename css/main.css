@@ -2245,6 +2245,8 @@ input[type=checkbox] {
   object-fit: cover;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
+/* 友邻头像旋转：与"关于"页头像一致（悬停旋转一周）
+     用类选择器统一控制，后续在 links.items 新增友邻会自动应用，无需额外改动 */
 }
 .link-avatar img {
   width: 100%;
@@ -2252,6 +2254,16 @@ input[type=checkbox] {
   border-radius: 50%;
   background-color: transparent;
   object-fit: cover;
+}
+.link-avatar .link-avatar-img {
+  transition: all 1s;
+}
+.link-avatar .link-avatar-img:hover {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
 }
 .link-text {
   flex: 1;

@@ -342,7 +342,7 @@
 
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/M.jpg') no-repeat center center; background-size: cover;">
+     style="background: none; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -420,23 +420,22 @@
 
 
 <style>
-  /* 文章页背景视频：保持原始宽高比，完整居中显示在屏幕内，不裁剪不溢出 */
+  /* 有视频的页面：全局背景层只保留视频，彻底移除静态背景图 */
   #web_bg {
     overflow: hidden;
+    background-image: none !important;
   }
 
+  /* 视频全屏铺满整个页面（覆盖原静态背景位置） */
   #web_bg video.banner-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    height: auto;
-    max-width: 92vw;
-    max-height: 92vh;
-    object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
     z-index: 0;
     opacity: 0;
     transition: opacity 1.2s ease;
@@ -446,7 +445,7 @@
     opacity: 1;
   }
 
-  /* 用户偏好减少动态效果时退化为静态背景图 */
+  /* 用户偏好减少动态效果时不播放视频，但也保持全屏、不露出静态图 */
   @media (prefers-reduced-motion: reduce) {
     #web_bg video.banner-video {
       display: none;
@@ -459,6 +458,9 @@
       var webBg = document.getElementById("web_bg");
       if (!webBg || webBg.querySelector("video.banner-video")) return;
 
+      // 移除静态背景图（backgroundize.js 会把它写成内联样式），只留视频
+      webBg.style.backgroundImage = "none";
+
       var video = document.createElement("video");
       video.className = "banner-video";
       video.src = "/video/comment.mp4";
@@ -469,20 +471,17 @@
       video.setAttribute("preload", "auto");
       video.setAttribute("aria-hidden", "true");
 
-      // 可以播放时淡入；加载失败则移除，回退为原静态背景图 M.jpg
+      // 可以播放时淡入
       video.addEventListener("canplay", function () {
         video.classList.add("banner-video-ready");
         var p = video.play();
         if (p && p.catch) p.catch(function () {});
       });
-      video.addEventListener("error", function () {
-        video.remove();
-      });
 
       webBg.appendChild(video);
     }
 
-    // 等待 load，确保 backgroundize.js 已先完成对 #web_bg 的处理
+    // 等待 load，确保 backgroundize.js 已先完成对 #web_bg 的处理，再覆盖为视频
     if (document.readyState === "complete") {
       injectBannerVideo();
     } else {

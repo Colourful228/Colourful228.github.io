@@ -323,7 +323,7 @@
 
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/7.png') no-repeat center center; background-size: cover;">
+     style="background: none; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -345,6 +345,77 @@
   </div>
 </div>
 
+
+<style>
+  /* 有视频的页面：全局背景层只保留视频，彻底移除静态背景图 */
+  #web_bg {
+    overflow: hidden;
+    background-image: none !important;
+  }
+
+  /* 视频全屏铺满整个页面（覆盖原静态背景位置） */
+  #web_bg video.banner-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  #web_bg video.banner-video.banner-video-ready {
+    opacity: 1;
+  }
+
+  /* 用户偏好减少动态效果时不播放视频，但也保持全屏、不露出静态图 */
+  @media (prefers-reduced-motion: reduce) {
+    #web_bg video.banner-video {
+      display: none;
+    }
+  }
+</style>
+<script>
+  (function () {
+    function injectBannerVideo() {
+      var webBg = document.getElementById("web_bg");
+      if (!webBg || webBg.querySelector("video.banner-video")) return;
+
+      // 移除静态背景图（backgroundize.js 会把它写成内联样式），只留视频
+      webBg.style.backgroundImage = "none";
+
+      var video = document.createElement("video");
+      video.className = "banner-video";
+      video.src = "/video/link.mp4";
+      video.loop = true;
+      video.muted = true;       // 静音才能自动播放
+      video.autoplay = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("preload", "auto");
+      video.setAttribute("aria-hidden", "true");
+
+      // 可以播放时淡入
+      video.addEventListener("canplay", function () {
+        video.classList.add("banner-video-ready");
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      });
+
+      webBg.appendChild(video);
+    }
+
+    // 等待 load，确保 backgroundize.js 已先完成对 #web_bg 的处理，再覆盖为视频
+    if (document.readyState === "complete") {
+      injectBannerVideo();
+    } else {
+      window.addEventListener("load", injectBannerVideo);
+    }
+  })();
+</script>
 
 
 </div>
@@ -370,7 +441,7 @@
         <div class="card-content">
           
             <div class="link-avatar my-auto">
-              <img src="/img/Suzen.jpg" srcset="/img/loading.gif" lazyload alt="Suzen"
+              <img src="/img/Suzen.jpg" srcset="/img/loading.gif" lazyload alt="Suzen" class="link-avatar-img"
                    onerror="this.onerror=null; this.src=this.srcset='/img/avatar.png'"/>
             </div>
           
@@ -388,7 +459,7 @@
         <div class="card-content">
           
             <div class="link-avatar my-auto">
-              <img src="/img/Camellia.png" srcset="/img/loading.gif" lazyload alt="Camellia"
+              <img src="/img/Camellia.png" srcset="/img/loading.gif" lazyload alt="Camellia" class="link-avatar-img"
                    onerror="this.onerror=null; this.src=this.srcset='/img/avatar.png'"/>
             </div>
           
@@ -406,7 +477,7 @@
         <div class="card-content">
           
             <div class="link-avatar my-auto">
-              <img src="/img/AsLeo.png" srcset="/img/loading.gif" lazyload alt="AsLeo"
+              <img src="/img/AsLeo.png" srcset="/img/loading.gif" lazyload alt="AsLeo" class="link-avatar-img"
                    onerror="this.onerror=null; this.src=this.srcset='/img/avatar.png'"/>
             </div>
           
@@ -424,7 +495,7 @@
         <div class="card-content">
           
             <div class="link-avatar my-auto">
-              <img src="/img/lsy.jpg" srcset="/img/loading.gif" lazyload alt="Un0ffiaI_0"
+              <img src="/img/lsy.jpg" srcset="/img/loading.gif" lazyload alt="Un0ffiaI_0" class="link-avatar-img"
                    onerror="this.onerror=null; this.src=this.srcset='/img/avatar.png'"/>
             </div>
           
