@@ -132,116 +132,211 @@
     
 
 <style type="text/css">
-  @keyframes spin3D {
-    from {
-      transform: rotate3d(0.5, 0.5, 0.5, 360deg);
-    }
-
-    to {
-      transform: rotate3d(0deg);
-    }
-  }
-
+  /* ---------- 遮罩：背景与原有加载动画完全一致 ---------- */
   #loading {
-    height: 100%;
-    background-color: #172d4781;
-    backdrop-filter: saturate(100%) blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    overflow: hidden;
+    bottom: 0;
+    height: 100%;
     z-index: 99999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #172d4781;
+    -webkit-backdrop-filter: saturate(100%) blur(10px);
+    backdrop-filter: saturate(100%) blur(10px);
+    opacity: 1;
+    transition: opacity .25s ease;
+    will-change: opacity;
   }
 
-  .spinner-box {
-    width: 300px;
-    height: 300px;
+  /* 淡出：原来 fadeout 类没有任何样式，这里补上真正的过渡 */
+  #loading.fadeout {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* ---------- 三环 3D 旋转 ---------- */
+  #loading .spinner-box {
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: transparent;
   }
 
-  .leo {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  #loading .loader {
+    position: relative;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
+    perspective: 800px;
+    transform: translateZ(0);
   }
 
-  .blue-orbit {
-    width: 175px;
-    height: 175px;
-    border: 2px solid #1a91fa;
-    animation: spin3D 3s linear .2s infinite;
+  /* 环体后方淡影：浅色背景下也能看清白环（不参与 3D 变换，避开放平问题） */
+  #loading .loader::before {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(23, 45, 71, .26) 0%, rgba(23, 45, 71, 0) 70%);
+    pointer-events: none;
   }
 
-  .green-orbit {
-    width: 135px;
-    height: 135px;
-    border: 2px solid #00ffdd;
-    animation: spin3D 2s linear 0s infinite;
+  #loading .loader .inner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    will-change: transform;
   }
 
-  .red-orbit {
-    width: 100px;
-    height: 100px;
-    border: 2px solid #d75151;
-    animation: spin3D 1s linear 0s infinite;
+  #loading .inner.one {
+    left: 0;
+    top: 0;
+    border-bottom: 3px solid #efeffa;
+    animation: rotate-one 1s linear infinite;
   }
 
-  .white-orbit-a {
-    width: 70px;
-    height: 70px;
-    border: 1px solid #faf5f5;
-    animation: spin3D 3s linear 0s infinite;
+  #loading .inner.two {
+    right: 0;
+    top: 0;
+    border-right: 3px solid #efeffa;
+    animation: rotate-two 1s linear infinite;
   }
 
-  .white-orbit-b {
-    width: 70px;
-    height: 70px;
-    border: 1px solid #faf5f5;
-    animation: spin3D 1.5s linear 0s infinite;
+  #loading .inner.three {
+    right: 0;
+    bottom: 0;
+    border-top: 3px solid #efeffa;
+    animation: rotate-three 1s linear infinite;
   }
 
-  .nucleus {
-    width: 1px;
-    height: 1px;
-    border: 1px solid #ffffff;
-    animation: spin3D 1s linear 0s infinite;
+  @keyframes rotate-one {
+    0% {
+      transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+  }
+
+  @keyframes rotate-two {
+    0% {
+      transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+  }
+
+  @keyframes rotate-three {
+    0% {
+      transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+  }
+
+  /* ---------- 文字 ---------- */
+  #loading .loading-word {
+    margin-top: 26px;
+    text-align: center;
+    color: #efeffa;
+    font-size: .95rem;
+    letter-spacing: .02em;
+    text-shadow: 0 1px 6px rgba(10, 22, 36, .45);
+    line-height: 1.5;
+  }
+
+  #loading .loading-title {
+    margin: 0 0 4px;
+    font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+    font-weight: 500;
+  }
+
+  /* 移动端：环体略缩，避免文字被挤压换行 */
+  @media screen and (max-width: 480px) {
+    #loading .loader {
+      width: 56px;
+      height: 56px;
+    }
+
+    #loading .loading-word {
+      margin-top: 22px;
+      font-size: .9rem;
+    }
+  }
+
+  /* 尊重系统「减少动态效果」偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    #loading .loader .inner {
+      animation: none;
+    }
+
+    #loading {
+      transition: none;
+    }
   }
 </style>
 
+<!-- JS 被禁用时不要永远挡住页面 -->
+<noscript><style>#loading{display:none !important;}</style></noscript>
+
 <div id="loading">
-    <div class="spinner-box">
-        <div class="blue-orbit leo"></div>
-        <div class="green-orbit leo"></div>
-        <div class="red-orbit leo"></div>
-        <div class="white-orbit-a leo"></div>
-        <div class="white-orbit-b leo"></div>
-        <div class="nucleus leo"></div>
+  <div class="spinner-box">
+    <div class="loader">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
     </div>
+    <div class="loading-word">
+      <p class="loading-title">Colourfulの小窝</p>
+      <span>Loading...</span>
+    </div>
+  </div>
 </div>
 
 <script>
   (function () {
-    const loaded = function () {
-      window.onload = function () {
-        const loader = document.getElementById("loading");
-        loader.className = "fadeout";
+    var loader = document.getElementById('loading');
+    if (!loader) return;
+
+    // 动画本身的最短展示时长（由 play_time 控制）
+    var MIN_SHOW = 300;
+    // 兜底：无论资源是否加载完，到点强制收尾，避免遮罩把整站挡死
+    var MAX_WAIT = 2500;
+    var startAt = Date.now();
+    var done = false;
+
+    function hide() {
+      if (done) return;
+      done = true;
+      var rest = Math.max(0, MIN_SHOW - (Date.now() - startAt));
+      setTimeout(function () {
+        loader.classList.add('fadeout');
         setTimeout(function () {
-            loader.style.display = "none";
-          },
-                500
-        );
-      }
-    };
-    loaded();
+          loader.style.display = 'none';
+        }, 260);
+      }, rest);
+    }
+
+    if (document.readyState === 'complete') {
+      hide();
+    } else {
+      window.addEventListener('load', hide, false);
+      setTimeout(hide, MAX_WAIT);
+    }
   })();
 </script>
 
